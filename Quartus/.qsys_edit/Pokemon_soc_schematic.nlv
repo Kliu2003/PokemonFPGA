@@ -22,24 +22,24 @@ preplace inst Pokemon_soc.usb_gpx -pg 1 -lvl 3 -y 1310
 preplace inst Pokemon_soc.hex_digits_pio -pg 1 -lvl 3 -y 590
 preplace inst Pokemon_soc -pg 1 -lvl 1 -y 40 -regy -20
 preplace inst Pokemon_soc.onchip_memory2_0 -pg 1 -lvl 3 -y 430
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.usb_irq,(SLAVE)usb_irq.external_connection) 1 0 3 NJ 1440 NJ 1440 NJ
-preplace netloc INTERCONNECT<net_container>Pokemon_soc</net_container>(SLAVE)nios2_gen2_0.reset,(SLAVE)usb_rst.reset,(SLAVE)usb_irq.reset,(SLAVE)keycode.reset,(SLAVE)reset.reset,(SLAVE)usb_gpx.reset,(SLAVE)sdram_pll.inclk_interface_reset,(SLAVE)leds_pio.reset,(MASTER)clk_0.clk_reset,(SLAVE)hex_digits_pio.reset,(SLAVE)spi_0.reset,(SLAVE)jtag_uart_0.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)onchip_memory2_0.reset1,(SLAVE)accumulate.reset,(SLAVE)sdram.reset,(SLAVE)timer_0.reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)key.reset) 1 1 2 380 740 800
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)accumulate.external_connection,(SLAVE)Pokemon_soc.accumulate_button) 1 0 3 NJ 60 NJ 60 NJ
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)leds_pio.external_connection,(SLAVE)Pokemon_soc.leds) 1 0 3 NJ 1140 NJ 1140 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)spi_0.external,(SLAVE)Pokemon_soc.spi0) 1 0 3 NJ 920 NJ 920 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)hex_digits_pio.external_connection,(SLAVE)Pokemon_soc.hex_digits) 1 0 3 NJ 620 NJ 620 NJ
+preplace netloc INTERCONNECT<net_container>Pokemon_soc</net_container>(SLAVE)key.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)sysid_qsys_0.reset,(SLAVE)hex_digits_pio.reset,(SLAVE)timer_0.reset,(SLAVE)sdram.reset,(SLAVE)reset.reset,(SLAVE)usb_gpx.reset,(SLAVE)usb_rst.reset,(SLAVE)usb_irq.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)accumulate.reset,(SLAVE)sdram_pll.inclk_interface_reset,(SLAVE)spi_0.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)keycode.reset,(SLAVE)leds_pio.reset,(SLAVE)nios2_gen2_0.reset,(MASTER)clk_0.clk_reset) 1 1 2 360 1660 800
+preplace netloc FAN_OUT<net_container>Pokemon_soc</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)jtag_uart_0.irq,(SLAVE)spi_0.irq,(SLAVE)timer_0.irq) 1 2 1 820
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.reset_button,(SLAVE)reset.external_connection) 1 0 3 NJ 1240 NJ 1240 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.leds,(SLAVE)leds_pio.external_connection) 1 0 3 NJ 1140 NJ 1140 NJ
 preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)keycode.external_connection,(SLAVE)Pokemon_soc.keycode) 1 0 3 NJ 1040 NJ 1040 NJ
 preplace netloc POINT_TO_POINT<net_container>Pokemon_soc</net_container>(SLAVE)sdram.clk,(MASTER)sdram_pll.c0) 1 2 2 820 220 1060
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)key.external_connection,(SLAVE)Pokemon_soc.key_external_connection) 1 0 3 NJ 1640 NJ 1640 NJ
-preplace netloc FAN_OUT<net_container>Pokemon_soc</net_container>(SLAVE)jtag_uart_0.irq,(MASTER)nios2_gen2_0.irq,(SLAVE)timer_0.irq,(SLAVE)spi_0.irq) 1 2 1 820
-preplace netloc INTERCONNECT<net_container>Pokemon_soc</net_container>(SLAVE)usb_rst.s1,(SLAVE)sdram_pll.pll_slave,(SLAVE)usb_gpx.s1,(SLAVE)accumulate.s1,(SLAVE)usb_irq.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)key.s1,(SLAVE)reset.s1,(SLAVE)leds_pio.s1,(SLAVE)timer_0.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)keycode.s1,(SLAVE)sdram.s1,(MASTER)nios2_gen2_0.data_master,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)hex_digits_pio.s1,(SLAVE)onchip_memory2_0.s1,(SLAVE)spi_0.spi_control_port) 1 1 2 400 1660 760
+preplace netloc INTERCONNECT<net_container>Pokemon_soc</net_container>(SLAVE)accumulate.s1,(SLAVE)hex_digits_pio.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(MASTER)nios2_gen2_0.data_master,(SLAVE)keycode.s1,(SLAVE)usb_irq.s1,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)reset.s1,(SLAVE)usb_gpx.s1,(SLAVE)timer_0.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)onchip_memory2_0.s1,(SLAVE)sdram.s1,(SLAVE)spi_0.spi_control_port,(SLAVE)sdram_pll.pll_slave,(SLAVE)leds_pio.s1,(SLAVE)key.s1,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)usb_rst.s1) 1 1 2 400 1680 760
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.key_external_connection,(SLAVE)key.external_connection) 1 0 3 NJ 1640 NJ 1640 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)sdram.wire,(SLAVE)Pokemon_soc.sdram_wire) 1 0 3 NJ 300 NJ 300 NJ
 preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.usb_gpx,(SLAVE)usb_gpx.external_connection) 1 0 3 NJ 1340 NJ 1340 NJ
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)reset.external_connection,(SLAVE)Pokemon_soc.reset_button) 1 0 3 NJ 1240 NJ 1240 NJ
 preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)Pokemon_soc.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.hex_digits,(SLAVE)hex_digits_pio.external_connection) 1 0 3 NJ 620 NJ 620 NJ
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.usb_rst,(SLAVE)usb_rst.external_connection) 1 0 3 NJ 1540 NJ 1540 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.accumulate_button,(SLAVE)accumulate.external_connection) 1 0 3 NJ 60 NJ 60 NJ
 preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
-preplace netloc FAN_OUT<net_container>Pokemon_soc</net_container>(SLAVE)keycode.clk,(SLAVE)spi_0.clk,(SLAVE)accumulate.clk,(SLAVE)leds_pio.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)reset.clk,(SLAVE)hex_digits_pio.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)usb_gpx.clk,(SLAVE)sdram_pll.inclk_interface,(SLAVE)timer_0.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)key.clk,(MASTER)clk_0.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)usb_rst.clk,(SLAVE)usb_irq.clk) 1 1 2 360 720 780
+preplace netloc FAN_OUT<net_container>Pokemon_soc</net_container>(SLAVE)spi_0.clk,(SLAVE)leds_pio.clk,(SLAVE)usb_gpx.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)timer_0.clk,(MASTER)clk_0.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)usb_irq.clk,(SLAVE)key.clk,(SLAVE)keycode.clk,(SLAVE)sdram_pll.inclk_interface,(SLAVE)reset.clk,(SLAVE)accumulate.clk,(SLAVE)usb_rst.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)hex_digits_pio.clk) 1 1 2 380 1560 780
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)usb_rst.external_connection,(SLAVE)Pokemon_soc.usb_rst) 1 0 3 NJ 1540 NJ 1540 NJ
 preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(MASTER)sdram_pll.c1,(MASTER)Pokemon_soc.sdram_clk) 1 3 1 N
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.spi0,(SLAVE)spi_0.external) 1 0 3 NJ 920 NJ 920 NJ
-preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)Pokemon_soc.sdram_wire,(SLAVE)sdram.wire) 1 0 3 NJ 300 NJ 300 NJ
+preplace netloc EXPORT<net_container>Pokemon_soc</net_container>(SLAVE)usb_irq.external_connection,(SLAVE)Pokemon_soc.usb_irq) 1 0 3 NJ 1440 NJ 1440 NJ
 levelinfo -pg 1 0 150 1170
 levelinfo -hier Pokemon_soc 160 190 520 870 1080

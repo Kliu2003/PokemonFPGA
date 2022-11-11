@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Nov 10, 2022 10:39:57 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1668141597878</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Nov 11, 2022 12:03:37 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1668146617954</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\redke\Documents\College\UIUC\Fall2022\ECE385\FinalProject\PokemonFPGA\Quartus\software\PokemonC_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\Pokemon_soc.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>
@@ -918,73 +918,73 @@
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>key</slaveDescriptor>
-                <addressRange>0x00000190 - 0x0000019F</addressRange>
+                <addressRange>0x00000170 - 0x0000017F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>leds_pio</slaveDescriptor>
-                <addressRange>0x000001A0 - 0x000001AF</addressRange>
+                <addressRange>0x00000180 - 0x0000018F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>hex_digits_pio</slaveDescriptor>
-                <addressRange>0x000001B0 - 0x000001BF</addressRange>
+                <addressRange>0x00000190 - 0x0000019F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>usb_rst</slaveDescriptor>
-                <addressRange>0x000001C0 - 0x000001CF</addressRange>
+                <addressRange>0x000001A0 - 0x000001AF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>usb_gpx</slaveDescriptor>
-                <addressRange>0x000001D0 - 0x000001DF</addressRange>
+                <addressRange>0x000001B0 - 0x000001BF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>usb_irq</slaveDescriptor>
-                <addressRange>0x000001E0 - 0x000001EF</addressRange>
+                <addressRange>0x000001C0 - 0x000001CF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>keycode</slaveDescriptor>
-                <addressRange>0x000001F0 - 0x000001FF</addressRange>
+                <addressRange>0x000001D0 - 0x000001DF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>reset</slaveDescriptor>
-                <addressRange>0x00000200 - 0x0000020F</addressRange>
+                <addressRange>0x000001E0 - 0x000001EF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>accumulate</slaveDescriptor>
-                <addressRange>0x00000210 - 0x0000021F</addressRange>
+                <addressRange>0x000001F0 - 0x000001FF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sdram_pll</slaveDescriptor>
-                <addressRange>0x00000220 - 0x0000022F</addressRange>
+                <addressRange>0x00000200 - 0x0000020F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x00000240 - 0x00000247</addressRange>
+                <addressRange>0x00000220 - 0x00000227</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x00000248 - 0x0000024F</addressRange>
+                <addressRange>0x00000228 - 0x0000022F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>

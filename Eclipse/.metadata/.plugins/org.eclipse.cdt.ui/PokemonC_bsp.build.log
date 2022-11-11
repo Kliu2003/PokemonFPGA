@@ -1,6 +1,6 @@
-22:40:00 **** Clean-only build of configuration Nios II for project PokemonC_bsp ****
-make clean 
-[BSP clean complete]
+00:15:25 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
+make all 
+[BSP build complete]
 
-22:40:00 Build Finished (took 525ms)
+00:15:26 Build Finished (took 945ms)
 
