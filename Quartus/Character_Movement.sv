@@ -40,7 +40,7 @@ module character_movement ( input Reset, frame_clk,
 				Ball_X_Pos <= Ball_X_Center;
         end
            
-        else 
+        else // TODO: implement collision logic for trees, buildings, fences, etc. once we make the map
         begin 
 				 if ( (Ball_Y_Pos + Ball_Size) >= Ball_Y_Max )  // Ball is at the bottom edge, BOUNCE!
 					  Ball_Y_Motion <= (~ (Ball_Y_Step) + 1'b1);  // 2's complement.
@@ -83,12 +83,12 @@ module character_movement ( input Reset, frame_clk,
 							default: begin
 							  
 									  Ball_X_Motion <= 0;
-									  Ball_Y_Motion <= 0;  // Ball is somewhere in the middle, don't bounce, just keep moving;
+									  Ball_Y_Motion <= 0;  // stop moving if no key press
 							end
 						endcase
 					end
 				 
-				Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // Update ball position
+				Ball_Y_Pos <= (Ball_Y_Pos + Ball_Y_Motion);  // update ball position
 				Ball_X_Pos <= (Ball_X_Pos + Ball_X_Motion);
 			
 			

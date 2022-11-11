@@ -16,48 +16,28 @@
 module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
                        output logic [7:0]  Red, Green, Blue );
     
-    logic ball_on;
-	 
- /* Old Ball: Generated square box by checking if the current pixel is within a square of length
-    2*Ball_Size, centered at (BallX, BallY).  Note that this requires unsigned comparisons.
-	 
-    if ((DrawX >= BallX - Ball_size) &&
-       (DrawX <= BallX + Ball_size) &&
-       (DrawY >= BallY - Ball_size) &&
-       (DrawY <= BallY + Ball_size))
+	logic ball_on;
 
-     New Ball: Generates (pixelated) circle by using the standard circle formula.  Note that while 
-     this single line is quite powerful descriptively, it causes the synthesis tool to use up three
-     of the 12 available multipliers on the chip!  Since the multiplicants are required to be signed,
-	  we have to first cast them from logic to int (signed by default) before they are multiplied). */
-	  
-    int DistX, DistY, Size;
-	 assign DistX = DrawX - BallX;
-    assign DistY = DrawY - BallY;
-    assign Size = Ball_size;
-	  
-    always_comb
-    begin:Ball_on_proc
-        if ( ( DistX*DistX + DistY*DistY) <= (Size * Size) ) 
+	always_comb begin:Ball_on_proc
+		if (DrawX > 300 && DrawX < 340 && DrawY > 220 && DrawY < 260) begin 
             ball_on = 1'b1;
-        else 
-            ball_on = 1'b0;
-     end 
-       
-    always_comb
-    begin:RGB_Display
-        if ((ball_on == 1'b1)) 
-        begin 
-            Red = 8'hff;
-            Green = 8'h55;
-            Blue = 8'h00;
-        end       
-        else 
-        begin 
-            Red = 8'h00; 
-            Green = 8'h00;
-            Blue = 8'h7f - DrawX[9:3];
-        end      
-    end 
-    
+		end
+		else begin
+			ball_on = 1'b0;
+		end
+	end 
+	 
+	always_comb begin:RGB_Display
+		if ((ball_on == 1'b1)) begin 
+			Red = 8'h00; 
+			Green = 8'h00;
+			Blue = 8'h7f - BallX[9:3];
+		end       
+		else begin 
+			Red = 8'h00; 
+			Green = 8'h00;
+			Blue = 8'h7f - DrawX[9:3];
+		end
+	end 
+ 
 endmodule
