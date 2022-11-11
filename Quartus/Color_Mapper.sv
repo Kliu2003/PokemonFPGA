@@ -30,12 +30,12 @@ module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
 	always_comb begin:RGB_Display
 		if ((ball_on == 1'b1)) begin 
 			Red = 8'h00; 
-			Green = 8'h00;
-			Blue = 8'h7f - BallX[9:3];
+			Green = 8'h7f - (BallY[9:3] + DrawY[9:3] % 40);
+			Blue = 8'h7f - (BallX[9:3] + DrawX[9:3] % 40);
 		end       
 		else begin 
 			Red = 8'h00; 
-			Green = 8'h00;
+			Green = 8'h7f - DrawY[9:3];
 			Blue = 8'h7f - DrawX[9:3];
 		end
 	end 
