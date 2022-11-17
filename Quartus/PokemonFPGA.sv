@@ -63,6 +63,9 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
 	logic [7:0] Red, Blue, Green;
 	logic [7:0] keycode;
+	
+	logic Movement;
+	logic [1:0] Dir;
 
 //=======================================================
 //  Structural coding
@@ -164,23 +167,21 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 );
 	 
 	 color_mapper cm(
-		.BallX(ballxsig),
-		.BallY(ballysig),
+		.Character_Moving(Movement),
+		.Direction(Dir),
 		.DrawX(drawxsig),
 		.DrawY(drawysig),
-		.Ball_size(ballsizesig),
 		.Red(Red),
 		.Blue(Blue),
 		.Green(Green)
 	 );
 	 
-	 character_movement chaojidaqiuqiu(
+	 Character_Movement Ethan(
 		.Reset(Reset_h),
 		.frame_clk(VGA_VS),
 		.keycode(keycode),
-		.BallX(ballxsig),
-		.BallY(ballysig),
-		.BallS(ballsizesig)
+		.Character_Moving(Movement),
+		.Direction(Dir)
 	 );
 
 

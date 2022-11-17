@@ -13,30 +13,25 @@
 //-------------------------------------------------------------------------
 
 
-module  color_mapper 
-( 
-		input Character_Moving,
-		input [1:0] Direction,
-		input [9:0] DrawX, DrawY,
-		output logic [7:0]  Red, Green, Blue 
-);
+module  color_mapper ( input        [9:0] BallX, BallY, DrawX, DrawY, Ball_size,
+                       output logic [7:0]  Red, Green, Blue );
     
-	logic character_here;
+	logic ball_on;
 
-	always_comb begin:character_proc
-		if(DrawX >= 10'd293 && DrawX <= 10'd308 && DrawY >= 10'd350 && DrawY <= 10'd455) begin 
-			character_here = 1'b1;
+	always_comb begin:Ball_on_proc
+		if (DrawX > 300 && DrawX < 340 && DrawY > 220 && DrawY < 260) begin 
+            ball_on = 1'b1;
 		end
 		else begin
-			character_here = 1'b0;
+			ball_on = 1'b0;
 		end
 	end 
 	 
 	always_comb begin:RGB_Display
-		if (character_here == 1) begin 
-			unique case(Direction) begin
-				
-			endcase
+		if ((ball_on == 1'b1)) begin 
+			Red = 8'h00; 
+			Green = 8'h7f - (BallY[9:3] + DrawY[9:3] % 40);
+			Blue = 8'h7f - (BallX[9:3] + DrawX[9:3] % 40);
 		end       
 		else begin 
 			Red = 8'h00; 
