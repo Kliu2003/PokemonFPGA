@@ -33,7 +33,7 @@ module Character_Movement
 //				Ball_X_Motion <= 10'd0; //Ball_X_Step;
 //				Ball_Y_Pos <= Ball_Y_Center;
 //				Ball_X_Pos <= Ball_X_Center;
-				Character_Moving = 1'b0;
+				Movement = 1'b0;
 				Current_Direction = 2'd0;
         end
            

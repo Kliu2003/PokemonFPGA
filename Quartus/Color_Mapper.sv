@@ -365,7 +365,7 @@ module  color_mapper
 		endcase
 	end
 	
-	always_ff begin:Draw_Character
+	always_ff @(posedge Clk) begin:Draw_Character
 		if (Character_Here == 1) begin 
 			unique case(Curr_State)
 				//Draw Up Sprites
