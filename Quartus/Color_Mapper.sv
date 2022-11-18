@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------
 
 
-module  color_mapper 
+module color_mapper 
 ( 
 		input Clk, Reset,
 		input Character_Moving,
@@ -25,26 +25,26 @@ module  color_mapper
 	logic Character_Here;
 	logic [23:0] Palette [23];
 	
-//		24'h800080,
-//		24'h000000,
-//		24'hF83800,
-//		24'hF0D0B0,
-//		24'h503000,
-//		24'hFFE0A8,
+	assign Palette[0] = 24'h800080;
+	assign Palette[1] = 24'h000000;
+	assign Palette[2] = 24'hF83800;
+	assign Palette[3] = 24'hF0D0B0;
+	assign Palette[4] = 24'h503000;
+	assign Palette[5] = 24'hFFE0A8;
 	assign Palette[6] = 24'h0058F8;
 	assign Palette[7] = 24'hFCFCFC;
-//		24'hBCBCBC,
-//		24'hA40000,
-//		24'hD82800,
-//		24'hFC7460,
-//		24'hFCBCB0,
-//		24'hF0BC3C,
-//		24'hAEACAE
-//		24'h363301
-//		24'h6C6C01
-//		24'hBBBD00
-//		24'h88D500
-//		24'h398802
+	assign Palette[8] = 24'hBCBCBC;
+	assign Palette[9] = 24'hA40000;
+	assign Palette[10] = 24'hD82800;
+	assign Palette[11] = 24'hFC7460;
+	assign Palette[12] = 24'hFCBCB0;
+	assign Palette[13] = 24'hF0BC3C;
+	assign Palette[14] = 24'hAEACAE;
+	assign Palette[15] = 24'h363301;
+	assign Palette[16] = 24'h6C6C01;
+	assign Palette[17] = 24'hBBBD00;
+	assign Palette[18] = 24'h88D500;
+	assign Palette[19] = 24'h398802;
 	assign Palette[20] = 24'h65B0FF;
 	assign Palette[21] = 24'h155ED8;
 	assign Palette[22] = 24'h24188A;
@@ -393,7 +393,7 @@ module  color_mapper
 	
 	always_comb begin:RGB_Display
 		if (Character_Here == 1) begin 
-			{Red, Green, Blue} = Palette[7];
+			{Red, Green, Blue} = Palette[14];
 			unique case(Curr_State)
 				//Draw Up Sprites
 				upRest1: begin
