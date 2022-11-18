@@ -57,8 +57,8 @@ module color_mapper
 
 	Anim_State Curr_State, Next_State;
 	
-	logic [12:0] read_addr ;
-	logic [5:0] palette_color;
+	logic [12:0] read_addr, map_read_addr;
+	logic [5:0] palette_color, map_palette_color;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -69,11 +69,23 @@ module color_mapper
 		.data_Out(palette_color)
 	 );
 
-
+	mapRAM mapRAM(
+		.data_In(0),
+		.write_address(0),
+		.read_address(map_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(map_palette_color)
+	 );
+	 
+	logic [10:0] topleftX, topleftY;
+	assign topleftX = 11'd300;
+	assign topleftY = 11'd300;
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
+			map_read_addr = 0;
 			unique case(Curr_State)
 				//Draw Up Sprites
 				upRest1: begin
@@ -136,6 +148,7 @@ module color_mapper
 		else begin
 			Character_Here = 1'b0;
 			read_addr = 0;
+			map_read_addr = (DrawY + topleftY) * 1024 + (DrawX + topleftX);
 		end
 	end 
 	
@@ -469,9 +482,7 @@ module color_mapper
 			{Red, Green, Blue} = Palette[palette_color];
 		end       
 		else begin
-			Red = 8'h00; 
-			Green = 8'h00;
-			Blue = 8'h7f - DrawX[9:3];
+			{Red, Green, Blue} = Palette[map_palette_color];
 		end
 	end
  
