@@ -185,6 +185,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.Character_Moving(Movement),
 		.Direction(Dir)
 	 );
+	 
 
 
 //instantiate a vga_controller, ball, and color_mapper here with the ports.

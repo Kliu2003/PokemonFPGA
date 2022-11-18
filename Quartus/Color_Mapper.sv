@@ -57,8 +57,23 @@ module color_mapper
 
 	Anim_State Curr_State, Next_State;
 	
+	logic read_addr;
+	logic palette_color;
+	
+	characterRAM CharacterRAM(
+		.data_In(0),
+		.write_address(0),
+		.read_address(read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(palette_color)
+	 );
+
+	
+	assign read_addr = 228*(DrawY-10'd340)+(DrawX-10'd292);
+	
 	always_comb begin:Character_Proc
-		if(DrawX >= 10'd292 && DrawX <= 10'd308 && DrawY >= 10'd350 && DrawY <= 10'd373) begin 
+		if(DrawX >= 10'd212 && DrawX <= 10'd328 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
 		end
 		else begin
@@ -66,336 +81,337 @@ module color_mapper
 		end
 	end 
 	
-	always_ff @ (posedge Clk) begin
-		if(Reset) begin
-			Curr_State <= upRest1;
-		end
-		else begin
-			Curr_State <= Next_State;
-		end
-	end
-	
-	always_ff @(posedge Clk) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
-		unique case(Curr_State)
-		
-			//Up Check
-			upRest1:
-				if(Character_Moving == 0) begin
-					Next_State = upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upM1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			upM1:
-				if(Character_Moving == 0) begin
-					Next_State = upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest2;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			upRest2:
-				if(Character_Moving == 0) begin
-					Next_State = upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upM2;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			upM2:
-				if(Character_Moving == 0) begin
-					Next_State = upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			//Right Check	
-			rightRest1:
-				if(Character_Moving == 0) begin
-					Next_State = rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightM1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			rightM1:
-				if(Character_Moving == 0) begin
-					Next_State = rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest2;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			rightRest2:
-				if(Character_Moving == 0) begin
-					Next_State = rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightM2;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			rightM2:
-				if(Character_Moving == 0) begin
-					Next_State = rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			//Down Check
-			downRest1:
-				if(Character_Moving == 0) begin
-					Next_State = downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downM1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			downM1:
-				if(Character_Moving == 0) begin
-					Next_State = downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest2;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			downRest2:
-				if(Character_Moving == 0) begin
-					Next_State = downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downM2;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			downM2:
-				if(Character_Moving == 0) begin
-					Next_State = downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-				
-			//Left Check
-			leftRest1:
-				if(Character_Moving == 0) begin
-					Next_State = leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftM1;
-					end
-				end
-				
-			leftM1:
-				if(Character_Moving == 0) begin
-					Next_State = leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest2;
-					end
-				end
-				
-			leftRest2:
-				if(Character_Moving == 0) begin
-					Next_State = leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftM2;
-					end
-				end
-				
-			leftM2:
-				if(Character_Moving == 0) begin
-					Next_State = leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State = upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State = rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State = downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State = leftRest1;
-					end
-				end
-		
-			default:
-				Next_State = upRest1;
-		endcase
-	end
+//	always_ff @ (posedge Clk) begin
+//		if(Reset) begin
+//			Curr_State <= upRest1;
+//		end
+//		else begin
+//			Curr_State <= Next_State;
+//		end
+//	end
+//	
+//	always_ff @(posedge Clk) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
+//		unique case(Curr_State)
+//		
+//			//Up Check
+//			upRest1:
+//				if(Character_Moving == 0) begin
+//					Next_State = upRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upM1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			upM1:
+//				if(Character_Moving == 0) begin
+//					Next_State = upRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest2;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			upRest2:
+//				if(Character_Moving == 0) begin
+//					Next_State = upRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upM2;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			upM2:
+//				if(Character_Moving == 0) begin
+//					Next_State = upRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			//Right Check	
+//			rightRest1:
+//				if(Character_Moving == 0) begin
+//					Next_State = rightRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightM1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			rightM1:
+//				if(Character_Moving == 0) begin
+//					Next_State = rightRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest2;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			rightRest2:
+//				if(Character_Moving == 0) begin
+//					Next_State = rightRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightM2;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			rightM2:
+//				if(Character_Moving == 0) begin
+//					Next_State = rightRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			//Down Check
+//			downRest1:
+//				if(Character_Moving == 0) begin
+//					Next_State = downRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downM1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			downM1:
+//				if(Character_Moving == 0) begin
+//					Next_State = downRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest2;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			downRest2:
+//				if(Character_Moving == 0) begin
+//					Next_State = downRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downM2;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			downM2:
+//				if(Character_Moving == 0) begin
+//					Next_State = downRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//				
+//			//Left Check
+//			leftRest1:
+//				if(Character_Moving == 0) begin
+//					Next_State = leftRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftM1;
+//					end
+//				end
+//				
+//			leftM1:
+//				if(Character_Moving == 0) begin
+//					Next_State = leftRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest2;
+//					end
+//				end
+//				
+//			leftRest2:
+//				if(Character_Moving == 0) begin
+//					Next_State = leftRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftM2;
+//					end
+//				end
+//				
+//			leftM2:
+//				if(Character_Moving == 0) begin
+//					Next_State = leftRest1;
+//				end
+//				else begin
+//					if(Direction == 2'd0) begin
+//						Next_State = upRest1;
+//					end
+//					else if(Direction == 2'd1) begin
+//						Next_State = rightRest1;
+//					end
+//					else if(Direction == 2'd2) begin
+//						Next_State = downRest1;
+//					end
+//					else if(Direction == 2'd3) begin
+//						Next_State = leftRest1;
+//					end
+//				end
+//		
+//			default:
+//				Next_State = upRest1;
+//		endcase
+//	end
 	
 	always_comb begin:RGB_Display
 		if (Character_Here == 1) begin 
-			{Red, Green, Blue} = Palette[14];
+			{Red, Green, Blue} = Palette[0];
 			unique case(Curr_State)
 				//Draw Up Sprites
+				
 				upRest1: begin
 					;
 				end
