@@ -26,7 +26,7 @@ module Character_Movement
 	 
    
     always_ff @ (posedge Reset or posedge frame_clk)
-    begin:
+    begin:Move_Check
         if (Reset)  // Asynchronous Reset
         begin 
 //          Ball_Y_Motion <= 10'd0; //Ball_Y_Step;
