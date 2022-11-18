@@ -1,5 +1,5 @@
 Timing Analyzer report for PokemonFPGA
-Fri Nov 18 00:42:31 2022
+Fri Nov 18 00:49:38 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -94,12 +94,12 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 3.07        ;
+; Average used               ; 3.05        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;  13.8%      ;
+;     Processors 2-16        ;  13.6%      ;
 +----------------------------+-------------+
 
 
@@ -108,9 +108,9 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                                 ; Status ; Read at                  ;
 +-------------------------------------------------------------------------------+--------+--------------------------+
-; Pokemon_soc/synthesis/submodules/altera_reset_controller.sdc                  ; OK     ; Fri Nov 18 00:42:26 2022 ;
-; Pokemon_soc/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Fri Nov 18 00:42:26 2022 ;
-; Pokemon_soc/synthesis/submodules/Pokemon_soc_nios2_gen2_0_cpu.sdc             ; OK     ; Fri Nov 18 00:42:26 2022 ;
+; Pokemon_soc/synthesis/submodules/altera_reset_controller.sdc                  ; OK     ; Fri Nov 18 00:49:34 2022 ;
+; Pokemon_soc/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Fri Nov 18 00:49:34 2022 ;
+; Pokemon_soc/synthesis/submodules/Pokemon_soc_nios2_gen2_0_cpu.sdc             ; OK     ; Fri Nov 18 00:49:34 2022 ;
 +-------------------------------------------------------------------------------+--------+--------------------------+
 
 
@@ -1319,7 +1319,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Fri Nov 18 00:42:23 2022
+    Info: Processing started: Fri Nov 18 00:49:32 2022
 Info: Command: quartus_sta PokemonFPGA -c PokemonFPGA
 Info: qsta_default_script.tcl version: #1
 Warning (20013): Ignored 24 assignments for entity "DE10_LITE_Default" -- entity does not exist in design
@@ -1541,9 +1541,9 @@ Info (332114): Report Metastability: Found 3 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 56 warnings
-    Info: Peak virtual memory: 5025 megabytes
-    Info: Processing ended: Fri Nov 18 00:42:31 2022
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Peak virtual memory: 5027 megabytes
+    Info: Processing ended: Fri Nov 18 00:49:38 2022
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:14
 
 

@@ -148,9 +148,9 @@ module color_mapper
 		end
 	end
 	
-	always_ff @(posedge VS) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
-		unique case(Curr_State)
+	always_ff @(posedge VS) begin:Move_FSM //Need to be even slower than VS
 		
+		unique case(Curr_State)
 			//Up Check
 			upRest1:
 				if(Character_Moving == 0) begin
