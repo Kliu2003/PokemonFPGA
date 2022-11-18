@@ -45,7 +45,7 @@ module Character_Movement
 								Movement <= 1b'1;
 							end
 							else begin
-								Current_Direction <= 2d'3
+								Current_Direction <= 2d'3;
 								Movement <= 1b'1;
 							end
 						end
@@ -55,7 +55,7 @@ module Character_Movement
 								Movement <= 1b'1;
 							end
 							else begin
-								Current_Direction <= 2d'1
+								Current_Direction <= 2d'1;
 								Movement <= 1b'1;
 							end
 						end
@@ -66,7 +66,7 @@ module Character_Movement
 								Movement <= 1b'1;
 							end
 							else begin
-								Current_Direction <= 2d'2
+								Current_Direction <= 2d'2;
 								Movement <= 1b'1;
 							end
 						end
@@ -76,7 +76,7 @@ module Character_Movement
 								Movement <= 1b'1;
 							end
 							else begin
-								Current_Direction <= 2d'0
+								Current_Direction <= 2d'0;
 								Movement <= 1b'1;
 							end
 					end	  
