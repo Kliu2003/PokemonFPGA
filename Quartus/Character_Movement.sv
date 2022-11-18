@@ -26,7 +26,7 @@ module Character_Movement
 	 
    
     always_ff @ (posedge Reset or posedge frame_clk)
-    begin: Move_Ball
+    begin:
         if (Reset)  // Asynchronous Reset
         begin 
 //          Ball_Y_Motion <= 10'd0; //Ball_Y_Step;
@@ -82,6 +82,7 @@ module Character_Movement
 					end	  
 							 
 					default: begin //No key or irrelevant key presses
+							Current_Direction <= Current_Direction;
 							Movement <= 1b'0;
 					end
 				endcase	

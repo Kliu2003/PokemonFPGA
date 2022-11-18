@@ -24,7 +24,7 @@ module  color_mapper
 	logic character_here;
 
 	always_comb begin:character_proc
-		if(DrawX >= 10'd293 && DrawX <= 10'd308 && DrawY >= 10'd350 && DrawY <= 10'd455) begin 
+		if(DrawX >= 10'd292 && DrawX <= 10'd308 && DrawY >= 10'd350 && DrawY <= 10'd373) begin 
 			character_here = 1'b1;
 		end
 		else begin
