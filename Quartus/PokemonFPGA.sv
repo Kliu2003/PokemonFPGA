@@ -169,6 +169,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 color_mapper cm(
 		.Clk(MAX10_CLK1_50),
 		.Reset(Reset_h),
+		.VS(VGA_VS),
 		.Character_Moving(Movement),
 		.Direction(Dir),
 		.DrawX(drawxsig),

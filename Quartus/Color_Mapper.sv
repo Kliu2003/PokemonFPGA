@@ -15,7 +15,7 @@
 
 module color_mapper 
 ( 
-		input Clk, Reset,
+		input Clk, Reset, VS,
 		input Character_Moving,
 		input [1:0] Direction,
 		input [9:0] DrawX, DrawY,
@@ -57,7 +57,7 @@ module color_mapper
 
 	Anim_State Curr_State, Next_State;
 	
-	logic [13:0] read_addr ;
+	logic [12:0] read_addr ;
 	logic [5:0] palette_color;
 	
 	characterRAM CharacterRAM(
@@ -74,7 +74,64 @@ module color_mapper
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
-			read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311);
+			unique case(Curr_State)
+				//Draw Up Sprites
+				upRest1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+133;
+				end
+				upM1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+114;
+				end
+				upRest2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+133;
+				end
+				upM2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+152;
+				end
+				
+				//Draw Right Sprites
+				rightRest1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+190;
+				end
+				rightM1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+171;
+				end
+				rightRest2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+190;
+				end
+				rightM2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+209;
+				end
+				
+				//Draw Down Sprites
+				downRest1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+19;
+				end
+				downM1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311);
+				end
+				downRest2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+19;
+				end
+				downM2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+38;
+				end
+				
+				//Draw Left Sprites
+				leftRest1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+76;
+				end
+				leftM1: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+57;
+				end
+				leftRest2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+76;
+				end
+				leftM2: begin
+					read_addr = 228*(DrawY-10'd340)+(DrawX-10'd311)+95;
+				end
+				default;
+			endcase
 		end
 		else begin
 			Character_Here = 1'b0;
@@ -91,7 +148,7 @@ module color_mapper
 		end
 	end
 	
-	always_ff @(posedge Clk) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
+	always_ff @(posedge VS) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
 		unique case(Curr_State)
 		
 			//Up Check
@@ -410,65 +467,6 @@ module color_mapper
 	always_comb begin:RGB_Display
 		if (Character_Here == 1 && palette_color != 6) begin 
 			{Red, Green, Blue} = Palette[palette_color];
-			unique case(Curr_State)
-				//Draw Up Sprites
-				
-				upRest1: begin
-					;
-				end
-				upM1: begin
-					;
-				end
-				upRest2: begin
-					;
-				end
-				upM2: begin
-					;
-				end
-				
-				//Draw Right Sprites
-				rightRest1: begin
-					;
-				end
-				rightM1: begin
-					;
-				end
-				rightRest2: begin
-					;
-				end
-				rightM2: begin
-					;
-				end
-				
-				//Draw Down Sprites
-				downRest1: begin
-					;
-				end
-				downM1: begin
-					;
-				end
-				downRest2: begin
-					;
-				end
-				downM2: begin
-					;
-				end
-				
-				//Draw Left Sprites
-				leftRest1: begin
-					;
-				end
-				leftM1: begin
-					;
-				end
-				leftRest2: begin
-					;
-				end
-				leftM2: begin
-					;
-				end
-				default;
-			endcase
 		end       
 		else begin
 			Red = 8'h00; 

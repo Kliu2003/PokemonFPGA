@@ -1,5 +1,5 @@
 Flow report for PokemonFPGA
-Fri Nov 18 00:14:07 2022
+Fri Nov 18 00:42:36 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,20 +40,20 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Fri Nov 18 00:14:07 2022       ;
+; Flow Status                        ; Successful - Fri Nov 18 00:42:36 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 4,076 / 49,760 ( 8 % )                      ;
-;     Total combinational functions  ; 3,481 / 49,760 ( 7 % )                      ;
-;     Dedicated logic registers      ; 2,448 / 49,760 ( 5 % )                      ;
-; Total registers                    ; 2517                                        ;
+; Total logic elements               ; 4,327 / 49,760 ( 9 % )                      ;
+;     Total combinational functions  ; 3,762 / 49,760 ( 8 % )                      ;
+;     Dedicated logic registers      ; 2,484 / 49,760 ( 5 % )                      ;
+; Total registers                    ; 2553                                        ;
 ; Total pins                         ; 141 / 360 ( 39 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 61,397 / 1,677,312 ( 4 % )                  ;
+; Total memory bits                  ; 52,352 / 1,677,312 ( 3 % )                  ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
 ; Total PLLs                         ; 1 / 4 ( 25 % )                              ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                               ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/18/2022 00:12:37 ;
+; Start date & time ; 11/18/2022 00:40:58 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PokemonFPGA         ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
 ; Assignment Name                     ; Value                                                         ; Default Value ; Entity Name       ; Section Id     ;
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 277302806902899.166875195604788                               ; --            ; --                ; --             ;
+; COMPILER_SIGNATURE_ID               ; 277302806902899.166875365817852                               ; --            ; --                ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                             ; --            ; --                ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim (SystemVerilog)                                      ; <None>        ; --                ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                                          ; --            ; --                ; eda_simulation ;
@@ -111,12 +111,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:44     ; 1.0                     ; 5049 MB             ; 00:01:09                           ;
-; Fitter               ; 00:00:23     ; 1.7                     ; 6690 MB             ; 00:00:53                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4703 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:07     ; 2.9                     ; 5025 MB             ; 00:00:13                           ;
-; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4723 MB             ; 00:00:03                           ;
-; Total                ; 00:01:21     ; --                      ; --                  ; 00:02:22                           ;
+; Analysis & Synthesis ; 00:00:45     ; 1.0                     ; 5043 MB             ; 00:01:12                           ;
+; Fitter               ; 00:00:26     ; 1.8                     ; 6688 MB             ; 00:00:57                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4705 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:08     ; 3.1                     ; 5025 MB             ; 00:00:15                           ;
+; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4726 MB             ; 00:00:04                           ;
+; Total                ; 00:01:27     ; --                      ; --                  ; 00:02:32                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
