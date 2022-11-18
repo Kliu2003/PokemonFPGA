@@ -33,57 +33,57 @@ module Character_Movement
 //				Ball_X_Motion <= 10'd0; //Ball_X_Step;
 //				Ball_Y_Pos <= Ball_Y_Center;
 //				Ball_X_Pos <= Ball_X_Center;
-				CharacterMoving = 1b'0;
-				Current_Direction = 2d'0;
+				Character_Moving = 1'b0;
+				Current_Direction = 2'd0;
         end
            
         else // TODO: implement collision logic for trees, buildings, fences, etc. once we make the map
         begin 
 				unique case (keycode)
 					8'h04 : begin //A
-							if(Current_Direction == 2d'3) begin
-								Movement <= 1b'1;
+							if(Current_Direction == 2'd3) begin
+								Movement <= 1'b1;
 							end
 							else begin
-								Current_Direction <= 2d'3;
-								Movement <= 1b'1;
+								Current_Direction <= 2'd3;
+								Movement <= 1'b1;
 							end
 						end
 							  
 					8'h07 : begin //D
-							if(Current_Direction == 2d'1) begin
-								Movement <= 1b'1;
+							if(Current_Direction == 2'd1) begin
+								Movement <= 1'b1;
 							end
 							else begin
-								Current_Direction <= 2d'1;
-								Movement <= 1b'1;
+								Current_Direction <= 2'd1;
+								Movement <= 1'b1;
 							end
 						end
 
 							  
 					8'h16 : begin //S
-							if(Current_Direction == 2d'2) begin
-								Movement <= 1b'1;
+							if(Current_Direction == 2'd2) begin
+								Movement <= 1'b1;
 							end
 							else begin
-								Current_Direction <= 2d'2;
-								Movement <= 1b'1;
+								Current_Direction <= 2'd2;
+								Movement <= 1'b1;
 							end
 						end
 							  
 					8'h1A : begin //W
-							if(Current_Direction == 2d'0) begin
-								Movement <= 1b'1;
+							if(Current_Direction == 2'd0) begin
+								Movement <= 1'b1;
 							end
 							else begin
-								Current_Direction <= 2d'0;
-								Movement <= 1b'1;
+								Current_Direction <= 2'd0;
+								Movement <= 1'b1;
 							end
 					end	  
 							 
 					default: begin //No key or irrelevant key presses
 							Current_Direction <= Current_Direction;
-							Movement <= 1b'0;
+							Movement <= 1'b0;
 					end
 				endcase	
 			end  

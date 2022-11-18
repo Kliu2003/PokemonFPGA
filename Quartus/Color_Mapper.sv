@@ -36,23 +36,21 @@ module  color_mapper
 			Character_Here = 1'b1;
 		end
 		else begin
-			character_here = 1'b0;
+			Character_Here = 1'b0;
 		end
 	end 
 	
-	always_ff @ (posedge Clk) begin:
+	always_ff @ (posedge Clk) begin
 		if(Reset) begin
-			Curr_State <= upRest;
+			Curr_State <= upRest1;
 		end
-		else
+		else begin
 			Curr_State <= Next_State;
 		end
 	end
 	
-	always_comb begin:Move_FSM
-		Next_State = Curr_State;
-		
-		unique case(Curr_State) begin
+	always_ff @(posedge Clk) begin:Move_FSM // TODO change 'posedge clk' to VS (vertical sync)
+		unique case(Curr_State)
 		
 			//Up Check
 			upRest1:
@@ -60,16 +58,16 @@ module  color_mapper
 					Next_State = upRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upM1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -79,16 +77,16 @@ module  color_mapper
 					Next_State = upRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest2;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -98,16 +96,16 @@ module  color_mapper
 					Next_State = upRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upM2;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -117,16 +115,16 @@ module  color_mapper
 					Next_State = upRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -137,16 +135,16 @@ module  color_mapper
 					Next_State = rightRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightM1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -156,16 +154,16 @@ module  color_mapper
 					Next_State = rightRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest2;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -175,16 +173,16 @@ module  color_mapper
 					Next_State = rightRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightM2;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -194,16 +192,16 @@ module  color_mapper
 					Next_State = rightRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -214,16 +212,16 @@ module  color_mapper
 					Next_State = downRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downM1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -233,16 +231,16 @@ module  color_mapper
 					Next_State = downRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest2;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -252,16 +250,16 @@ module  color_mapper
 					Next_State = downRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downM2;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -271,16 +269,16 @@ module  color_mapper
 					Next_State = downRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -291,16 +289,16 @@ module  color_mapper
 					Next_State = leftRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftM1;
 					end
 				end
@@ -310,16 +308,16 @@ module  color_mapper
 					Next_State = leftRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest2;
 					end
 				end
@@ -329,16 +327,16 @@ module  color_mapper
 					Next_State = leftRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftM2;
 					end
 				end
@@ -348,16 +346,16 @@ module  color_mapper
 					Next_State = leftRest1;
 				end
 				else begin
-					if(Direction == 2d'0) begin
+					if(Direction == 2'd0) begin
 						Next_State = upRest1;
 					end
-					else if(Direction == 2d'1) begin
+					else if(Direction == 2'd1) begin
 						Next_State = rightRest1;
 					end
-					else if(Direction == 2d'2) begin
+					else if(Direction == 2'd2) begin
 						Next_State = downRest1;
 					end
-					else if(Direction == 2d'3) begin
+					else if(Direction == 2'd3) begin
 						Next_State = leftRest1;
 					end
 				end
@@ -367,71 +365,71 @@ module  color_mapper
 		endcase
 	end
 	
-	always_comb begin:Draw_Character
-		if (character_here == 1) begin 
-			unique case(Current_State) begin
+	always_ff begin:Draw_Character
+		if (Character_Here == 1) begin 
+			unique case(Curr_State)
 				//Draw Up Sprites
 				upRest1: begin
-					
+					;
 				end
 				upM1: begin
-				
+					;
 				end
 				upRest2: begin
-				
+					;
 				end
 				upM2: begin
-				
+					;
 				end
 				
 				//Draw Right Sprites
 				rightRest1: begin
-					
+					;
 				end
 				rightM1: begin
-				
+					;
 				end
 				rightRest2: begin
-				
+					;
 				end
 				rightM2: begin
-				
+					;
 				end
 				
 				//Draw Down Sprites
 				downRest1: begin
-					
+					;
 				end
 				downM1: begin
-				
+					;
 				end
 				downRest2: begin
-				
+					;
 				end
 				downM2: begin
-				
+					;
 				end
 				
 				//Draw Left Sprites
 				leftRest1: begin
-					
+					;
 				end
 				leftM1: begin
-				
+					;
 				end
 				leftRest2: begin
-				
+					;
 				end
 				leftM2: begin
-				
+					;
 				end
 			endcase
 		end       
-		else begin 
+		else begin
 			Red = 8'h00; 
 			Green = 8'h7f - DrawY[9:3];
 			Blue = 8'h7f - DrawX[9:3];
 		end
-	end 
+	end
  
 endmodule
