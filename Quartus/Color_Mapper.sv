@@ -79,8 +79,8 @@ module color_mapper
 	 );
 	 
 	logic [10:0] topleftX, topleftY;
-	assign topleftX = 11'd300;
-	assign topleftY = 11'd300;
+	assign topleftX = 11'd0;
+	assign topleftY = 11'd0;
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
@@ -148,7 +148,7 @@ module color_mapper
 		else begin
 			Character_Here = 1'b0;
 			read_addr = 0;
-			map_read_addr = (DrawY + topleftY) * 1024 + (DrawX + topleftX);
+			map_read_addr = (DrawY + topleftY) / 2 * 320 + (DrawX + topleftX) / 2;
 		end
 	end 
 	
