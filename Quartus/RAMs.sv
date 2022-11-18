@@ -27,7 +27,8 @@ endmodule
 module mapRAM
 (
 		input [7:0] data_In,
-		input [20:0] write_address, read_address,
+//		input [20:0] write_address, read_address,
+		input [16:0] write_address, read_address,
 		input we, Clk,
 
 		output logic [4:0] data_Out
@@ -35,11 +36,11 @@ module mapRAM
 
 	// mem has width of 3 bits and a total of 400 addresses
 //	logic [7:0] mem [0:1179648];
-	logic [7:0] mem [0:2000000];
+	logic [7:0] mem [0:76800];
 
 	initial
 	begin
-		 $readmemh("Sprites/map_violet-city.txt", mem);
+		 $readmemh("Sprites/map_violet-city-medres.txt", mem);
 	end
 
 
