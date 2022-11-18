@@ -367,68 +367,72 @@ module  color_mapper
 	
 	always_ff @(posedge Clk) begin:Draw_Character
 		if (Character_Here == 1) begin 
-			unique case(Curr_State)
-				//Draw Up Sprites
-				upRest1: begin
-					;
-				end
-				upM1: begin
-					;
-				end
-				upRest2: begin
-					;
-				end
-				upM2: begin
-					;
-				end
-				
-				//Draw Right Sprites
-				rightRest1: begin
-					;
-				end
-				rightM1: begin
-					;
-				end
-				rightRest2: begin
-					;
-				end
-				rightM2: begin
-					;
-				end
-				
-				//Draw Down Sprites
-				downRest1: begin
-					;
-				end
-				downM1: begin
-					;
-				end
-				downRest2: begin
-					;
-				end
-				downM2: begin
-					;
-				end
-				
-				//Draw Left Sprites
-				leftRest1: begin
-					;
-				end
-				leftM1: begin
-					;
-				end
-				leftRest2: begin
-					;
-				end
-				leftM2: begin
-					;
-				end
-			endcase
+			
+//			unique case(Curr_State)
+//				//Draw Up Sprites
+//				upRest1: begin
+//					;
+//				end
+//				upM1: begin
+//					;
+//				end
+//				upRest2: begin
+//					;
+//				end
+//				upM2: begin
+//					;
+//				end
+//				
+//				//Draw Right Sprites
+//				rightRest1: begin
+//					;
+//				end
+//				rightM1: begin
+//					;
+//				end
+//				rightRest2: begin
+//					;
+//				end
+//				rightM2: begin
+//					;
+//				end
+//				
+//				//Draw Down Sprites
+//				downRest1: begin
+//					;
+//				end
+//				downM1: begin
+//					;
+//				end
+//				downRest2: begin
+//					;
+//				end
+//				downM2: begin
+//					;
+//				end
+//				
+//				//Draw Left Sprites
+//				leftRest1: begin
+//					;
+//				end
+//				leftM1: begin
+//					;
+//				end
+//				leftRest2: begin
+//					;
+//				end
+//				leftM2: begin
+//					;
+//				end
+//			endcase
 		end       
 		else begin
-			Red = 8'h00; 
-			Green = 8'h7f - DrawY[9:3];
-			Blue = 8'h7f - DrawX[9:3];
+//			Red = 8'h00; 
+//			Green = 8'h7f - DrawY[9:3];
+//			Blue = 8'h7f - DrawX[9:3];
+			Red = 8'h00;
+			Green = 8'h00;
+			Blue = 8'h00;
 		end
 	end
  
