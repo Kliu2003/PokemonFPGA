@@ -1,6 +1,6 @@
 module characterRAM
 (
-		input [23:0] data_In,
+		input [7:0] data_In,
 		input [12:0] write_address, read_address,
 		input we, Clk,
 
@@ -26,7 +26,7 @@ endmodule
 
 module mapRAM
 (
-		input [23:0] data_In,
+		input [7:0] data_In,
 		input [20:0] write_address, read_address,
 		input we, Clk,
 
@@ -34,7 +34,8 @@ module mapRAM
 );
 
 	// mem has width of 3 bits and a total of 400 addresses
-	logic [7:0] mem [0:1179648];
+//	logic [7:0] mem [0:1179648];
+	logic [7:0] mem [0:2000000];
 
 	initial
 	begin
