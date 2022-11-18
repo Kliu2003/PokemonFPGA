@@ -23,6 +23,32 @@ module  color_mapper
 );
     
 	logic Character_Here;
+	logic [23:0] Palette [23];
+	
+//		24'h800080,
+//		24'h000000,
+//		24'hF83800,
+//		24'hF0D0B0,
+//		24'h503000,
+//		24'hFFE0A8,
+	assign Palette[6] = 24'h0058F8;
+	assign Palette[7] = 24'hFCFCFC;
+//		24'hBCBCBC,
+//		24'hA40000,
+//		24'hD82800,
+//		24'hFC7460,
+//		24'hFCBCB0,
+//		24'hF0BC3C,
+//		24'hAEACAE
+//		24'h363301
+//		24'h6C6C01
+//		24'hBBBD00
+//		24'h88D500
+//		24'h398802
+	assign Palette[20] = 24'h65B0FF;
+	assign Palette[21] = 24'h155ED8;
+	assign Palette[22] = 24'h24188A;
+	
 	
 	typedef enum logic [3:0] {upRest1, upRest2, upM1, upM2, 
 									leftRest1, leftRest2, leftM1, leftM2, 
@@ -365,74 +391,72 @@ module  color_mapper
 		endcase
 	end
 	
-	always_ff @(posedge Clk) begin:Draw_Character
+	always_comb begin:RGB_Display
 		if (Character_Here == 1) begin 
-			
-//			unique case(Curr_State)
-//				//Draw Up Sprites
-//				upRest1: begin
-//					;
-//				end
-//				upM1: begin
-//					;
-//				end
-//				upRest2: begin
-//					;
-//				end
-//				upM2: begin
-//					;
-//				end
-//				
-//				//Draw Right Sprites
-//				rightRest1: begin
-//					;
-//				end
-//				rightM1: begin
-//					;
-//				end
-//				rightRest2: begin
-//					;
-//				end
-//				rightM2: begin
-//					;
-//				end
-//				
-//				//Draw Down Sprites
-//				downRest1: begin
-//					;
-//				end
-//				downM1: begin
-//					;
-//				end
-//				downRest2: begin
-//					;
-//				end
-//				downM2: begin
-//					;
-//				end
-//				
-//				//Draw Left Sprites
-//				leftRest1: begin
-//					;
-//				end
-//				leftM1: begin
-//					;
-//				end
-//				leftRest2: begin
-//					;
-//				end
-//				leftM2: begin
-//					;
-//				end
-//			endcase
+			{Red, Green, Blue} = Palette[7];
+			unique case(Curr_State)
+				//Draw Up Sprites
+				upRest1: begin
+					;
+				end
+				upM1: begin
+					;
+				end
+				upRest2: begin
+					;
+				end
+				upM2: begin
+					;
+				end
+				
+				//Draw Right Sprites
+				rightRest1: begin
+					;
+				end
+				rightM1: begin
+					;
+				end
+				rightRest2: begin
+					;
+				end
+				rightM2: begin
+					;
+				end
+				
+				//Draw Down Sprites
+				downRest1: begin
+					;
+				end
+				downM1: begin
+					;
+				end
+				downRest2: begin
+					;
+				end
+				downM2: begin
+					;
+				end
+				
+				//Draw Left Sprites
+				leftRest1: begin
+					;
+				end
+				leftM1: begin
+					;
+				end
+				leftRest2: begin
+					;
+				end
+				leftM2: begin
+					;
+				end
+				default;
+			endcase
 		end       
 		else begin
-//			Red = 8'h00; 
-//			Green = 8'h7f - DrawY[9:3];
-//			Blue = 8'h7f - DrawX[9:3];
-			Red = 8'h00;
+			Red = 8'h00; 
 			Green = 8'h00;
-			Blue = 8'h00;
+			Blue = 8'h7f - DrawX[9:3];
 		end
 	end
  
