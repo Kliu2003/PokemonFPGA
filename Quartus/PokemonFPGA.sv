@@ -187,9 +187,18 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.Direction(Dir)
 	 );
 	 
-
-
-//instantiate a vga_controller, ball, and color_mapper here with the ports.
+	 // this is just example instantiation
+	 // may need to change SIZE based on implementation
+	 logic sd;
+	 logic [7:0] d_left, d_right;
+	 assign {d_left, d_right} = 16'b0;
+	 i2s_xmit #(.SIZE(8)) i2s_xmit(
+		.sd(sd),
+		.clk(MAX10_CLK1_50),
+		.ws(0), // have a var to choose between 0 and 1
+		.data_left(d_left),
+		.data_right(d_right)
+	 );
 
 
 endmodule
