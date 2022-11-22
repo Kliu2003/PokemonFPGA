@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'Pokemon_soc'
  * SOPC Builder design path: ../../Pokemon_soc.sopcinfo
  *
- * Generated: Fri Nov 11 14:48:55 CST 2022
+ * Generated: Mon Nov 21 21:54:11 CST 2022
  */
 
 /*
@@ -496,7 +496,7 @@
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1668199451
+#define SYSID_QSYS_0_TIMESTAMP 1669088603
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 
