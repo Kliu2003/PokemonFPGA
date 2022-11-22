@@ -14,7 +14,7 @@ colorfile = open("./testingthis/" + filename + '_' + str(numcolors) + '_palette.
 #   outfile.write('\n')
 
 for pix in img_converted.getdata():
-  outfile.write(str(pix) + '\n')
+  outfile.write('%x' % pix + '\n')
 
 # palette = img_converted.getpalette()
 # palette_rgbformat = [','.join(map(str, palette[i:i+3])) for i in range(numcolors)]
