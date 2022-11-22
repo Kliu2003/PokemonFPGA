@@ -1,5 +1,5 @@
 Flow report for PokemonFPGA
-Fri Nov 18 15:01:37 2022
+Mon Nov 21 20:31:32 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,17 +40,17 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Fri Nov 18 15:01:37 2022       ;
+; Flow Status                        ; Successful - Mon Nov 21 20:31:32 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 4,547 / 49,760 ( 9 % )                      ;
-;     Total combinational functions  ; 3,941 / 49,760 ( 8 % )                      ;
-;     Dedicated logic registers      ; 2,510 / 49,760 ( 5 % )                      ;
-; Total registers                    ; 2579                                        ;
+; Total logic elements               ; 4,577 / 49,760 ( 9 % )                      ;
+;     Total combinational functions  ; 4,004 / 49,760 ( 8 % )                      ;
+;     Dedicated logic registers      ; 2,513 / 49,760 ( 5 % )                      ;
+; Total registers                    ; 2582                                        ;
 ; Total pins                         ; 141 / 360 ( 39 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 428,462 / 1,677,312 ( 26 % )                ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/18/2022 14:59:23 ;
+; Start date & time ; 11/21/2022 20:29:01 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PokemonFPGA         ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
 ; Assignment Name                     ; Value                                                         ; Default Value ; Entity Name       ; Section Id     ;
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 277302806902899.166880516213096                               ; --            ; --                ; --             ;
+; COMPILER_SIGNATURE_ID               ; 277302806902899.166908414034944                               ; --            ; --                ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                             ; --            ; --                ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim (SystemVerilog)                                      ; <None>        ; --                ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                                          ; --            ; --                ; eda_simulation ;
@@ -111,12 +111,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:01:24     ; 1.0                     ; 5065 MB             ; 00:01:50                           ;
-; Fitter               ; 00:00:25     ; 1.7                     ; 6694 MB             ; 00:01:02                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4707 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:06     ; 3.0                     ; 5032 MB             ; 00:00:15                           ;
-; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4736 MB             ; 00:00:03                           ;
-; Total                ; 00:02:04     ; --                      ; --                  ; 00:03:14                           ;
+; Analysis & Synthesis ; 00:01:41     ; 1.0                     ; 5059 MB             ; 00:02:12                           ;
+; Fitter               ; 00:00:26     ; 1.8                     ; 6694 MB             ; 00:01:09                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4709 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:07     ; 3.1                     ; 5034 MB             ; 00:00:15                           ;
+; EDA Netlist Writer   ; 00:00:03     ; 1.0                     ; 4736 MB             ; 00:00:03                           ;
+; Total                ; 00:02:21     ; --                      ; --                  ; 00:03:43                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

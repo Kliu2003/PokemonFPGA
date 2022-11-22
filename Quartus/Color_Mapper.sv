@@ -79,6 +79,7 @@ module color_mapper
 	 );
 	 
 	logic [10:0] topleftX, topleftY;
+	logic [2:0] movementDelay;
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
@@ -172,7 +173,15 @@ module color_mapper
 				end
 				else begin
 					if(Direction == 2'd0) begin
-						Next_State <= upM1;
+						if(movementDelay == 0) begin
+							Next_State <= upM1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY - 1;
 					end
 					else if(Direction == 2'd1) begin
@@ -192,7 +201,15 @@ module color_mapper
 				end
 				else begin
 					if(Direction == 2'd0) begin
-						Next_State <= upRest2;
+						if(movementDelay == 0) begin
+							Next_State <= upRest2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY - 1;
 					end
 					else if(Direction == 2'd1) begin
@@ -212,7 +229,15 @@ module color_mapper
 				end
 				else begin
 					if(Direction == 2'd0) begin
-						Next_State <= upM2;
+						if(movementDelay == 0) begin
+							Next_State <= upM2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY - 1;
 					end
 					else if(Direction == 2'd1) begin
@@ -232,7 +257,15 @@ module color_mapper
 				end
 				else begin
 					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
+						if(movementDelay == 0) begin
+							Next_State <= upRest1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY - 1;
 					end
 					else if(Direction == 2'd1) begin
@@ -256,7 +289,15 @@ module color_mapper
 						Next_State <= upRest1;
 					end
 					else if(Direction == 2'd1) begin
-						Next_State <= rightM1;
+						if(movementDelay == 0) begin
+							Next_State <= rightM1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX + 1;
 					end
 					else if(Direction == 2'd2) begin
@@ -276,7 +317,15 @@ module color_mapper
 						Next_State <= upRest1;
 					end
 					else if(Direction == 2'd1) begin
-						Next_State <= rightRest2;
+						if(movementDelay == 0) begin
+							Next_State <= rightRest2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX + 1;
 					end
 					else if(Direction == 2'd2) begin
@@ -296,7 +345,15 @@ module color_mapper
 						Next_State <= upRest1;
 					end
 					else if(Direction == 2'd1) begin
-						Next_State <= rightM2;
+						if(movementDelay == 0) begin
+							Next_State <= rightM2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX + 1;
 					end
 					else if(Direction == 2'd2) begin
@@ -316,7 +373,15 @@ module color_mapper
 						Next_State <= upRest1;
 					end
 					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
+						if(movementDelay == 0) begin
+							Next_State <= rightRest1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX + 1;
 					end
 					else if(Direction == 2'd2) begin
@@ -340,7 +405,15 @@ module color_mapper
 						Next_State <= rightRest1;
 					end
 					else if(Direction == 2'd2) begin
-						Next_State <= downM1;
+						if(movementDelay == 0) begin
+							Next_State <= downM1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY + 1;
 					end
 					else if(Direction == 2'd3) begin
@@ -360,7 +433,15 @@ module color_mapper
 						Next_State <= rightRest1;
 					end
 					else if(Direction == 2'd2) begin
-						Next_State <= downRest2;
+						if(movementDelay == 0) begin
+							Next_State <= downRest2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY + 1;
 					end
 					else if(Direction == 2'd3) begin
@@ -380,7 +461,15 @@ module color_mapper
 						Next_State <= rightRest1;
 					end
 					else if(Direction == 2'd2) begin
-						Next_State <= downM2;
+						if(movementDelay == 0) begin
+							Next_State <= downM2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY + 1;
 					end
 					else if(Direction == 2'd3) begin
@@ -400,7 +489,15 @@ module color_mapper
 						Next_State <= rightRest1;
 					end
 					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
+						if(movementDelay == 0) begin
+							Next_State <= downRest1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftY <= topleftY + 1;
 					end
 					else if(Direction == 2'd3) begin
@@ -424,7 +521,15 @@ module color_mapper
 						Next_State <= downRest1;
 					end
 					else if(Direction == 2'd3) begin
-						Next_State <= leftM1;
+						if(movementDelay == 0) begin
+							Next_State <= leftM1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX - 1;
 					end
 				end
@@ -444,7 +549,15 @@ module color_mapper
 						Next_State <= downRest1;
 					end
 					else if(Direction == 2'd3) begin
-						Next_State <= leftRest2;
+						if(movementDelay == 0) begin
+							Next_State <= leftRest2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX - 1;
 					end
 				end
@@ -464,7 +577,15 @@ module color_mapper
 						Next_State <= downRest1;
 					end
 					else if(Direction == 2'd3) begin
-						Next_State <= leftM2;
+						if(movementDelay == 0) begin
+							Next_State <= leftM2;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX - 1;
 					end
 				end
@@ -484,7 +605,15 @@ module color_mapper
 						Next_State <= downRest1;
 					end
 					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
+						if(movementDelay == 0) begin
+							Next_State <= leftRest1;
+						end
+						if(movementDelay == 4'd7) begin
+							movementDelay <= 4'd0;
+						end
+						else begin
+							movementDelay <= movementDelay + 1;
+						end
 						topleftX <= topleftX - 1;
 					end
 				end
