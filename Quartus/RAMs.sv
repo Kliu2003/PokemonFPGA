@@ -4,7 +4,7 @@ module characterRAM
 		input [12:0] write_address, read_address,
 		input we, Clk,
 
-		output logic [4:0] data_Out
+		output logic [7:0] data_Out
 );
 
 	logic [7:0] mem [0:6612];
@@ -25,14 +25,14 @@ endmodule
 
 module mapRAM
 (
-		input [7:0] data_In,
+		input [11:0] data_In,
 		input [18:0] write_address, read_address,
 		input we, Clk,
 
-		output logic [4:0] data_Out
+		output logic [7:0] data_Out
 );
 
-	logic [7:0] mem [0:76800];
+	logic [11:0] mem [0:76800];
 
 	initial
 	begin

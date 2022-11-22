@@ -23,24 +23,24 @@ module color_mapper
 );
     
 	logic Character_Here;
-	logic [23:0] Palette [16];
 	
-	assign Palette[0] = 24'hf06848;
-	assign Palette[1] = 24'h9088a8;
-	assign Palette[2] = 24'h0080ff;
-	assign Palette[3] = 24'h000000;
-	assign Palette[4] = 24'h384040;
-	assign Palette[5] = 24'h486060;
-	assign Palette[6] = 24'hf8b020;
-	assign Palette[7] = 24'h784040;
-	assign Palette[8] = 24'hd8a078;
-	assign Palette[9] = 24'hb87020;
-	assign Palette[10] = 24'hf8d0b8;
-	assign Palette[11] = 24'hb8b0d0;
-	assign Palette[12] = 24'h282838;
-	assign Palette[13] = 24'he8e8f8;
-	assign Palette[14] = 24'hc03838;
-	assign Palette[15] = 24'h9890b0;
+	logic [23:0] Palette [16];
+	assign Palette[0] = 24'h0080ff;
+	assign Palette[1] = 24'h050507;
+	assign Palette[2] = 24'h565656;
+	assign Palette[3] = 24'h384040;
+	assign Palette[4] = 24'hf7af20;
+	assign Palette[5] = 24'hd8a078;
+	assign Palette[6] = 24'hb66f20;
+	assign Palette[7] = 24'hf8d0b8;
+	assign Palette[8] = 24'hb8b0d0;
+	assign Palette[9] = 24'h968fae;
+	assign Palette[10] = 24'he7e7f7;
+	assign Palette[11] = 24'hc03838;
+	assign Palette[12] = 24'hed6747;
+	assign Palette[13] = 24'h0b6ed1;
+	assign Palette[14] = 24'h5e3233;
+	assign Palette[15] = 24'h2e3340;
 	
 	logic [23:0] Map_Palette [128];
 	assign Map_Palette[0] = 24'h6159a0;
@@ -182,7 +182,7 @@ module color_mapper
 	
 	logic [16:0] read_addr, map_read_addr;
 	logic [3:0] palette_color;
-	logic [6:0] map_palette_color;
+	logic [7:0] map_palette_color;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -748,7 +748,7 @@ module color_mapper
 	end
 	
 	always_comb begin:RGB_Display
-		if (Character_Here == 1 && palette_color != 2) begin 
+		if (Character_Here == 1 && palette_color != 0) begin 
 			{Red, Green, Blue} = Palette[palette_color];
 		end       
 		else begin
