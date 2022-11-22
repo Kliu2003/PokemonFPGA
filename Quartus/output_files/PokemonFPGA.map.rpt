@@ -1,5 +1,5 @@
 Analysis & Synthesis report for PokemonFPGA
-Mon Nov 21 22:07:00 2022
+Mon Nov 21 22:27:33 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -401,7 +401,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 21 22:07:00 2022       ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 21 22:27:33 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
@@ -10239,7 +10239,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:14     ;
+; Top            ; 00:00:13     ;
 +----------------+--------------+
 
 
@@ -10249,7 +10249,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Nov 21 22:04:22 2022
+    Info: Processing started: Mon Nov 21 22:25:12 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off PokemonFPGA -c PokemonFPGA
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -10716,7 +10716,7 @@ Warning (10850): Verilog HDL warning at RAMs.sv(39): number of words (76800) in 
 Warning (10230): Verilog HDL assignment warning at RAMs.sv(46): truncated value with size 12 to match size of target (8) File: C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/RAMs.sv Line: 46
 Info (12128): Elaborating entity "Character_Movement" for hierarchy "Character_Movement:Ethan" File: C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/PokemonFPGA.sv Line: 188
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2022.11.21.22:06:27 Progress: Loading sld07257843/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2022.11.21.22:27:01 Progress: Loading sld07257843/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -10971,10 +10971,10 @@ Info (21057): Implemented 5757 device resources after synthesis - the final reso
     Info (21064): Implemented 218 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 217 warnings
-    Info: Peak virtual memory: 5061 megabytes
-    Info: Processing ended: Mon Nov 21 22:07:01 2022
-    Info: Elapsed time: 00:02:39
-    Info: Total CPU time (on all processors): 00:03:04
+    Info: Peak virtual memory: 5068 megabytes
+    Info: Processing ended: Mon Nov 21 22:27:33 2022
+    Info: Elapsed time: 00:02:21
+    Info: Total CPU time (on all processors): 00:02:44
 
 
 +------------------------------------------+
