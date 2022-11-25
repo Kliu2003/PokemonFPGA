@@ -733,7 +733,7 @@ module color_mapper
 	end
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
-		if(!blank) begin
+		if(!blank || (DrawY + topleftY) / 4 >= 240 || (DrawX + topleftX) / 4 >= 320) begin
 			{Red, Green, Blue} <= 24'h000000;
 		end
 		else if (Character_Here == 1 && palette_color != 0) begin 
