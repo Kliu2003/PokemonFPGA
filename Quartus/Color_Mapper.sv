@@ -1,6 +1,6 @@
 module color_mapper 
 ( 
-		input Clk, Reset, VS,
+		input Clk, Reset, VS, blank, pixel_clk,
 		input Character_Moving,
 		input [1:0] Direction,
 		input [9:0] DrawX, DrawY,
@@ -732,9 +732,12 @@ module color_mapper
 		endcase
 	end
 	
-	always_comb begin:RGB_Display
-		if (Character_Here == 1 && palette_color != 0) begin 
-			{Red, Green, Blue} = Palette[palette_color];
+	always_ff @(posedge pixel_clk) begin:RGB_Display
+		if(!blank) begin
+			{Red, Green, Blue} <= 24'h000000;
+		end
+		else if (Character_Here == 1 && palette_color != 0) begin 
+			{Red, Green, Blue} <= Palette[palette_color];
 		end       
 		else begin
 			{Red, Green, Blue} = Map_Palette[map_palette_color];

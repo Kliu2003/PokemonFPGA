@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'Pokemon_soc'
 # SOPC Builder design path: ../../Pokemon_soc.sopcinfo
 #
-# Generated: Thu Nov 10 22:39:59 CST 2022
+# Generated: Thu Nov 24 20:42:34 CST 2022
 
 # DO NOT MODIFY THIS FILE
 #
