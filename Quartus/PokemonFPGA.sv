@@ -164,6 +164,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.VS(VGA_VS),
 		.blank(blank),
 		.pixel_clk(VGA_Clk),
+		.keycode(keycode),
 		.Character_Moving(Movement),
 		.Direction(Dir),
 		.DrawX(drawxsig),

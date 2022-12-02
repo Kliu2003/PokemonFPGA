@@ -1,7 +1,9 @@
 module palettes (
-	input logic select, // 0 is palette, 1 is map_palette
+	input logic [1:0] select, // 0 is palette, 1 is map_palette
 	input logic [3:0] palette_color,
 	input logic [7:0] map_palette_color,
+	input logic [1:0] collision_palette_color,
+	input logic [7:0] start_palette_color,
 	output logic [23:0] thecolor
 );
 	
@@ -153,5 +155,26 @@ module palettes (
 	assign Map_Palette[126] = 24'h38735b;
 	assign Map_Palette[127] = 24'h855750;
 	
-	assign thecolor = select ? Map_Palette[map_palette_color] : Palette[palette_color];
+	logic [23:0] Collision_Palette [2];
+	assign Collision_Palette[0] = 24'h000000;
+	assign Collision_Palette[1] = 24'hffffff;
+	
+	always_comb begin
+		unique case (select)
+			0: begin
+				thecolor = Palette[palette_color];
+			end
+			1: begin
+				thecolor = Map_Palette[map_palette_color];
+			end
+			2: begin
+				thecolor = Collision_Palette[collision_palette_color];
+			end
+			3: begin
+				thecolor = Map_Palette[start_palette_color]; // use map palette for start menu as well
+			end
+			default:
+				thecolor = 24'h000000;
+		endcase
+	end
 endmodule
