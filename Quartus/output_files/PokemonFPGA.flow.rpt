@@ -1,5 +1,9 @@
 Flow report for PokemonFPGA
+<<<<<<< Updated upstream
 Fri Dec 02 01:35:24 2022
+=======
+Thu Dec 01 22:34:49 2022
+>>>>>>> Stashed changes
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,17 +44,28 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
+<<<<<<< Updated upstream
 ; Flow Status                        ; Successful - Fri Dec 02 01:35:24 2022       ;
+=======
+; Flow Status                        ; Successful - Thu Dec 01 22:34:49 2022       ;
+>>>>>>> Stashed changes
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
+<<<<<<< Updated upstream
 ; Total logic elements               ; 5,067 / 49,760 ( 10 % )                     ;
 ;     Total combinational functions  ; 4,465 / 49,760 ( 9 % )                      ;
 ;     Dedicated logic registers      ; 2,537 / 49,760 ( 5 % )                      ;
 ; Total registers                    ; 2606                                        ;
+=======
+; Total logic elements               ; 4,825 / 49,760 ( 10 % )                     ;
+;     Total combinational functions  ; 4,212 / 49,760 ( 8 % )                      ;
+;     Dedicated logic registers      ; 2,530 / 49,760 ( 5 % )                      ;
+; Total registers                    ; 2599                                        ;
+>>>>>>> Stashed changes
 ; Total pins                         ; 141 / 360 ( 39 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 1,113,058 / 1,677,312 ( 66 % )              ;
@@ -66,7 +81,11 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
+<<<<<<< Updated upstream
 ; Start date & time ; 12/02/2022 01:31:43 ;
+=======
+; Start date & time ; 12/01/2022 22:32:02 ;
+>>>>>>> Stashed changes
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PokemonFPGA         ;
 +-------------------+---------------------+
@@ -77,7 +96,11 @@ refer to the applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
 ; Assignment Name                     ; Value                                                         ; Default Value ; Entity Name       ; Section Id     ;
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
+<<<<<<< Updated upstream
 ; COMPILER_SIGNATURE_ID               ; 277302806902899.166996630336664                               ; --            ; --                ; --             ;
+=======
+; COMPILER_SIGNATURE_ID               ; 277302806902899.166995552217216                               ; --            ; --                ; --             ;
+>>>>>>> Stashed changes
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                             ; --            ; --                ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim (SystemVerilog)                                      ; <None>        ; --                ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                                          ; --            ; --                ; eda_simulation ;
@@ -111,12 +134,21 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
+<<<<<<< Updated upstream
 ; Analysis & Synthesis ; 00:02:43     ; 1.0                     ; 5095 MB             ; 00:03:07                           ;
 ; Fitter               ; 00:00:29     ; 1.9                     ; 6704 MB             ; 00:01:20                           ;
 ; Assembler            ; 00:00:05     ; 1.0                     ; 4715 MB             ; 00:00:04                           ;
 ; Timing Analyzer      ; 00:00:07     ; 3.5                     ; 5049 MB             ; 00:00:17                           ;
 ; EDA Netlist Writer   ; 00:00:05     ; 1.0                     ; 4754 MB             ; 00:00:04                           ;
 ; Total                ; 00:03:29     ; --                      ; --                  ; 00:04:52                           ;
+=======
+; Analysis & Synthesis ; 00:01:50     ; 1.0                     ; 5068 MB             ; 00:02:14                           ;
+; Fitter               ; 00:00:29     ; 1.8                     ; 6696 MB             ; 00:01:18                           ;
+; Assembler            ; 00:00:05     ; 1.0                     ; 4712 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:07     ; 3.2                     ; 5043 MB             ; 00:00:16                           ;
+; EDA Netlist Writer   ; 00:00:05     ; 1.0                     ; 4741 MB             ; 00:00:04                           ;
+; Total                ; 00:02:36     ; --                      ; --                  ; 00:03:56                           ;
+>>>>>>> Stashed changes
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

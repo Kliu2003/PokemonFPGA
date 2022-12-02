@@ -676,6 +676,7 @@ module color_mapper
 	end
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
+<<<<<<< Updated upstream
 		unique case (Curr_Game_State)
 			OVERWORLD: begin
 				if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
@@ -691,6 +692,16 @@ module color_mapper
 					end
 					{Red, Green, Blue} <= thecolor;
 				end
+=======
+		if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
+			($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
+			palette_select <= 1;
+			{Red, Green, Blue} <= 24'h000000;
+		end
+		else begin
+			if (Character_Here == 1 && palette_color != 0) begin 
+				palette_select <= 0;
+>>>>>>> Stashed changes
 			end
 			default: begin
 				if (!blank) begin

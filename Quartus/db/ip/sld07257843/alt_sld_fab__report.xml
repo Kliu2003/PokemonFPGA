@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
+<<<<<<< Updated upstream
  date="2022.12.02.01:34:00"
+=======
+ date="2022.12.01.22:33:29"
+>>>>>>> Stashed changes
  outputDirectory="C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/db/ip/sld07257843/">
  <perimeter>
   <parameter
