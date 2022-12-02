@@ -1,6 +1,10 @@
 EDA Netlist Writer report for PokemonFPGA
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Fri Dec 02 01:35:24 2022
+=======
+Thu Dec 01 22:34:49 2022
+>>>>>>> Stashed changes
 =======
 Thu Dec 01 22:34:49 2022
 >>>>>>> Stashed changes
@@ -41,7 +45,11 @@ refer to the applicable agreement for further details.
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ; EDA Netlist Writer Status ; Successful - Fri Dec 02 01:35:24 2022 ;
+=======
+; EDA Netlist Writer Status ; Successful - Thu Dec 01 22:34:49 2022 ;
+>>>>>>> Stashed changes
 =======
 ; EDA Netlist Writer Status ; Successful - Thu Dec 01 22:34:49 2022 ;
 >>>>>>> Stashed changes
@@ -90,7 +98,11 @@ Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     Info: Processing started: Fri Dec 02 01:35:19 2022
+=======
+    Info: Processing started: Thu Dec 01 22:34:44 2022
+>>>>>>> Stashed changes
 =======
     Info: Processing started: Thu Dec 01 22:34:44 2022
 >>>>>>> Stashed changes
@@ -100,8 +112,13 @@ Warning (10905): Generated the EDA functional simulation netlist because it is t
 Info (204019): Generated file PokemonFPGA.svo in folder "C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 2 warnings
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     Info: Peak virtual memory: 4754 megabytes
     Info: Processing ended: Fri Dec 02 01:35:24 2022
+=======
+    Info: Peak virtual memory: 4741 megabytes
+    Info: Processing ended: Thu Dec 01 22:34:49 2022
+>>>>>>> Stashed changes
 =======
     Info: Peak virtual memory: 4741 megabytes
     Info: Processing ended: Thu Dec 01 22:34:49 2022

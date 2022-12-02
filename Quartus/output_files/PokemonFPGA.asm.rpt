@@ -1,6 +1,10 @@
 Assembler report for PokemonFPGA
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Fri Dec 02 01:35:10 2022
+=======
+Thu Dec 01 22:34:35 2022
+>>>>>>> Stashed changes
 =======
 Thu Dec 01 22:34:35 2022
 >>>>>>> Stashed changes
@@ -43,7 +47,11 @@ refer to the applicable agreement for further details.
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ; Assembler Status      ; Successful - Fri Dec 02 01:35:10 2022 ;
+=======
+; Assembler Status      ; Successful - Thu Dec 01 22:34:35 2022 ;
+>>>>>>> Stashed changes
 =======
 ; Assembler Status      ; Successful - Thu Dec 01 22:34:35 2022 ;
 >>>>>>> Stashed changes
@@ -86,8 +94,13 @@ refer to the applicable agreement for further details.
 ; Option         ; Setting                                                                                                                      ;
 +----------------+------------------------------------------------------------------------------------------------------------------------------+
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ; JTAG usercode  ; 0x013FD79A                                                                                                                   ;
 ; Checksum       ; 0x013FD79A                                                                                                                   ;
+=======
+; JTAG usercode  ; 0x00DB4EBD                                                                                                                   ;
+; Checksum       ; 0x00DB4EBD                                                                                                                   ;
+>>>>>>> Stashed changes
 =======
 ; JTAG usercode  ; 0x00DB4EBD                                                                                                                   ;
 ; Checksum       ; 0x00DB4EBD                                                                                                                   ;
@@ -102,7 +115,11 @@ Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     Info: Processing started: Fri Dec 02 01:35:05 2022
+=======
+    Info: Processing started: Thu Dec 01 22:34:30 2022
+>>>>>>> Stashed changes
 =======
     Info: Processing started: Thu Dec 01 22:34:30 2022
 >>>>>>> Stashed changes
@@ -117,6 +134,9 @@ Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
 =======
     Info: Peak virtual memory: 4712 megabytes
     Info: Processing ended: Thu Dec 01 22:34:35 2022
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05

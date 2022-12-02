@@ -1,5 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Analysis & Synthesis Status : Successful - Fri Dec 02 01:34:31 2022
+=======
+Analysis & Synthesis Status : Successful - Thu Dec 01 22:33:57 2022
+>>>>>>> Stashed changes
 =======
 Analysis & Synthesis Status : Successful - Thu Dec 01 22:33:57 2022
 >>>>>>> Stashed changes
@@ -8,15 +12,21 @@ Revision Name : PokemonFPGA
 Top-level Entity Name : PokemonFPGA
 Family : MAX 10
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Total logic elements : 5,437
     Total combinational functions : 4,445
     Dedicated logic registers : 2,580
 Total registers : 2580
 =======
+=======
+>>>>>>> Stashed changes
 Total logic elements : 5,183
     Total combinational functions : 4,192
     Dedicated logic registers : 2,573
 Total registers : 2573
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 Total pins : 141
 Total virtual pins : 0

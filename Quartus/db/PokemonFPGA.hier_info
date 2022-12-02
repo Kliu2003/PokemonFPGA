@@ -95098,6 +95098,7 @@ VS => topleftX[11].CLK
 VS => topleftX[12].CLK
 VS => Next_State~17.DATAIN
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 VS => Next_Game_State~1.DATAIN
 blank => Red.OUTPUTSELECT
 blank => Red.OUTPUTSELECT
@@ -95132,6 +95133,10 @@ pixel_clk => palette_select[1].CLK
 blank => always3.IN1
 pixel_clk => palette_select.CLK
 >>>>>>> Stashed changes
+=======
+blank => always3.IN1
+pixel_clk => palette_select.CLK
+>>>>>>> Stashed changes
 pixel_clk => Blue[0]~reg0.CLK
 pixel_clk => Blue[1]~reg0.CLK
 pixel_clk => Blue[2]~reg0.CLK
@@ -95157,6 +95162,7 @@ pixel_clk => Red[5]~reg0.CLK
 pixel_clk => Red[6]~reg0.CLK
 pixel_clk => Red[7]~reg0.CLK
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 keycode[0] => Equal0.IN7
 keycode[1] => Equal0.IN6
 keycode[2] => Equal0.IN2
@@ -95166,6 +95172,8 @@ keycode[5] => Equal0.IN0
 keycode[6] => Equal0.IN4
 keycode[7] => Equal0.IN3
 =======
+=======
+>>>>>>> Stashed changes
 keycode[0] => ~NO_FANOUT~
 keycode[1] => ~NO_FANOUT~
 keycode[2] => ~NO_FANOUT~
@@ -95174,6 +95182,9 @@ keycode[4] => ~NO_FANOUT~
 keycode[5] => ~NO_FANOUT~
 keycode[6] => ~NO_FANOUT~
 keycode[7] => ~NO_FANOUT~
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 Character_Moving => Next_State.OUTPUTSELECT
 Character_Moving => Next_State.OUTPUTSELECT
@@ -95320,12 +95331,22 @@ Character_Moving => Next_State.OUTPUTSELECT
 Character_Moving => Next_State.OUTPUTSELECT
 Character_Moving => Next_State.OUTPUTSELECT
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Direction[0] => Equal1.IN1
 Direction[0] => Equal4.IN0
 Direction[0] => Equal5.IN1
 Direction[0] => Equal6.IN1
 Direction[1] => Equal1.IN0
 Direction[1] => Equal4.IN1
+=======
+Direction[0] => Equal0.IN1
+Direction[0] => Equal3.IN0
+Direction[0] => Equal4.IN1
+Direction[0] => Equal5.IN1
+Direction[1] => Equal0.IN0
+Direction[1] => Equal3.IN1
+Direction[1] => Equal4.IN0
+>>>>>>> Stashed changes
 =======
 Direction[0] => Equal0.IN1
 Direction[0] => Equal3.IN0
@@ -96190,6 +96211,7 @@ data_Out[7] <= data_Out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 |PokemonFPGA|color_mapper:cm|startmenuRAM:startmenuRAM
 data_In[0] => mem.data_a[0].DATAIN
 data_In[0] => mem.DATAIN
@@ -96819,6 +96841,8 @@ thecolor[21] <= Mux74.DB_MAX_OUTPUT_PORT_TYPE
 thecolor[22] <= Mux73.DB_MAX_OUTPUT_PORT_TYPE
 thecolor[23] <= Mux72.DB_MAX_OUTPUT_PORT_TYPE
 =======
+=======
+>>>>>>> Stashed changes
 |PokemonFPGA|color_mapper:cm|palettes:palettes
 select => thecolor.OUTPUTSELECT
 select => thecolor.OUTPUTSELECT
@@ -97133,6 +97157,9 @@ thecolor[20] <= thecolor.DB_MAX_OUTPUT_PORT_TYPE
 thecolor[21] <= thecolor.DB_MAX_OUTPUT_PORT_TYPE
 thecolor[22] <= thecolor.DB_MAX_OUTPUT_PORT_TYPE
 thecolor[23] <= thecolor.DB_MAX_OUTPUT_PORT_TYPE
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 
