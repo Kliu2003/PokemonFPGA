@@ -1,5 +1,5 @@
 Fitter report for PokemonFPGA
-Wed Nov 30 22:55:46 2022
+Thu Dec 01 19:57:52 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -74,7 +74,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                   ;
 +------------------------------------+---------------------------------------------+
-; Fitter Status                      ; Successful - Wed Nov 30 22:55:46 2022       ;
+; Fitter Status                      ; Successful - Thu Dec 01 19:57:52 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
@@ -160,19 +160,19 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
-; Average used               ; 1.79        ;
+; Average used               ; 1.76        ;
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   5.4%      ;
-;     Processor 3            ;   5.3%      ;
-;     Processor 4            ;   5.3%      ;
-;     Processor 5            ;   5.3%      ;
-;     Processor 6            ;   5.3%      ;
-;     Processor 7            ;   5.3%      ;
-;     Processor 8            ;   5.3%      ;
-;     Processors 9-16        ;   5.2%      ;
+;     Processor 2            ;   5.2%      ;
+;     Processor 3            ;   5.1%      ;
+;     Processor 4            ;   5.1%      ;
+;     Processor 5            ;   5.1%      ;
+;     Processor 6            ;   5.1%      ;
+;     Processor 7            ;   5.1%      ;
+;     Processor 8            ;   5.1%      ;
+;     Processors 9-16        ;   5.0%      ;
 +----------------------------+-------------+
 
 
@@ -13321,12 +13321,12 @@ Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
-Info (11888): Total time spent on timing analysis during the Fitter is 0.70 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.79 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:05
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:06
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Warning (169064): Following 17 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
     Info (169065): Pin ARDUINO_IO[0] has a permanently disabled output enable File: C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/PokemonFPGA.sv Line: 37
@@ -13349,9 +13349,9 @@ Warning (169064): Following 17 pins have no output enable or a GND or VCC output
 Info (144001): Generated suppressed messages file C:/Users/redke/Documents/College/UIUC/Fall2022/ECE385/FinalProject/PokemonFPGA/Quartus/output_files/PokemonFPGA.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 63 warnings
     Info: Peak virtual memory: 6698 megabytes
-    Info: Processing ended: Wed Nov 30 22:55:48 2022
-    Info: Elapsed time: 00:00:29
-    Info: Total CPU time (on all processors): 00:01:17
+    Info: Processing ended: Thu Dec 01 19:57:54 2022
+    Info: Elapsed time: 00:00:34
+    Info: Total CPU time (on all processors): 00:01:24
 
 
 +----------------------------+
