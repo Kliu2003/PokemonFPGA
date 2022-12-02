@@ -25,6 +25,15 @@ Next_State.rightRest2 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1
 Next_State.rightM1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 Next_State.rightM2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
+State Machine - |PokemonFPGA|color_mapper:cm|Curr_Game_State
+Name Curr_Game_State.OVERWORLD 
+Curr_Game_State.START 0 
+Curr_Game_State.OVERWORLD 1 
+
+State Machine - |PokemonFPGA|color_mapper:cm|Next_Game_State
+Name 
+Next_Game_State.OVERWORLD 
+
 State Machine - |PokemonFPGA|color_mapper:cm|Curr_State
 Name Curr_State.rightM2 Curr_State.rightM1 Curr_State.rightRest2 Curr_State.rightRest1 Curr_State.downM2 Curr_State.downM1 Curr_State.downRest2 Curr_State.downRest1 Curr_State.leftM2 Curr_State.leftM1 Curr_State.leftRest2 Curr_State.leftRest1 Curr_State.upM2 Curr_State.upM1 Curr_State.upRest2 Curr_State.upRest1 
 Curr_State.upRest1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
