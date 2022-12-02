@@ -3,7 +3,7 @@ module color_mapper
 		input Clk, Reset, VS, blank, pixel_clk,
 		input Character_Moving,
 		input [1:0] Direction,
-		input [9:0] DrawX, DrawY,
+		input [10:0] DrawX, DrawY,
 		output logic [7:0]  Red, Green, Blue 
 );
     
@@ -165,7 +165,8 @@ module color_mapper
 
 	Anim_State Curr_State, Next_State;
 	
-	logic [16:0] read_addr, map_read_addr;
+	logic [12:0] read_addr;
+	logic [18:0] map_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
 	
@@ -187,13 +188,18 @@ module color_mapper
 		.data_Out(map_palette_color)
 	 );
 	 
-	logic [10:0] topleftX, topleftY;
+	logic signed [12:0] topleftX, topleftY;
 	logic [2:0] movementDelay;
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
-			map_read_addr = (DrawY + topleftY) / 4 * 320 + (DrawX + topleftX) / 4;
+			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
+				map_read_addr = 0;
+			end
+			else begin
+				map_read_addr = ($signed(DrawY) + topleftY) / 4 * 320 + ($signed(DrawX) + topleftX) / 4;
+			end
 			unique case(Curr_State)
 				//Draw Up Sprites
 				upRest1: begin
@@ -256,7 +262,12 @@ module color_mapper
 		else begin
 			Character_Here = 1'b0;
 			read_addr = 0;
-			map_read_addr = (DrawY + topleftY) / 4 * 320 + (DrawX + topleftX) / 4;
+			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
+				map_read_addr = 0;
+			end
+			else begin
+				map_read_addr = ($signed(DrawY) + topleftY) / 4 * 320 + ($signed(DrawX) + topleftX) / 4;
+			end
 		end
 	end 
 	
@@ -269,7 +280,7 @@ module color_mapper
 		end
 	end
 	
-	always_ff @(posedge VS) begin:Move_FSM //Need to be even slower than VS
+	always_ff @(posedge VS) begin:Move_FSM
 		if(Reset) begin
 			topleftX <= 11'd100;
 			topleftY <= 11'd100;
@@ -291,7 +302,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY - 1;
+						if(topleftY > -340)begin
+							topleftY <= topleftY - 1;
+						end
 					end
 					else if(Direction == 2'd1) begin
 						Next_State <= rightRest1;
@@ -319,7 +332,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY - 1;
+						if(topleftY > -340) begin
+							topleftY <= topleftY - 1;
+						end
 					end
 					else if(Direction == 2'd1) begin
 						Next_State <= rightRest1;
@@ -347,7 +362,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY - 1;
+						if(topleftY > -340)begin
+							topleftY <= topleftY - 1;
+						end
 					end
 					else if(Direction == 2'd1) begin
 						Next_State <= rightRest1;
@@ -375,7 +392,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY - 1;
+						if(topleftY > -340)begin
+							topleftY <= topleftY - 1;
+						end
 					end
 					else if(Direction == 2'd1) begin
 						Next_State <= rightRest1;
@@ -407,7 +426,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX + 1;
+						if(topleftX <= 951)begin
+							topleftX <= topleftX + 1;
+						end
 					end
 					else if(Direction == 2'd2) begin
 						Next_State <= downRest1;
@@ -435,7 +456,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX + 1;
+						if(topleftX <= 951)begin
+							topleftX <= topleftX + 1;
+						end
 					end
 					else if(Direction == 2'd2) begin
 						Next_State <= downRest1;
@@ -463,7 +486,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX + 1;
+						if(topleftX <= 951)begin
+							topleftX <= topleftX + 1;
+						end
 					end
 					else if(Direction == 2'd2) begin
 						Next_State <= downRest1;
@@ -491,7 +516,10 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX + 1;
+						if(topleftX <= 951)begin
+							topleftX <= topleftX + 1;
+						end
+						
 					end
 					else if(Direction == 2'd2) begin
 						Next_State <= downRest1;
@@ -523,7 +551,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY + 1;
+						if(topleftY <= 594)begin
+							topleftY <= topleftY + 1;
+						end
 					end
 					else if(Direction == 2'd3) begin
 						Next_State <= leftRest1;
@@ -551,7 +581,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY + 1;
+						if(topleftY <= 594)begin
+							topleftY <= topleftY + 1;
+						end
 					end
 					else if(Direction == 2'd3) begin
 						Next_State <= leftRest1;
@@ -579,7 +611,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY + 1;
+						if(topleftY <= 594)begin
+							topleftY <= topleftY + 1;
+						end
 					end
 					else if(Direction == 2'd3) begin
 						Next_State <= leftRest1;
@@ -607,7 +641,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftY <= topleftY + 1;
+						if(topleftY <= 594)begin
+							topleftY <= topleftY + 1;
+						end
 					end
 					else if(Direction == 2'd3) begin
 						Next_State <= leftRest1;
@@ -639,7 +675,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX - 1;
+						if(topleftX > -311)begin
+							topleftX <= topleftX - 1;
+						end
 					end
 				end
 				
@@ -667,7 +705,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX - 1;
+						if(topleftX > -311)begin
+							topleftX <= topleftX - 1;
+						end
 					end
 				end
 				
@@ -695,7 +735,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX - 1;
+						if(topleftX > -311)begin
+							topleftX <= topleftX - 1;
+						end
 					end
 				end
 				
@@ -723,7 +765,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						topleftX <= topleftX - 1;
+						if(topleftX > -311)begin
+							topleftX <= topleftX - 1;
+						end
 					end
 				end
 		
@@ -733,7 +777,8 @@ module color_mapper
 	end
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
-		if(!blank || (DrawY + topleftY) / 4 >= 240 || (DrawX + topleftX) / 4 >= 320) begin
+		if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
+			($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
 			{Red, Green, Blue} <= 24'h000000;
 		end
 		else if (Character_Here == 1 && palette_color != 0) begin 
