@@ -10,9 +10,6 @@ module color_mapper
    
 	logic Character_Here;
 	
-
-	
-	
 	typedef enum logic [3:0] {upRest1, upRest2, upM1, upM2, 
 									leftRest1, leftRest2, leftM1, leftM2, 
 									downRest1, downRest2, downM1, downM2, 
@@ -28,9 +25,10 @@ module color_mapper
 	logic [18:0] start_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
-	logic [1:0] collision_palette_color;
+	logic collision_palette_color;
 	logic [7:0] start_palette_color;
 	logic [23:0] thecolor;
+	logic collision_color;
 	logic [1:0] palette_select;
 	
 	characterRAM CharacterRAM(
@@ -59,6 +57,15 @@ module color_mapper
 		.Clk(Clk),
 		.data_Out(start_palette_color)
 	);
+	
+	collisionRAM collisionRAM(
+		.data_In(0),
+		.write_address(0),
+		.read_address(map_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(collision_palette_color)
+	);
 	 
 	palettes palettes(
 		.select(palette_select),
@@ -66,7 +73,8 @@ module color_mapper
 		.map_palette_color(map_palette_color),
 		.collision_palette_color(collision_palette_color),
 		.start_palette_color(start_palette_color),
-		.thecolor(thecolor)
+		.thecolor(thecolor),
+		.collision_color(collision_color)
 	);
 	 
 	logic signed [12:0] topleftX, topleftY;
@@ -676,7 +684,6 @@ module color_mapper
 	end
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
-<<<<<<< Updated upstream
 		unique case (Curr_Game_State)
 			OVERWORLD: begin
 				if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
@@ -692,16 +699,6 @@ module color_mapper
 					end
 					{Red, Green, Blue} <= thecolor;
 				end
-=======
-		if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
-			($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
-			palette_select <= 1;
-			{Red, Green, Blue} <= 24'h000000;
-		end
-		else begin
-			if (Character_Here == 1 && palette_color != 0) begin 
-				palette_select <= 0;
->>>>>>> Stashed changes
 			end
 			default: begin
 				if (!blank) begin
@@ -715,5 +712,4 @@ module color_mapper
 		endcase
 		
 	end
- 
 endmodule
