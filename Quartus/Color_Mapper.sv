@@ -77,7 +77,7 @@ module color_mapper
 	 
 	logic signed [12:0] topleftX, topleftY;
 	logic [2:0] movementDelay;
-	logic signed [14:0] topleftXChar, topleftYChar;
+	logic signed [13:0] topleftXChar, topleftYChar;
 	
 	always_comb begin:start_menu_addr
 		start_read_addr = (DrawY) / 2 * 320 + (DrawX) / 2;
@@ -214,7 +214,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340 && collision_status[0] == 0)begin
+						if(topleftY > -340 && collision_status[3] == 0)begin
 							topleftY <= topleftY - 1;
 							topleftYChar <= topleftYChar - 1;
 						end
@@ -245,7 +245,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340 && collision_status[0] == 0) begin
+						if(topleftY > -340 && collision_status[3] == 0) begin
 							topleftY <= topleftY - 1;
 							topleftYChar <= topleftYChar - 1;
 						end
@@ -276,7 +276,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340 && collision_status[0] == 0)begin
+						if(topleftY > -340 && collision_status[3] == 0)begin
 							topleftY <= topleftY - 1;
 							topleftYChar <= topleftYChar - 1;
 						end
@@ -307,7 +307,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340 && collision_status[0] == 0)begin
+						if(topleftY > -340 && collision_status[3] == 0)begin
 							topleftY <= topleftY - 1;
 							topleftYChar <= topleftYChar - 1;
 						end
@@ -342,7 +342,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951 && collision_status[3] == 0)begin
+						if(topleftX <= 951 && collision_status[0] == 0)begin
 							topleftX <= topleftX + 1;
 							topleftXChar <= topleftXChar + 1;
 						end
@@ -373,7 +373,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951 && collision_status[3] == 0)begin
+						if(topleftX <= 951 && collision_status[0] == 0)begin
 							topleftX <= topleftX + 1;
 							topleftXChar <= topleftXChar + 1;
 						end
@@ -404,7 +404,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951 && collision_status[3] == 0)begin
+						if(topleftX <= 951 && collision_status[0] == 0)begin
 							topleftX <= topleftX + 1;
 							topleftXChar <= topleftXChar + 1;
 						end
@@ -435,7 +435,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951 && collision_status[3] == 0)begin
+						if(topleftX <= 951 && collision_status[0] == 0)begin
 							topleftX <= topleftX + 1;
 							topleftXChar <= topleftXChar + 1;
 						end
@@ -471,7 +471,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594 && collision_status[2] == 0)begin
+						if(topleftY <= 594 && collision_status[1] == 0)begin
 							topleftY <= topleftY + 1;
 							topleftYChar <= topleftYChar + 1;
 						end
@@ -502,7 +502,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594 && collision_status[2] == 0)begin
+						if(topleftY <= 594 && collision_status[1] == 0)begin
 							topleftY <= topleftY + 1;
 							topleftYChar <= topleftYChar + 1;
 						end
@@ -533,7 +533,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594 && collision_status[2] == 0)begin
+						if(topleftY <= 594 && collision_status[1] == 0)begin
 							topleftY <= topleftY + 1;
 							topleftYChar <= topleftYChar + 1;
 						end
@@ -564,7 +564,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594 && collision_status[2] == 0)begin
+						if(topleftY <= 594 && collision_status[1] == 0)begin
 							topleftY <= topleftY + 1;
 							topleftYChar <= topleftYChar + 1;
 						end
@@ -599,7 +599,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311 && collision_status[1] == 0)begin
+						if(topleftX > -311 && collision_status[2] == 0)begin
 							topleftX <= topleftX - 1;
 							topleftXChar <= topleftXChar - 1;
 						end
@@ -630,7 +630,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311 && collision_status[1] == 0)begin
+						if(topleftX > -311 && collision_status[2] == 0)begin
 							topleftX <= topleftX - 1;
 							topleftXChar <= topleftXChar - 1;
 						end
@@ -661,7 +661,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311 && collision_status[1] == 0)begin
+						if(topleftX > -311 && collision_status[2] == 0)begin
 							topleftX <= topleftX - 1;
 							topleftXChar <= topleftXChar - 1;
 						end
@@ -692,7 +692,7 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311 && collision_status[1] == 0)begin
+						if(topleftX > -311 && collision_status[2] == 0)begin
 							topleftX <= topleftX - 1;
 							topleftXChar <= topleftXChar - 1;
 						end

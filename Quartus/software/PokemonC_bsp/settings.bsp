@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 6, 2022 12:57:29 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1670309849076</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 6, 2022 4:10:41 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1670364641585</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\redke\Documents\College\UIUC\Fall2022\ECE385\FinalProject\PokemonFPGA\Quartus\software\PokemonC_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\Pokemon_soc.sopcinfo</SopcDesignFile>

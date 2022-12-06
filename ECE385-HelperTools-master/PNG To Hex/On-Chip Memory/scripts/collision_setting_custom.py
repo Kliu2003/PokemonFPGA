@@ -14,16 +14,38 @@ with open("./testingthis/" + filename + ".txt", 'r') as f:
       fileAsArr[i][j] = int(f.readline())
 
 def setCollision(arr, x, y):
-   for i in range(widthchar):
-       if(x+i < width and fileAsArr[x+i][y] == 0):
-           arr[x][y][0] = 1
-       if(y+heightchar < height and x+i < width and fileAsArr[x+i][y+heightchar] == 0):
-           arr[x][y][2] = 1
-   for i in range(heightchar):
-       if(y+i < height and fileAsArr[x][y+i] == 0):
-           arr[x][y][1] = 1
-       if(x+widthchar < width and y+i < height and fileAsArr[x+widthchar][y+i] == 0):
-           arr[x][y][3] = 1
+    topRow = y-1
+    bottomRow = y+heightchar
+    leftCol = x-1
+    rightCol = x+widthchar
+    
+    if(topRow >= 0):
+        for i in range(widthchar):
+            if(x+i < width and fileAsArr[x+i][topRow] == 0):
+                arr[x][y][0] = 1
+    else:
+        arr[x][y][0] = 1
+    
+    if(bottomRow < height):
+        for i in range(widthchar):
+            if(x+i < width and fileAsArr[x+i][bottomRow] == 0):
+                arr[x][y][2] = 1
+    else:
+        arr[x][y][2] = 1
+
+    if(leftCol >= 0):
+        for i in range(heightchar):
+            if(y+i < height and fileAsArr[leftCol][y+i] == 0):
+                arr[x][y][1] = 1
+    else:
+        arr[x][y][1] = 1
+
+    if(rightCol < width):
+        for i in range(heightchar):
+            if(y+i < height and fileAsArr[rightCol][y+i] == 0):
+                arr[x][y][3] = 1
+    else:
+        arr[x][y][3] = 1
 
 
 for i in range(width):
