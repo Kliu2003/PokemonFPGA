@@ -16,14 +16,14 @@ with open("./testingthis/" + filename + ".txt", 'r') as f:
 def setCollision(arr, x, y):
    for i in range(widthchar):
        if(x+i < width and fileAsArr[x+i][y] == 0):
-           ret[x][y][0] = 1
+           arr[x][y][0] = 1
        if(y+heightchar < height and x+i < width and fileAsArr[x+i][y+heightchar] == 0):
-           ret[x][y][2] = 1
+           arr[x][y][2] = 1
    for i in range(heightchar):
        if(y+i < height and fileAsArr[x][y+i] == 0):
-           ret[x][y][1] = 1
+           arr[x][y][1] = 1
        if(x+widthchar < width and y+i < height and fileAsArr[x+widthchar][y+i] == 0):
-           ret[x][y][3] = 1
+           arr[x][y][3] = 1
 
 
 for i in range(width):

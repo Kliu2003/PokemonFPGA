@@ -84,14 +84,13 @@ module color_mapper
 	end
 	
 	always_comb begin
-		collision_read_addr = ($signed(DrawY) + topleftYChar) / 4 * 320 + ($signed(DrawX) + topleftXChar) / 4;
+		collision_read_addr = topleftYChar / 4 * 320 + topleftXChar / 4;
 	end
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
-			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 ||
-			($signed(DrawX) + topleftX) >= 320 ||  ($signed(DrawY) + topleftY) >= 240) begin
+			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
 				map_read_addr = 0;
 			end
 			else begin
@@ -184,6 +183,8 @@ module color_mapper
 					Next_Game_State <= OVERWORLD;
 					topleftX <= 11'd100;
 					topleftY <= 11'd100;
+					topleftXChar <= 11'd100 + 11'd311;
+					topleftYChar <= 11'd100 + 11'd340;
 				end
 				else begin
 					Next_Game_State <= START;
@@ -213,8 +214,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340)begin
+						if(topleftY > -340 && collision_status[0] == 0)begin
 							topleftY <= topleftY - 1;
+							topleftYChar <= topleftYChar - 1;
 						end
 					end
 					else if(Direction == 2'd1) begin
@@ -243,8 +245,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340) begin
+						if(topleftY > -340 && collision_status[0] == 0) begin
 							topleftY <= topleftY - 1;
+							topleftYChar <= topleftYChar - 1;
 						end
 					end
 					else if(Direction == 2'd1) begin
@@ -273,8 +276,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340)begin
+						if(topleftY > -340 && collision_status[0] == 0)begin
 							topleftY <= topleftY - 1;
+							topleftYChar <= topleftYChar - 1;
 						end
 					end
 					else if(Direction == 2'd1) begin
@@ -303,8 +307,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY > -340)begin
+						if(topleftY > -340 && collision_status[0] == 0)begin
 							topleftY <= topleftY - 1;
+							topleftYChar <= topleftYChar - 1;
 						end
 					end
 					else if(Direction == 2'd1) begin
@@ -337,8 +342,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951)begin
+						if(topleftX <= 951 && collision_status[3] == 0)begin
 							topleftX <= topleftX + 1;
+							topleftXChar <= topleftXChar + 1;
 						end
 					end
 					else if(Direction == 2'd2) begin
@@ -367,8 +373,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951)begin
+						if(topleftX <= 951 && collision_status[3] == 0)begin
 							topleftX <= topleftX + 1;
+							topleftXChar <= topleftXChar + 1;
 						end
 					end
 					else if(Direction == 2'd2) begin
@@ -397,8 +404,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951)begin
+						if(topleftX <= 951 && collision_status[3] == 0)begin
 							topleftX <= topleftX + 1;
+							topleftXChar <= topleftXChar + 1;
 						end
 					end
 					else if(Direction == 2'd2) begin
@@ -427,8 +435,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX <= 951)begin
+						if(topleftX <= 951 && collision_status[3] == 0)begin
 							topleftX <= topleftX + 1;
+							topleftXChar <= topleftXChar + 1;
 						end
 						
 					end
@@ -462,8 +471,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594)begin
+						if(topleftY <= 594 && collision_status[2] == 0)begin
 							topleftY <= topleftY + 1;
+							topleftYChar <= topleftYChar + 1;
 						end
 					end
 					else if(Direction == 2'd3) begin
@@ -492,8 +502,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594)begin
+						if(topleftY <= 594 && collision_status[2] == 0)begin
 							topleftY <= topleftY + 1;
+							topleftYChar <= topleftYChar + 1;
 						end
 					end
 					else if(Direction == 2'd3) begin
@@ -522,8 +533,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594)begin
+						if(topleftY <= 594 && collision_status[2] == 0)begin
 							topleftY <= topleftY + 1;
+							topleftYChar <= topleftYChar + 1;
 						end
 					end
 					else if(Direction == 2'd3) begin
@@ -552,8 +564,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftY <= 594)begin
+						if(topleftY <= 594 && collision_status[2] == 0)begin
 							topleftY <= topleftY + 1;
+							topleftYChar <= topleftYChar + 1;
 						end
 					end
 					else if(Direction == 2'd3) begin
@@ -586,8 +599,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311)begin
+						if(topleftX > -311 && collision_status[1] == 0)begin
 							topleftX <= topleftX - 1;
+							topleftXChar <= topleftXChar - 1;
 						end
 					end
 				end
@@ -616,8 +630,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311)begin
+						if(topleftX > -311 && collision_status[1] == 0)begin
 							topleftX <= topleftX - 1;
+							topleftXChar <= topleftXChar - 1;
 						end
 					end
 				end
@@ -646,8 +661,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311)begin
+						if(topleftX > -311 && collision_status[1] == 0)begin
 							topleftX <= topleftX - 1;
+							topleftXChar <= topleftXChar - 1;
 						end
 					end
 				end
@@ -676,8 +692,9 @@ module color_mapper
 						else begin
 							movementDelay <= movementDelay + 1;
 						end
-						if(topleftX > -311)begin
+						if(topleftX > -311 && collision_status[1] == 0)begin
 							topleftX <= topleftX - 1;
+							topleftXChar <= topleftXChar - 1;
 						end
 					end
 				end
@@ -686,9 +703,6 @@ module color_mapper
 				Next_State <= upRest1;
 		endcase
 	end
-	
-	assign topleftXChar = topleftX + 10'd311;
-	assign topleftYChar = topleftY + 10'd340;
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
 		unique case (Curr_Game_State)
