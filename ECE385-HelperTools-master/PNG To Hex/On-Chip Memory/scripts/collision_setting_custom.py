@@ -13,19 +13,22 @@ with open("./testingthis/" + filename + ".txt", 'r') as f:
     for j in range(height):
       fileAsArr[i][j] = int(f.readline())
 
-def setCollision(arr, x, y, dir):
-  if (x >= 0 and x < width and y >= 0 and y < height):
-    arr[x][y][dir] = 1 # 1 means collision is occurring here
+def setCollision(arr, x, y):
+   for i in range(widthchar):
+       if(x+i < width and fileAsArr[x+i][y] == 0):
+           ret[x][y][0] = 1
+       if(y+heightchar < height and x+i < width and fileAsArr[x+i][y+heightchar] == 0):
+           ret[x][y][2] = 1
+   for i in range(heightchar):
+       if(y+i < height and fileAsArr[x][y+i] == 0):
+           ret[x][y][1] = 1
+       if(x+widthchar < width and y+i < height and fileAsArr[x+widthchar][y+i] == 0):
+           ret[x][y][3] = 1
+
 
 for i in range(width):
   for j in range(height):
-    if (fileAsArr[i][j] == 0):
-      for m in range(widthchar):
-        setCollision(ret, i + m, j + 1, 0)
-        setCollision(ret, i + m, j + heightchar - 1, 2)
-      for n in range(heightchar):
-        setCollision(ret, i + 1, j + n, 1)
-        setCollision(ret, i + widthchar - 1, j + n, 3)
+    setCollision(ret, i, j)
 
 f2 = open("./testingthis/mem__" + filename + ".txt", 'w')
 for i in range(width):
