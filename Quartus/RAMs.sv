@@ -78,11 +78,10 @@ module collisionRAM
 		input data_In,
 		input [18:0] write_address, read_address,
 		input we, Clk,
-
-		output logic data_Out
+		output logic [3:0] data_Out
 );
 
-	logic mem [0:76800];
+	logic [3:0] mem [0:76800];
 
 	initial
 	begin

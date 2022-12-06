@@ -23,13 +23,13 @@ module color_mapper
 	logic [12:0] read_addr;
 	logic [18:0] map_read_addr;
 	logic [18:0] start_read_addr;
+	logic [18:0] collision_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
-	logic collision_palette_color;
 	logic [7:0] start_palette_color;
 	logic [23:0] thecolor;
-	logic collision_color;
 	logic [1:0] palette_select;
+	logic [3:0] collision_status;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -61,20 +61,18 @@ module color_mapper
 	collisionRAM collisionRAM(
 		.data_In(0),
 		.write_address(0),
-		.read_address(map_read_addr),
+		.read_address(collision_read_addr),
 		.we(0),
 		.Clk(Clk),
-		.data_Out(collision_palette_color)
+		.data_Out(collision_status)
 	);
 	 
 	palettes palettes(
 		.select(palette_select),
 		.palette_color(palette_color),
 		.map_palette_color(map_palette_color),
-		.collision_palette_color(collision_palette_color),
 		.start_palette_color(start_palette_color),
 		.thecolor(thecolor),
-		.collision_color(collision_color)
 	);
 	 
 	logic signed [12:0] topleftX, topleftY;
@@ -87,7 +85,8 @@ module color_mapper
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
 			Character_Here = 1'b1;
-			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
+			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 ||
+			($signed(DrawX) + topleftX) >= 320 ||  ($signed(DrawY) + topleftY) >= 240) begin
 				map_read_addr = 0;
 			end
 			else begin
@@ -682,6 +681,7 @@ module color_mapper
 				Next_State <= upRest1;
 		endcase
 	end
+	
 	
 	always_ff @(posedge pixel_clk) begin:RGB_Display
 		unique case (Curr_Game_State)
