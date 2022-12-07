@@ -15,7 +15,7 @@ module color_mapper
 									downRest1, downRest2, downM1, downM2, 
 									rightRest1, rightRest2, rightM1, rightM2} Anim_State;
 	
-	typedef enum logic [1:0] {START = 2'b00, OVERWORLD = 2'b01, BATTLE = 2'b10} Game_State;
+	typedef enum logic [1:0] {START = 2'b00, OVERWORLD = 2'b01, BATTLE = 2'b10, GYM = 2'b11} Game_State;
 	
 	Anim_State Curr_State, Next_State;
 	Game_State Curr_Game_State, Next_Game_State;
@@ -190,7 +190,14 @@ module color_mapper
 					Next_Game_State <= START;
 				end
 			OVERWORLD:
-				Next_Game_State <= OVERWORLD;
+				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 430) begin
+					Next_Game_State <= GYM;
+				end
+				else begin
+					Next_Game_State <= OVERWORLD;
+				end
+			GYM:
+				Next_Game_State <= GYM;
 			BATTLE:
 				Next_Game_State <= START;
 			default:
@@ -720,6 +727,9 @@ module color_mapper
 					end
 					{Red, Green, Blue} <= thecolor;
 				end
+			end
+			GYM: begin
+				{Red, Green, Blue} <= 24'h000000;
 			end
 			default: begin
 				if (!blank) begin
