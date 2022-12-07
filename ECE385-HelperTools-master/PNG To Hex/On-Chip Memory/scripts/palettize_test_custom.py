@@ -5,7 +5,7 @@ img = Image.open("./sprite_originals/" + filename + ".png")
 numcolors = int(input("How many colors in palette? (ideally powers of 2): "))
 # img_converted = img.convert(colors=16)
 img_converted = img.convert(mode='P', colors=numcolors)
-img_converted.save("./testingthis/" + filename + '_' + str(numcolors) + ".png" )
+img_converted.save("./testingthis/" + filename + '_' + str(numcolors) + ".png")
 
 outfile = open("./testingthis/" + filename + '_' + str(numcolors) + '.txt', 'w')
 colorfile = open("./testingthis/" + filename + '_' + str(numcolors) + '_palette.txt', 'w')
