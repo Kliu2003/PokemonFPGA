@@ -22,10 +22,12 @@ module color_mapper
 	
 	logic [12:0] read_addr;
 	logic [18:0] map_read_addr;
-	logic [18:0] start_read_addr;
+	logic [15:0] gym_read_addr;
+	logic [18:0] start_read_addr; 
 	logic [18:0] collision_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
+	logic [5:0] gym_palette_color;
 	logic [4:0] start_palette_color;
 	logic [23:0] thecolor;
 	logic [1:0] palette_select;
@@ -47,6 +49,15 @@ module color_mapper
 		.we(0),
 		.Clk(Clk),
 		.data_Out(map_palette_color)
+	 );
+	 
+	gymRAM gymRAM(
+		.data_In(0),
+		.write_address(0),
+		.read_address(gym_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(gym_palette_color)
 	 );
 	 
 	startmenuRAM startmenuRAM(
@@ -93,9 +104,11 @@ module color_mapper
 			Character_Here = 1'b1;
 			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
 				map_read_addr = 0;
+				gym_read_addr = 0;
 			end
 			else begin
 				map_read_addr = ($signed(DrawY) + topleftY) / 4 * 320 + ($signed(DrawX) + topleftX) / 4;
+				gym_read_addr = ($signed(DrawY) + topleftY) / 4 * 160 + ($signed(DrawX) + topleftX) / 4;
 			end
 			unique case(Curr_State)
 				//Draw Up Sprites
@@ -161,9 +174,11 @@ module color_mapper
 			read_addr = 0;
 			if(($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
 				map_read_addr = 0;
+				gym_read_addr = 0;
 			end
 			else begin
 				map_read_addr = ($signed(DrawY) + topleftY) / 4 * 320 + ($signed(DrawX) + topleftX) / 4;
+				gym_read_addr = ($signed(DrawY) + topleftY) / 4 * 160 + ($signed(DrawX) + topleftX) / 4;
 			end
 		end
 	end 
@@ -751,19 +766,18 @@ module color_mapper
 				end
 			end
 			GYM: begin
-				if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
+				if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
 					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
 					{Red, Green, Blue} <= 24'h000000;
 				end
 				else begin
 					if (Character_Here == 1 && palette_color != 0) begin 
 						palette_select <= 0;
-						{Red, Green, Blue} <= thecolor;
 					end
 					else begin
-						palette_select <= 1;
-						{Red, Green, Blue} <= 24'h000000;
+						palette_select <= 2;
 					end
+					{Red, Green, Blue} <= thecolor;
 				end
 			end
 			default: begin
