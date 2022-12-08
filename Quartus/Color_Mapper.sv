@@ -751,7 +751,20 @@ module color_mapper
 				end
 			end
 			GYM: begin
-				{Red, Green, Blue} <= 24'h000000;
+				if(!blank || ($signed(DrawY) + topleftY) / 4 >= 240 || ($signed(DrawX) + topleftX) / 4 >= 320 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0) begin
+					{Red, Green, Blue} <= 24'h000000;
+				end
+				else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+						{Red, Green, Blue} <= thecolor;
+					end
+					else begin
+						palette_select <= 1;
+						{Red, Green, Blue} <= 24'h000000;
+					end
+				end
 			end
 			default: begin
 				if (!blank || DrawY < 80 || DrawY > 370) begin
