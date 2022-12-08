@@ -23,7 +23,7 @@ module color_mapper
 	logic [12:0] read_addr;
 	logic [18:0] map_read_addr;
 	logic [15:0] gym_read_addr;
-	logic [18:0] start_read_addr;
+	logic [18:0] start_read_addr; 
 	logic [18:0] collision_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
