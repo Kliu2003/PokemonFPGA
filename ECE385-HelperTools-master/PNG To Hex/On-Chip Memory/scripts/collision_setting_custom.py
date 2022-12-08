@@ -1,6 +1,6 @@
 import numpy as np
 
-filename = input("File name in sprite_originals (eg. map_violet-city-medres-collision): ")
+filename = input("File name in testingthis (eg. Violet_Gym_HGSS-collision_2): ")
 width = int(input("First dimension (ex. 320): "))
 height = int(input("Second dimension (ex. 240): "))
 widthchar = int(input("Character width (ex. 19): "))
