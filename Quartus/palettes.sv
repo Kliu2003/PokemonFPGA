@@ -2,7 +2,7 @@ module palettes (
 	input logic [1:0] select, // 0 is palette, 1 is map_palette
 	input logic [3:0] palette_color,
 	input logic [7:0] map_palette_color,
-	input logic [7:0] start_palette_color,
+	input logic [5:0] start_palette_color,
 	output logic [23:0] thecolor
 );
 	
@@ -154,6 +154,40 @@ module palettes (
 	assign Map_Palette[126] = 24'h38735b;
 	assign Map_Palette[127] = 24'h855750;
 	
+	logic [23:0] Start_Palette[32];
+	assign Start_Palette[0] = 24'hf6e05d;
+	assign Start_Palette[1] = 24'hf6eda0;
+	assign Start_Palette[2] = 24'hf4c916;
+	assign Start_Palette[3] = 24'he0af11;
+	assign Start_Palette[4] = 24'hdb9a57;
+	assign Start_Palette[5] = 24'hfbf4ca;
+	assign Start_Palette[6] = 24'ha06225;
+	assign Start_Palette[7] = 24'ha79c5a;
+	assign Start_Palette[8] = 24'haa9425;
+	assign Start_Palette[9] = 24'hda7638;
+	assign Start_Palette[10] = 24'h59675a;
+	assign Start_Palette[11] = 24'hdf7b44;
+	assign Start_Palette[12] = 24'hb0c85d;
+	assign Start_Palette[13] = 24'h685e23;
+	assign Start_Palette[14] = 24'h251d0f;
+	assign Start_Palette[15] = 24'hdcb48b;
+	assign Start_Palette[16] = 24'h572b07;
+	assign Start_Palette[17] = 24'ha7734b;
+	assign Start_Palette[18] = 24'ha4a892;
+	assign Start_Palette[19] = 24'h345162;
+	assign Start_Palette[20] = 24'h778561;
+	assign Start_Palette[21] = 24'h596f91;
+	assign Start_Palette[22] = 24'h20354c;
+	assign Start_Palette[23] = 24'h8b3a15;
+	assign Start_Palette[24] = 24'hb8ca9c;
+	assign Start_Palette[25] = 24'hb8c237;
+	assign Start_Palette[26] = 24'h728a8f;
+	assign Start_Palette[27] = 24'h3a4a34;
+	assign Start_Palette[28] = 24'h335e85;
+	assign Start_Palette[29] = 24'hb4c9d6;
+	assign Start_Palette[30] = 24'h768338;
+	assign Start_Palette[31] = 24'hfcd62f;
+	
 	always_comb begin
 		unique case (select)
 			0: begin
@@ -163,7 +197,7 @@ module palettes (
 				thecolor = Map_Palette[map_palette_color];
 			end
 			3: begin
-				thecolor = Map_Palette[start_palette_color]; // use map palette for start menu as well
+				thecolor = Start_Palette[start_palette_color]; 
 			end
 			default:
 				thecolor = 24'h000000;

@@ -53,15 +53,14 @@ module startmenuRAM
 		input [7:0] data_In,
 		input [18:0] write_address, read_address,
 		input we, Clk,
-
-		output logic [7:0] data_Out
+		output logic [4:0] data_Out
 );
 
-	logic [7:0] mem [0:76800];
+	logic [4:0] mem [0:20000];
 
 	initial
 	begin
-		 $readmemh("Sprites/start-menu.txt", mem);
+		 $readmemh("Sprites/start-menu_200x100_32.txt", mem);
 	end
 
 

@@ -1,15 +1,15 @@
-Analysis & Synthesis Status : Successful - Wed Dec 07 17:02:03 2022
+Analysis & Synthesis Status : Successful - Wed Dec 07 18:52:49 2022
 Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 Revision Name : PokemonFPGA
 Top-level Entity Name : PokemonFPGA
 Family : MAX 10
-Total logic elements : 7,146
-    Total combinational functions : 6,152
-    Dedicated logic registers : 2,620
-Total registers : 2620
+Total logic elements : 7,120
+    Total combinational functions : 6,126
+    Dedicated logic registers : 2,618
+Total registers : 2618
 Total pins : 141
 Total virtual pins : 0
-Total memory bits : 1,393,810
+Total memory bits : 956,208
 Embedded Multiplier 9-bit elements : 0
 Total PLLs : 1
 UFM blocks : 0

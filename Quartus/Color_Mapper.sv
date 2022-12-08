@@ -26,7 +26,7 @@ module color_mapper
 	logic [18:0] collision_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
-	logic [7:0] start_palette_color;
+	logic [4:0] start_palette_color;
 	logic [23:0] thecolor;
 	logic [1:0] palette_select;
 	logic [3:0] collision_status;
@@ -80,8 +80,9 @@ module color_mapper
 	logic signed [13:0] topleftXChar, topleftYChar;
 	
 	always_comb begin:start_menu_addr
-		start_read_addr = (DrawY) / 2 * 320 + (DrawX) / 2;
+		start_read_addr = (DrawY-80) / 3 * 200 + (DrawX) * 10 / 32;
 	end
+	
 	
 	always_comb begin
 		collision_read_addr = topleftYChar / 4 * 320 + topleftXChar / 4;
@@ -190,14 +191,27 @@ module color_mapper
 					Next_Game_State <= START;
 				end
 			OVERWORLD:
-				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 430) begin
+				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 420) begin
 					Next_Game_State <= GYM;
+					topleftX <= 11'd0;
+					topleftY <= 11'd0;
+					topleftXChar <= 11'd0 + 11'd311;
+					topleftYChar <= 11'd0 + 11'd340;
 				end
 				else begin
 					Next_Game_State <= OVERWORLD;
 				end
 			GYM:
-				Next_Game_State <= GYM;
+				if(topleftYChar == 11'd350) begin
+					Next_Game_State <= OVERWORLD;
+					topleftX <= 11'd100;
+					topleftY <= 11'd100;
+					topleftXChar <= 11'd100 + 11'd320;
+					topleftYChar <= 11'd100 + 11'd340;
+				end
+				else begin
+					Next_Game_State <= GYM;
+				end
 			BATTLE:
 				Next_Game_State <= START;
 			default:
@@ -732,7 +746,7 @@ module color_mapper
 				{Red, Green, Blue} <= 24'h000000;
 			end
 			default: begin
-				if (!blank) begin
+				if (!blank || DrawY < 80 || DrawY > 370) begin
 					{Red, Green, Blue} <= 24'h000000;
 				end
 				else begin
