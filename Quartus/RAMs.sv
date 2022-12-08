@@ -46,7 +46,31 @@ module mapRAM
 		data_Out<= mem[read_address];
 	end
 
-endmodule 
+endmodule
+
+module gymRAM
+(
+		input [5:0] data_In,
+		input [15:0] write_address, read_address,
+		input we, Clk,
+		output logic [5:0] data_Out
+);
+
+	logic [5:0] mem [0:35840];
+
+	initial
+	begin
+		 $readmemh("Sprites/Violet_Gym_HGSS_64.txt", mem);
+	end
+
+
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+
+endmodule
 
 module startmenuRAM
 (
