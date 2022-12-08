@@ -2,7 +2,7 @@ set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_TOOL
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_TOOL_VERSION "18.1"
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "Pokemon_soc" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../Pokemon_soc.sopcinfo"]
-set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name SLD_INFO "QSYS_NAME Pokemon_soc HAS_SOPCINFO 1 GENERATION_ID 1669088603"
+set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name SLD_INFO "QSYS_NAME Pokemon_soc HAS_SOPCINFO 1 GENERATION_ID 1670470936"
 set_global_assignment -library "Pokemon_soc" -name MISC_FILE [file join $::quartus(qip_path) "../Pokemon_soc.cmp"]
 set_global_assignment -library "Pokemon_soc" -name SLD_FILE [file join $::quartus(qip_path) "Pokemon_soc.regmap"]
 set_global_assignment -library "Pokemon_soc" -name SLD_FILE [file join $::quartus(qip_path) "Pokemon_soc.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMP
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTY2OTA4ODYwMw==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTY3MDQ3MDkzNg==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDN0c=::QXV0byBERVZJQ0U="
 set_global_assignment -entity "Pokemon_soc" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Nw==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -1299,6 +1299,17 @@ set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "bGVnYWN5U2lnbmFsQWxsb3c=::ZmFsc2U=::bGVnYWN5U2lnbmFsQWxsb3c="
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "ZW5hYmxlSW50ZXJhY3RpdmVJbnB1dA==::ZmFsc2U=::ZW5hYmxlSW50ZXJhY3RpdmVJbnB1dA=="
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "ZW5hYmxlSW50ZXJhY3RpdmVPdXRwdXQ=::ZmFsc2U=::ZW5hYmxlSW50ZXJhY3RpdmVPdXRwdXQ="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_NAME "YWx0ZXJhX2kyY3NsYXZlX3RvX2F2bG1tX2JyaWRnZQ=="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_DISPLAY_NAME "STJDIFNsYXZlIFRvIEF2YWxvbi1NTSBNYXN0ZXIgQnJpZGdlIEludGVsIEZQR0EgSVA="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_AUTHOR "SW50ZWwgQ29ycG9yYXRpb24="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_VERSION "MTguMQ=="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_DESCRIPTION "STJDIFNsYXZlIFRvIEF2YWxvbiBNYXN0ZXIgQnJpZGdlIGlzIGEgY29sbGVjdGlvbiBvZiBwcmUtd2lyZWQgY29tcG9uZW50cyB0aGF0IHByb3ZpZGUgYW4gQXZhbG9uIE1hc3RlciB1c2luZyBhbiBleHRlcm5hbCBJMkMgaW50ZXJmYWNl"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "STJDX1NMQVZFX0FERFJFU1M=::ODU=::STJDIFNsYXZlIEFkZHJlc3M="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QllURV9BRERSRVNTSU5H::Mg==::Qnl0ZSBBZGRyZXNzaW5nIG1vZGU="
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "QUREUkVTU19TVEVBTElORw==::MA==::Tm8uIG9mIEFkZHJlc3MgU3RlYWxpbmcgYml0"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_COMPONENT_PARAMETER "UkVBRF9PTkxZ::MA==::RW5hYmxlIFJlYWQgb25seSBtb2Rl"
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_COMPONENT_NAME "UG9rZW1vbl9zb2NfaGV4X2RpZ2l0c19waW8="
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_COMPONENT_DISPLAY_NAME "UElPIChQYXJhbGxlbCBJL08pIEludGVsIEZQR0EgSVA="
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -1400,6 +1411,16 @@ set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::qu
 set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Pokemon_soc_keycode.v"]
 set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Pokemon_soc_key.v"]
 set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Pokemon_soc_jtag_uart_0.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_i2cslave_to_avlmm_bridge.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_avl_mst_intf_gen.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_clk_cnt.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_condt_det.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_databuffer.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_rxshifter.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_slvfsm.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_spksupp.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_txout.v"]
+set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altr_i2c_txshifter.v"]
 set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Pokemon_soc_hex_digits_pio.v"]
 set_global_assignment -library "Pokemon_soc" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/Pokemon_soc_accumulate.v"]
 
@@ -1508,6 +1529,9 @@ set_global_assignment -entity "Pokemon_soc_key" -library "Pokemon_soc" -name IP_
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_TOOL_NAME "altera_avalon_jtag_uart"
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_TOOL_VERSION "18.1"
 set_global_assignment -entity "Pokemon_soc_jtag_uart_0" -library "Pokemon_soc" -name IP_TOOL_ENV "Qsys"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_TOOL_NAME "altera_i2cslave_to_avlmm_bridge"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_TOOL_VERSION "18.1"
+set_global_assignment -entity "altera_i2cslave_to_avlmm_bridge" -library "Pokemon_soc" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_TOOL_NAME "altera_avalon_pio"
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_TOOL_VERSION "18.1"
 set_global_assignment -entity "Pokemon_soc_hex_digits_pio" -library "Pokemon_soc" -name IP_TOOL_ENV "Qsys"

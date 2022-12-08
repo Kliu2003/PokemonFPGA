@@ -24,7 +24,11 @@
 			spi0_SS_n                      : out   std_logic;                                        -- SS_n
 			usb_gpx_export                 : in    std_logic                     := 'X';             -- export
 			usb_irq_export                 : in    std_logic                     := 'X';             -- export
-			usb_rst_export                 : out   std_logic                                         -- export
+			usb_rst_export                 : out   std_logic;                                        -- export
+			i2c_conduit_data_in            : in    std_logic                     := 'X';             -- conduit_data_in
+			i2c_conduit_clk_in             : in    std_logic                     := 'X';             -- conduit_clk_in
+			i2c_conduit_data_oe            : out   std_logic;                                        -- conduit_data_oe
+			i2c_conduit_clk_oe             : out   std_logic                                         -- conduit_clk_oe
 		);
 	end component Pokemon_soc;
 
@@ -54,6 +58,10 @@
 			spi0_SS_n                      => CONNECTED_TO_spi0_SS_n,                      --                        .SS_n
 			usb_gpx_export                 => CONNECTED_TO_usb_gpx_export,                 --                 usb_gpx.export
 			usb_irq_export                 => CONNECTED_TO_usb_irq_export,                 --                 usb_irq.export
-			usb_rst_export                 => CONNECTED_TO_usb_rst_export                  --                 usb_rst.export
+			usb_rst_export                 => CONNECTED_TO_usb_rst_export,                 --                 usb_rst.export
+			i2c_conduit_data_in            => CONNECTED_TO_i2c_conduit_data_in,            --                     i2c.conduit_data_in
+			i2c_conduit_clk_in             => CONNECTED_TO_i2c_conduit_clk_in,             --                        .conduit_clk_in
+			i2c_conduit_data_oe            => CONNECTED_TO_i2c_conduit_data_oe,            --                        .conduit_data_oe
+			i2c_conduit_clk_oe             => CONNECTED_TO_i2c_conduit_clk_oe              --                        .conduit_clk_oe
 		);
 

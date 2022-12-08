@@ -49,6 +49,14 @@
          type = "String";
       }
    }
+   element i2cslave_to_avlmm_bridge_0
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
    element jtag_uart_0
    {
       datum _sortIndex
@@ -327,6 +335,11 @@
    type="conduit"
    dir="end" />
  <interface
+   name="i2c"
+   internal="i2cslave_to_avlmm_bridge_0.conduit_end"
+   type="conduit"
+   dir="end" />
+ <interface
    name="key_external_connection"
    internal="key.external_connection"
    type="conduit"
@@ -402,6 +415,16 @@
   <parameter name="simDoTestBenchWiring" value="false" />
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="16" />
+ </module>
+ <module
+   name="i2cslave_to_avlmm_bridge_0"
+   kind="altera_i2cslave_to_avlmm_bridge"
+   version="18.1"
+   enabled="1">
+  <parameter name="ADDRESS_STEALING" value="0" />
+  <parameter name="BYTE_ADDRESSING" value="2" />
+  <parameter name="I2C_SLAVE_ADDRESS" value="85" />
+  <parameter name="READ_ONLY" value="0" />
  </module>
  <module
    name="jtag_uart_0"
@@ -1299,6 +1322,11 @@
    kind="clock"
    version="18.1"
    start="clk_0.clk"
+   end="i2cslave_to_avlmm_bridge_0.clock" />
+ <connection
+   kind="clock"
+   version="18.1"
+   start="clk_0.clk"
    end="sdram_pll.inclk_interface" />
  <connection
    kind="interrupt"
@@ -1389,6 +1417,11 @@
    kind="reset"
    version="18.1"
    start="clk_0.clk_reset"
+   end="i2cslave_to_avlmm_bridge_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
    end="onchip_memory2_0.reset1" />
  <connection
    kind="reset"
@@ -1470,6 +1503,11 @@
    version="18.1"
    start="nios2_gen2_0.debug_reset_request"
    end="spi_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="i2cslave_to_avlmm_bridge_0.reset" />
  <connection
    kind="reset"
    version="18.1"

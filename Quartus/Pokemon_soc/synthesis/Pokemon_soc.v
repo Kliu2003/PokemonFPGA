@@ -7,6 +7,10 @@ module Pokemon_soc (
 		input  wire        accumulate_button_export,       //       accumulate_button.export
 		input  wire        clk_clk,                        //                     clk.clk
 		output wire [15:0] hex_digits_export,              //              hex_digits.export
+		input  wire        i2c_conduit_data_in,            //                     i2c.conduit_data_in
+		input  wire        i2c_conduit_clk_in,             //                        .conduit_clk_in
+		output wire        i2c_conduit_data_oe,            //                        .conduit_data_oe
+		output wire        i2c_conduit_clk_oe,             //                        .conduit_clk_oe
 		input  wire [1:0]  key_external_connection_export, // key_external_connection.export
 		output wire [7:0]  keycode_export,                 //                 keycode.export
 		output wire [13:0] leds_export,                    //                    leds.export
@@ -127,7 +131,7 @@ module Pokemon_soc (
 	wire         irq_mapper_receiver1_irq;                                    // timer_0:irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                    // spi_0:irq -> irq_mapper:receiver2_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [accumulate:reset_n, hex_digits_pio:reset_n, irq_mapper:reset, jtag_uart_0:rst_n, key:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, reset:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [accumulate:reset_n, hex_digits_pio:reset_n, i2cslave_to_avlmm_bridge_0:rst_n, irq_mapper:reset, jtag_uart_0:rst_n, key:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, onchip_memory2_0:reset, reset:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> [rst_controller:reset_in1, rst_controller_001:reset_in1]
 	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
@@ -149,6 +153,28 @@ module Pokemon_soc (
 		.chipselect (mm_interconnect_0_hex_digits_pio_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_hex_digits_pio_s1_readdata),   //                    .readdata
 		.out_port   (hex_digits_export)                               // external_connection.export
+	);
+
+	altera_i2cslave_to_avlmm_bridge #(
+		.I2C_SLAVE_ADDRESS (7'b1010101),
+		.BYTE_ADDRESSING   (2),
+		.ADDRESS_STEALING  (0),
+		.READ_ONLY         (0)
+	) i2cslave_to_avlmm_bridge_0 (
+		.clk           (clk_clk),                         //         clock.clk
+		.address       (),                                // avalon_master.address
+		.read          (),                                //              .read
+		.readdata      (),                                //              .readdata
+		.readdatavalid (),                                //              .readdatavalid
+		.waitrequest   (),                                //              .waitrequest
+		.write         (),                                //              .write
+		.byteenable    (),                                //              .byteenable
+		.writedata     (),                                //              .writedata
+		.rst_n         (~rst_controller_reset_out_reset), //         reset.reset_n
+		.i2c_data_in   (i2c_conduit_data_in),             //   conduit_end.conduit_data_in
+		.i2c_clk_in    (i2c_conduit_clk_in),              //              .conduit_clk_in
+		.i2c_data_oe   (i2c_conduit_data_oe),             //              .conduit_data_oe
+		.i2c_clk_oe    (i2c_conduit_clk_oe)               //              .conduit_clk_oe
 	);
 
 	Pokemon_soc_jtag_uart_0 jtag_uart_0 (

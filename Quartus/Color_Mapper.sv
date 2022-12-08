@@ -176,12 +176,12 @@ module color_mapper
 		Curr_Game_State <= Next_Game_State;
 	end
 	
-	
 	always_ff @(posedge VS) begin:Move_FSM
 		unique case(Curr_Game_State)
 			START:
 				if (keycode == 8'h2c) begin
 					Next_Game_State <= OVERWORLD;
+					Next_State <= downRest1;
 					topleftX <= 11'd100;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd100 + 11'd311;
@@ -193,6 +193,7 @@ module color_mapper
 			OVERWORLD:
 				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 420) begin
 					Next_Game_State <= GYM;
+					Next_State <= downRest1;
 					topleftX <= 11'd0;
 					topleftY <= 11'd0;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -204,6 +205,7 @@ module color_mapper
 			GYM:
 				if(topleftYChar == 11'd350) begin
 					Next_Game_State <= OVERWORLD;
+					Next_State <= downRest1;
 					topleftX <= 11'd100;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd100 + 11'd320;
@@ -218,510 +220,516 @@ module color_mapper
 				Next_Game_State <= START;
 		endcase
 		
-		unique case(Curr_State)
-			//Up Check
-			upRest1:
-				if(Character_Moving == 0) begin
-					Next_State <= upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						if(movementDelay == 0) begin
-							Next_State <= upM1;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftY > -340 && collision_status[3] == 0)begin
-							topleftY <= topleftY - 1;
-							topleftYChar <= topleftYChar - 1;
-						end
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			upM1:
-				if(Character_Moving == 0) begin
-					Next_State <= upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						if(movementDelay == 0) begin
-							Next_State <= upRest2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftY > -340 && collision_status[3] == 0) begin
-							topleftY <= topleftY - 1;
-							topleftYChar <= topleftYChar - 1;
-						end
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			upRest2:
-				if(Character_Moving == 0) begin
-					Next_State <= upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						if(movementDelay == 0) begin
-							Next_State <= upM2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftY > -340 && collision_status[3] == 0)begin
-							topleftY <= topleftY - 1;
-							topleftYChar <= topleftYChar - 1;
-						end
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			upM2:
-				if(Character_Moving == 0) begin
-					Next_State <= upRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						if(movementDelay == 0) begin
+		unique case(Curr_Game_State)
+			START:;
+			OVERWORLD:
+				unique case(Curr_State)
+					//Up Check
+					upRest1:
+						if(Character_Moving == 0) begin
 							Next_State <= upRest1;
 						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
 						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftY > -340 && collision_status[3] == 0)begin
-							topleftY <= topleftY - 1;
-							topleftYChar <= topleftYChar - 1;
-						end
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			//Right Check	
-			rightRest1:
-				if(Character_Moving == 0) begin
-					Next_State <= rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						if(movementDelay == 0) begin
-							Next_State <= rightM1;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftX <= 951 && collision_status[0] == 0)begin
-							topleftX <= topleftX + 1;
-							topleftXChar <= topleftXChar + 1;
-						end
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			rightM1:
-				if(Character_Moving == 0) begin
-					Next_State <= rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						if(movementDelay == 0) begin
-							Next_State <= rightRest2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftX <= 951 && collision_status[0] == 0)begin
-							topleftX <= topleftX + 1;
-							topleftXChar <= topleftXChar + 1;
-						end
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			rightRest2:
-				if(Character_Moving == 0) begin
-					Next_State <= rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						if(movementDelay == 0) begin
-							Next_State <= rightM2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftX <= 951 && collision_status[0] == 0)begin
-							topleftX <= topleftX + 1;
-							topleftXChar <= topleftXChar + 1;
-						end
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			rightM2:
-				if(Character_Moving == 0) begin
-					Next_State <= rightRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						if(movementDelay == 0) begin
-							Next_State <= rightRest1;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftX <= 951 && collision_status[0] == 0)begin
-							topleftX <= topleftX + 1;
-							topleftXChar <= topleftXChar + 1;
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -340 && collision_status[3] == 0)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
 						
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			//Down Check
-			downRest1:
-				if(Character_Moving == 0) begin
-					Next_State <= downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						if(movementDelay == 0) begin
-							Next_State <= downM1;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+					upM1:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -340 && collision_status[3] == 0) begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
-						if(topleftY <= 594 && collision_status[1] == 0)begin
-							topleftY <= topleftY + 1;
-							topleftYChar <= topleftYChar + 1;
-						end
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			downM1:
-				if(Character_Moving == 0) begin
-					Next_State <= downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						if(movementDelay == 0) begin
-							Next_State <= downRest2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftY <= 594 && collision_status[1] == 0)begin
-							topleftY <= topleftY + 1;
-							topleftYChar <= topleftYChar + 1;
-						end
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			downRest2:
-				if(Character_Moving == 0) begin
-					Next_State <= downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						if(movementDelay == 0) begin
-							Next_State <= downM2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+						
+					upRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -340 && collision_status[3] == 0)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
-						if(topleftY <= 594 && collision_status[1] == 0)begin
-							topleftY <= topleftY + 1;
-							topleftYChar <= topleftYChar + 1;
+						
+					upM2:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
 						end
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			downM2:
-				if(Character_Moving == 0) begin
-					Next_State <= downRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						if(movementDelay == 0) begin
+						else begin
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -340 && collision_status[3] == 0)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					//Right Check	
+					rightRest1:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 951 && collision_status[0] == 0)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightM1:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 951 && collision_status[0] == 0)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 951 && collision_status[0] == 0)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightM2:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 951 && collision_status[0] == 0)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+								
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					//Down Check
+					downRest1:
+						if(Character_Moving == 0) begin
 							Next_State <= downRest1;
 						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 594 && collision_status[1] == 0)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					downM1:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 594 && collision_status[1] == 0)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
-						if(topleftY <= 594 && collision_status[1] == 0)begin
-							topleftY <= topleftY + 1;
-							topleftYChar <= topleftYChar + 1;
-						end
-					end
-					else if(Direction == 2'd3) begin
-						Next_State <= leftRest1;
-					end
-				end
-				
-			//Left Check
-			leftRest1:
-				if(Character_Moving == 0) begin
-					Next_State <= leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						if(movementDelay == 0) begin
-							Next_State <= leftM1;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+						
+					downRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 594 && collision_status[1] == 0)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
-						if(topleftX > -311 && collision_status[2] == 0)begin
-							topleftX <= topleftX - 1;
-							topleftXChar <= topleftXChar - 1;
-						end
-					end
-				end
-				
-			leftM1:
-				if(Character_Moving == 0) begin
-					Next_State <= leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						if(movementDelay == 0) begin
-							Next_State <= leftRest2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
-						end
-						else begin
-							movementDelay <= movementDelay + 1;
-						end
-						if(topleftX > -311 && collision_status[2] == 0)begin
-							topleftX <= topleftX - 1;
-							topleftXChar <= topleftXChar - 1;
-						end
-					end
-				end
-				
-			leftRest2:
-				if(Character_Moving == 0) begin
-					Next_State <= leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						if(movementDelay == 0) begin
-							Next_State <= leftM2;
-						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+						
+					downM2:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 594 && collision_status[1] == 0)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
 						end
-						if(topleftX > -311 && collision_status[2] == 0)begin
-							topleftX <= topleftX - 1;
-							topleftXChar <= topleftXChar - 1;
-						end
-					end
-				end
-				
-			leftM2:
-				if(Character_Moving == 0) begin
-					Next_State <= leftRest1;
-				end
-				else begin
-					if(Direction == 2'd0) begin
-						Next_State <= upRest1;
-					end
-					else if(Direction == 2'd1) begin
-						Next_State <= rightRest1;
-					end
-					else if(Direction == 2'd2) begin
-						Next_State <= downRest1;
-					end
-					else if(Direction == 2'd3) begin
-						if(movementDelay == 0) begin
+						
+					//Left Check
+					leftRest1:
+						if(Character_Moving == 0) begin
 							Next_State <= leftRest1;
 						end
-						if(movementDelay == 4'd7) begin
-							movementDelay <= 4'd0;
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -311 && collision_status[2] == 0)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+						
+					leftM1:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
 						end
 						else begin
-							movementDelay <= movementDelay + 1;
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -311 && collision_status[2] == 0)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
 						end
-						if(topleftX > -311 && collision_status[2] == 0)begin
-							topleftX <= topleftX - 1;
-							topleftXChar <= topleftXChar - 1;
+						
+					leftRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
 						end
-					end
-				end
-		
-			default:
-				Next_State <= upRest1;
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -311 && collision_status[2] == 0)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+						
+					leftM2:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -311 && collision_status[2] == 0)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+				
+					default:
+						Next_State <= upRest1;
+				endcase
+			GYM:;
+			default:;
 		endcase
 	end
 	
