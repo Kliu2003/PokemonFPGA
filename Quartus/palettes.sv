@@ -2,7 +2,8 @@ module palettes (
 	input logic [1:0] select, // 0 is palette, 1 is map_palette
 	input logic [3:0] palette_color,
 	input logic [7:0] map_palette_color,
-	input logic [5:0] start_palette_color,
+	input logic [4:0] start_palette_color,
+	input logic [5:0] gym_palette_color,
 	output logic [23:0] thecolor
 );
 	
@@ -154,7 +155,7 @@ module palettes (
 	assign Map_Palette[126] = 24'h38735b;
 	assign Map_Palette[127] = 24'h855750;
 	
-	logic [23:0] Start_Palette[32];
+	logic [23:0] Start_Palette [32];
 	assign Start_Palette[0] = 24'hf6e05d;
 	assign Start_Palette[1] = 24'hf6eda0;
 	assign Start_Palette[2] = 24'hf4c916;
@@ -188,6 +189,73 @@ module palettes (
 	assign Start_Palette[30] = 24'h768338;
 	assign Start_Palette[31] = 24'hfcd62f;
 	
+	logic [23:0] Gym_Palette [64];
+	assign Gym_Palette[0] = 24'h99a4aa;
+	assign Gym_Palette[1] = 24'hb18f5f;
+	assign Gym_Palette[2] = 24'h604c36;
+	assign Gym_Palette[3] = 24'hae480f;
+	assign Gym_Palette[4] = 24'h8c735d;
+	assign Gym_Palette[5] = 24'h6e9e9c;
+	assign Gym_Palette[6] = 24'hd0611d;
+	assign Gym_Palette[7] = 24'h9db8d0;
+	assign Gym_Palette[8] = 24'hc43b00;
+	assign Gym_Palette[9] = 24'h6aa2ea;
+	assign Gym_Palette[10] = 24'h7fc0f9;
+	assign Gym_Palette[11] = 24'h707a85;
+	assign Gym_Palette[12] = 24'h9acb93;
+	assign Gym_Palette[13] = 24'h363e44;
+	assign Gym_Palette[14] = 24'hdaa889;
+	assign Gym_Palette[15] = 24'hcbd0d4;
+	assign Gym_Palette[16] = 24'h78655c;
+	assign Gym_Palette[17] = 24'hbcc4c9;
+	assign Gym_Palette[18] = 24'h0f6f91;
+	assign Gym_Palette[19] = 24'h6a8b79;
+	assign Gym_Palette[20] = 24'h64331b;
+	assign Gym_Palette[21] = 24'h250c01;
+	assign Gym_Palette[22] = 24'he4c263;
+	assign Gym_Palette[23] = 24'h1e475c;
+	assign Gym_Palette[24] = 24'hd3af55;
+	assign Gym_Palette[25] = 24'hf0d68a;
+	assign Gym_Palette[26] = 24'h880015;
+	assign Gym_Palette[27] = 24'hfefefe;
+	assign Gym_Palette[28] = 24'h000000;
+	assign Gym_Palette[29] = 24'h303130;
+	assign Gym_Palette[30] = 24'h481b04;
+	assign Gym_Palette[31] = 24'h272928;
+	assign Gym_Palette[32] = 24'h5c431c;
+	assign Gym_Palette[33] = 24'h192020;
+	assign Gym_Palette[34] = 24'h4d260d;
+	assign Gym_Palette[35] = 24'h181b1a;
+	assign Gym_Palette[36] = 24'h2e1609;
+	assign Gym_Palette[37] = 24'h72777b;
+	assign Gym_Palette[38] = 24'h672705;
+	assign Gym_Palette[39] = 24'h87c7f9;
+	assign Gym_Palette[40] = 24'h513a27;
+	assign Gym_Palette[41] = 24'h4f5455;
+	assign Gym_Palette[42] = 24'h503816;
+	assign Gym_Palette[43] = 24'h912901;
+	assign Gym_Palette[44] = 24'h79838c;
+	assign Gym_Palette[45] = 24'hede9e6;
+	assign Gym_Palette[46] = 24'h4a4b4c;
+	assign Gym_Palette[47] = 24'h535866;
+	assign Gym_Palette[48] = 24'h631b00;
+	assign Gym_Palette[49] = 24'h312315;
+	assign Gym_Palette[50] = 24'h8f3606;
+	assign Gym_Palette[51] = 24'ha3d39c;
+	assign Gym_Palette[52] = 24'h1f1f20;
+	assign Gym_Palette[53] = 24'h73b4f8;
+	assign Gym_Palette[54] = 24'hc94800;
+	assign Gym_Palette[55] = 24'hab2d00;
+	assign Gym_Palette[56] = 24'h5a666e;
+	assign Gym_Palette[57] = 24'h8a9399;
+	assign Gym_Palette[58] = 24'h63461d;
+	assign Gym_Palette[59] = 24'h6d564d;
+	assign Gym_Palette[60] = 24'h39454c;
+	assign Gym_Palette[61] = 24'hb83000;
+	assign Gym_Palette[62] = 24'h67676e;
+	assign Gym_Palette[63] = 24'h6e552c;
+	
+	
 	always_comb begin
 		unique case (select)
 			0: begin
@@ -195,6 +263,9 @@ module palettes (
 			end
 			1: begin
 				thecolor = Map_Palette[map_palette_color];
+			end
+			2: begin
+				thecolor = Gym_Palette[gym_palette_color];
 			end
 			3: begin
 				thecolor = Start_Palette[start_palette_color]; 
