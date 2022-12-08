@@ -15,7 +15,8 @@ module color_mapper
 									downRest1, downRest2, downM1, downM2, 
 									rightRest1, rightRest2, rightM1, rightM2} Anim_State;
 	
-	typedef enum logic [1:0] {START = 2'b00, OVERWORLD = 2'b01, BATTLE = 2'b10, GYM = 2'b11} Game_State;
+	typedef enum logic [2:0] {START = 3'b000, OVERWORLD = 3'b001, BATTLE = 3'b010, GYM = 3'b011, 
+										GYM_PAUSE = 3'b111, OVERWORLD_PAUSE = 3'b101} Game_State;
 	
 	Anim_State Curr_State, Next_State;
 	Game_State Curr_Game_State, Next_Game_State;
@@ -81,6 +82,7 @@ module color_mapper
 	palettes palettes(
 		.select(palette_select),
 		.palette_color(palette_color),
+		.gym_palette_color(gym_palette_color),
 		.map_palette_color(map_palette_color),
 		.start_palette_color(start_palette_color),
 		.thecolor(thecolor),
@@ -203,32 +205,52 @@ module color_mapper
 					topleftYChar <= 11'd100 + 11'd340;
 				end
 				else begin
-					Next_Game_State <= START;
+					Next_Game_State <= Next_Game_State;
 				end
 			OVERWORLD:
 				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 420) begin
-					Next_Game_State <= GYM;
-					Next_State <= downRest1;
 					topleftX <= 11'd0;
-					topleftY <= 11'd0;
+					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
-					topleftYChar <= 11'd0 + 11'd340;
+					topleftYChar <= 11'd300 + 11'd340;
+					Next_State<= upRest1;
+					Next_Game_State <= GYM_PAUSE;
 				end
 				else begin
-					Next_Game_State <= OVERWORLD;
+					Next_Game_State <= Next_Game_State;
 				end
-			GYM:
-				if(topleftYChar == 11'd350) begin
-					Next_Game_State <= OVERWORLD;
-					Next_State <= downRest1;
-					topleftX <= 11'd100;
-					topleftY <= 11'd100;
-					topleftXChar <= 11'd100 + 11'd320;
-					topleftYChar <= 11'd100 + 11'd340;
-				end
-				else begin
+				
+			GYM_PAUSE: begin
+					topleftX <= 11'd0;
+					topleftY <= 11'd300;
+					topleftXChar <= 11'd0 + 11'd311;
+					topleftYChar <= 11'd300 + 11'd340;
 					Next_Game_State <= GYM;
+					Next_State<= upRest1;
 				end
+					
+			GYM:
+				if(topleftYChar > 700) begin
+					topleftX <= 11'd110;
+					topleftY <= 11'd100;
+					topleftXChar <= 11'd110 + 11'd311;
+					topleftYChar <= 11'd100 + 11'd340;
+					Next_State <= downRest1;
+					Next_Game_State <= OVERWORLD_PAUSE;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
+			
+			OVERWORLD_PAUSE: begin				
+					topleftX <= 11'd110;
+					topleftY <= 11'd100;
+					topleftXChar <= 11'd110 + 11'd311;
+					topleftYChar <= 11'd100 + 11'd340;
+					Next_State <= downRest1;
+					Next_Game_State <= OVERWORLD;
+				end
+			
 			BATTLE:
 				Next_Game_State <= START;
 			default:
@@ -743,7 +765,512 @@ module color_mapper
 					default:
 						Next_State <= upRest1;
 				endcase
-			GYM:;
+				
+			GYM:
+				unique case(Curr_State)
+					//Up Check
+					upRest1:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -250)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					upM1:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -250) begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					upRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -250)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					upM2:
+						if(Character_Moving == 0) begin
+							Next_State <= upRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								if(movementDelay == 0) begin
+									Next_State <= upRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY > -250)begin
+									topleftY <= topleftY - 1;
+									topleftYChar <= topleftYChar - 1;
+								end
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					//Right Check	
+					rightRest1:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 700)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightM1:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 700)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 700)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					rightM2:
+						if(Character_Moving == 0) begin
+							Next_State <= rightRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								if(movementDelay == 0) begin
+									Next_State <= rightRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX <= 700)begin
+									topleftX <= topleftX + 1;
+									topleftXChar <= topleftXChar + 1;
+								end
+								
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					//Down Check
+					downRest1:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 700)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					downM1:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 700)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					downRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 700)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					downM2:
+						if(Character_Moving == 0) begin
+							Next_State <= downRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								if(movementDelay == 0) begin
+									Next_State <= downRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftY <= 700)begin
+									topleftY <= topleftY + 1;
+									topleftYChar <= topleftYChar + 1;
+								end
+							end
+							else if(Direction == 2'd3) begin
+								Next_State <= leftRest1;
+							end
+						end
+						
+					//Left Check
+					leftRest1:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftM1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -141)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+						
+					leftM1:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftRest2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -141)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+						
+					leftRest2:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftM2;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -141)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+						
+					leftM2:
+						if(Character_Moving == 0) begin
+							Next_State <= leftRest1;
+						end
+						else begin
+							if(Direction == 2'd0) begin
+								Next_State <= upRest1;
+							end
+							else if(Direction == 2'd1) begin
+								Next_State <= rightRest1;
+							end
+							else if(Direction == 2'd2) begin
+								Next_State <= downRest1;
+							end
+							else if(Direction == 2'd3) begin
+								if(movementDelay == 0) begin
+									Next_State <= leftRest1;
+								end
+								if(movementDelay == 4'd7) begin
+									movementDelay <= 4'd0;
+								end
+								else begin
+									movementDelay <= movementDelay + 1;
+								end
+								if(topleftX > -141)begin
+									topleftX <= topleftX - 1;
+									topleftXChar <= topleftXChar - 1;
+								end
+							end
+						end
+					default:
+						Next_State <= upRest1;
+				endcase
 			default:;
 		endcase
 	end
