@@ -103,6 +103,7 @@ module color_mapper
 	logic signed [12:0] topleftX, topleftY;
 	logic [2:0] movementDelay;
 	logic signed [13:0] topleftXChar, topleftYChar;
+	logic [5:0] transitionDelay;
 	
 	always_comb begin:start_menu_addr
 		start_read_addr = (DrawY-80) / 3 * 200 + (DrawX) * 10 / 32;
@@ -216,11 +217,12 @@ module color_mapper
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd100 + 11'd311;
 					topleftYChar <= 11'd100 + 11'd340;
+					transitionDelay <= 0;
 				end
 				else begin
 					Next_Game_State <= Next_Game_State;
 				end
-			OVERWORLD:
+			OVERWORLD: begin
 				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 400) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
@@ -228,12 +230,15 @@ module color_mapper
 					topleftYChar <= 11'd300 + 11'd340;
 					Next_State<= upRest1;
 					Next_Game_State <= GYM_PAUSE;
+					transitionDelay <= 0;
 				end
 				else begin
 					Next_Game_State <= Next_Game_State;
 				end
+			end
 				
 			GYM_PAUSE: begin
+				if(transitionDelay == 6'b111111) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -241,15 +246,20 @@ module color_mapper
 					Next_Game_State <= GYM;
 					Next_State<= upRest1;
 				end
+				else begin
+					transitionDelay <= transitionDelay + 1;
+				end
+			end
 					
-			GYM:
-				if(topleftYChar > 670 && topleftYChar < 680 && topleftXChar > 306 && topleftYChar < 316) begin
+			GYM: begin
+				if(topleftYChar > 670 && topleftYChar < 680 && topleftXChar > 306 && topleftXChar < 316) begin
 					topleftX <= 11'd110;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd110 + 11'd311;
 					topleftYChar <= 11'd100 + 11'd340;
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD_PAUSE;
+					transitionDelay <= 0;
 				end
 				else if(game_completed == 2'b11) begin
 					Next_Game_State <= START;
@@ -257,8 +267,10 @@ module color_mapper
 				else begin
 					Next_Game_State <= Next_Game_State;
 				end
+			end
 			
-			OVERWORLD_PAUSE: begin				
+			OVERWORLD_PAUSE: begin	
+				if(transitionDelay == 6'b111111) begin
 					topleftX <= 11'd110;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd110 + 11'd311;
@@ -266,9 +278,15 @@ module color_mapper
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD;
 				end
+				else begin
+					transitionDelay <= transitionDelay + 1;
+				end
+			end
 			
-			BATTLE:
+			BATTLE: begin
 				Next_Game_State <= START;
+			end
+			
 			default: begin
 				Next_Game_State <= START;
 				game_completed <= 2'b00;
@@ -1325,6 +1343,24 @@ module color_mapper
 					{Red, Green, Blue} <= thecolor;
 				end
 			end
+			GYM_PAUSE: begin
+				if(!blank) begin
+					{Red, Green, Blue} <= 24'h000000;
+				end
+				else begin
+					{Red, Green, Blue} <= {8'hff - DrawY[10:3], 8'hff - DrawY[10:3], 8'hff - DrawY[10:3]};
+				end
+			end
+			
+			OVERWORLD_PAUSE: begin
+				if(!blank) begin
+					{Red, Green, Blue} <= 24'h000000;
+				end
+				else begin
+					{Red, Green, Blue} <= {8'hff - DrawY[10:3], 8'hff - DrawY[10:3], 8'hff - DrawY[10:3]};
+				end
+			end
+			
 			default: begin
 				if (!blank || DrawY < 80 || DrawY > 370) begin
 					{Red, Green, Blue} <= 24'h000000;
