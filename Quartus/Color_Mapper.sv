@@ -35,6 +35,7 @@ module color_mapper
 	logic [1:0] palette_select;
 	logic [3:0] collision_status;
 	logic [3:0] collision_gym_status;
+	logic [1:0] game_completed;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -250,6 +251,9 @@ module color_mapper
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD_PAUSE;
 				end
+				else if(game_completed == 2'b11) begin
+					Next_Game_State <= START;
+				end
 				else begin
 					Next_Game_State <= Next_Game_State;
 				end
@@ -267,6 +271,7 @@ module color_mapper
 				Next_Game_State <= START;
 			default:
 				Next_Game_State <= START;
+				game_completed <= 2'b00;
 		endcase
 		
 		unique case(Curr_Game_State)

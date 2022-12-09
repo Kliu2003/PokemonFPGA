@@ -1,5 +1,5 @@
 Flow report for PokemonFPGA
-Thu Dec 08 19:31:48 2022
+Thu Dec 08 20:05:08 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Dec 08 19:31:48 2022       ;
+; Flow Status                        ; Successful - Thu Dec 08 20:05:08 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; PokemonFPGA                                 ;
 ; Top-level Entity Name              ; PokemonFPGA                                 ;
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/08/2022 19:28:11 ;
+; Start date & time ; 12/08/2022 20:01:20 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; PokemonFPGA         ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
 ; Assignment Name                     ; Value                                                         ; Default Value ; Entity Name       ; Section Id     ;
 +-------------------------------------+---------------------------------------------------------------+---------------+-------------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 277302806902899.167054929059276                               ; --            ; --                ; --             ;
+; COMPILER_SIGNATURE_ID               ; 277302806902899.167055127964704                               ; --            ; --                ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                             ; --            ; --                ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim (SystemVerilog)                                      ; <None>        ; --                ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                                          ; --            ; --                ; eda_simulation ;
@@ -111,12 +111,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:02:25     ; 1.0                     ; 5140 MB             ; 00:02:56                           ;
-; Fitter               ; 00:00:37     ; 1.9                     ; 6738 MB             ; 00:01:44                           ;
+; Analysis & Synthesis ; 00:02:31     ; 1.0                     ; 5140 MB             ; 00:02:54                           ;
+; Fitter               ; 00:00:40     ; 1.8                     ; 6737 MB             ; 00:01:51                           ;
 ; Assembler            ; 00:00:05     ; 1.0                     ; 4724 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:09     ; 3.8                     ; 5094 MB             ; 00:00:22                           ;
-; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4793 MB             ; 00:00:04                           ;
-; Total                ; 00:03:20     ; --                      ; --                  ; 00:05:11                           ;
+; Timing Analyzer      ; 00:00:09     ; 3.8                     ; 5087 MB             ; 00:00:22                           ;
+; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4793 MB             ; 00:00:05                           ;
+; Total                ; 00:03:29     ; --                      ; --                  ; 00:05:17                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
