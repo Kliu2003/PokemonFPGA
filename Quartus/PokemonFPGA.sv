@@ -74,6 +74,7 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	assign I2C_SCL_IN = ARDUINO_IO[15];
 	assign ARDUINO_IO[14] = I2C_SDA_OE ? 1'b0 : 1'bz;
 	assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bz;
+	assign ARDUINO_IO[2] = ARDUINO_IO[1];
 	assign ARDUINO_IO[10] = SPI0_CS_N;
 	assign ARDUINO_IO[13] = SPI0_SCLK;
 	assign ARDUINO_IO[11] = SPI0_MOSI;

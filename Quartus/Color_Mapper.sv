@@ -269,9 +269,10 @@ module color_mapper
 			
 			BATTLE:
 				Next_Game_State <= START;
-			default:
+			default: begin
 				Next_Game_State <= START;
 				game_completed <= 2'b00;
+			end
 		endcase
 		
 		unique case(Curr_Game_State)
