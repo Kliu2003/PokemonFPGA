@@ -384,6 +384,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "ARDUINO_IO[3]",
+					"strict" : false
+				},
+				{
 					"name" : "ARDUINO_IO[7]",
 					"strict" : false
 				},
@@ -405,6 +409,14 @@
 				},
 				{
 					"name" : "ARDUINO_IO[13]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO_IO[14]",
+					"strict" : false
+				},
+				{
+					"name" : "ARDUINO_IO[15]",
 					"strict" : false
 				},
 				{
