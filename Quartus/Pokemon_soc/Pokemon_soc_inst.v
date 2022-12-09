@@ -24,9 +24,9 @@
 		.usb_gpx_export                 (<connected-to-usb_gpx_export>),                 //                 usb_gpx.export
 		.usb_irq_export                 (<connected-to-usb_irq_export>),                 //                 usb_irq.export
 		.usb_rst_export                 (<connected-to-usb_rst_export>),                 //                 usb_rst.export
-		.i2c_conduit_data_in            (<connected-to-i2c_conduit_data_in>),            //                     i2c.conduit_data_in
-		.i2c_conduit_clk_in             (<connected-to-i2c_conduit_clk_in>),             //                        .conduit_clk_in
-		.i2c_conduit_data_oe            (<connected-to-i2c_conduit_data_oe>),            //                        .conduit_data_oe
-		.i2c_conduit_clk_oe             (<connected-to-i2c_conduit_clk_oe>)              //                        .conduit_clk_oe
+		.i2c_0_sda_in                   (<connected-to-i2c_0_sda_in>),                   //                   i2c_0.sda_in
+		.i2c_0_scl_in                   (<connected-to-i2c_0_scl_in>),                   //                        .scl_in
+		.i2c_0_sda_oe                   (<connected-to-i2c_0_sda_oe>),                   //                        .sda_oe
+		.i2c_0_scl_oe                   (<connected-to-i2c_0_scl_oe>)                    //                        .scl_oe
 	);
 

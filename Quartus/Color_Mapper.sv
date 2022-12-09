@@ -26,6 +26,7 @@ module color_mapper
 	logic [15:0] gym_read_addr;
 	logic [18:0] start_read_addr; 
 	logic [18:0] collision_read_addr;
+	logic [15:0] collision_gym_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
 	logic [5:0] gym_palette_color;
@@ -33,6 +34,7 @@ module color_mapper
 	logic [23:0] thecolor;
 	logic [1:0] palette_select;
 	logic [3:0] collision_status;
+	logic [3:0] collision_gym_status;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -78,6 +80,15 @@ module color_mapper
 		.Clk(Clk),
 		.data_Out(collision_status)
 	);
+	
+	collisionGymRAM collisionGymRAM(
+		.data_In(0),
+		.write_address(0),
+		.read_address(collision_gym_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(collision_gym_status)
+	);
 	 
 	palettes palettes(
 		.select(palette_select),
@@ -99,6 +110,7 @@ module color_mapper
 	
 	always_comb begin
 		collision_read_addr = topleftYChar / 4 * 320 + topleftXChar / 4;
+		collision_gym_read_addr = topleftYChar / 4 * 160 + topleftXChar / 4;
 	end
 	
 	always_comb begin:Character_Proc
@@ -208,7 +220,7 @@ module color_mapper
 					Next_Game_State <= Next_Game_State;
 				end
 			OVERWORLD:
-				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 420) begin
+				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 400) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -230,7 +242,7 @@ module color_mapper
 				end
 					
 			GYM:
-				if(topleftYChar > 700) begin
+				if(topleftYChar > 670 && topleftYChar < 680 && topleftXChar > 306 && topleftYChar < 316) begin
 					topleftX <= 11'd110;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd110 + 11'd311;
@@ -784,7 +796,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY > -250)begin
+								if(topleftY > -250 && collision_gym_status[3] == 0)begin
 									topleftY <= topleftY - 1;
 									topleftYChar <= topleftYChar - 1;
 								end
@@ -801,7 +813,7 @@ module color_mapper
 						end
 						
 					upM1:
-						if(Character_Moving == 0) begin
+						if(Character_Moving == 0 && collision_gym_status[3] == 0) begin
 							Next_State <= upRest1;
 						end
 						else begin
@@ -815,7 +827,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY > -250) begin
+								if(topleftY > -250 && collision_gym_status[3] == 0) begin
 									topleftY <= topleftY - 1;
 									topleftYChar <= topleftYChar - 1;
 								end
@@ -846,7 +858,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY > -250)begin
+								if(topleftY > -250 && collision_gym_status[3] == 0)begin
 									topleftY <= topleftY - 1;
 									topleftYChar <= topleftYChar - 1;
 								end
@@ -877,7 +889,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY > -250)begin
+								if(topleftY > -250 && collision_gym_status[3] == 0)begin
 									topleftY <= topleftY - 1;
 									topleftYChar <= topleftYChar - 1;
 								end
@@ -912,7 +924,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX <= 700)begin
+								if(topleftX <= 700 && collision_gym_status[0] == 0)begin
 									topleftX <= topleftX + 1;
 									topleftXChar <= topleftXChar + 1;
 								end
@@ -943,7 +955,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX <= 700)begin
+								if(topleftX <= 700 && collision_gym_status[0] == 0)begin
 									topleftX <= topleftX + 1;
 									topleftXChar <= topleftXChar + 1;
 								end
@@ -974,7 +986,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX <= 700)begin
+								if(topleftX <= 700 && collision_gym_status[0] == 0)begin
 									topleftX <= topleftX + 1;
 									topleftXChar <= topleftXChar + 1;
 								end
@@ -1005,7 +1017,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX <= 700)begin
+								if(topleftX <= 700 && collision_gym_status[0] == 0)begin
 									topleftX <= topleftX + 1;
 									topleftXChar <= topleftXChar + 1;
 								end
@@ -1041,7 +1053,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY <= 700)begin
+								if(topleftY <= 700 && collision_gym_status[1] == 0)begin
 									topleftY <= topleftY + 1;
 									topleftYChar <= topleftYChar + 1;
 								end
@@ -1072,7 +1084,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY <= 700)begin
+								if(topleftY <= 700 && collision_gym_status[1] == 0)begin
 									topleftY <= topleftY + 1;
 									topleftYChar <= topleftYChar + 1;
 								end
@@ -1103,7 +1115,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY <= 700)begin
+								if(topleftY <= 700 && collision_gym_status[1] == 0)begin
 									topleftY <= topleftY + 1;
 									topleftYChar <= topleftYChar + 1;
 								end
@@ -1134,7 +1146,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftY <= 700)begin
+								if(topleftY <= 700 && collision_gym_status[1] == 0)begin
 									topleftY <= topleftY + 1;
 									topleftYChar <= topleftYChar + 1;
 								end
@@ -1169,7 +1181,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX > -141)begin
+								if(topleftX > -141 && collision_gym_status[2] == 0)begin
 									topleftX <= topleftX - 1;
 									topleftXChar <= topleftXChar - 1;
 								end
@@ -1200,7 +1212,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX > -141)begin
+								if(topleftX > -141 && collision_gym_status[2] == 0)begin
 									topleftX <= topleftX - 1;
 									topleftXChar <= topleftXChar - 1;
 								end
@@ -1231,7 +1243,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX > -141)begin
+								if(topleftX > -141 && collision_gym_status[2] == 0)begin
 									topleftX <= topleftX - 1;
 									topleftXChar <= topleftXChar - 1;
 								end
@@ -1262,7 +1274,7 @@ module color_mapper
 								else begin
 									movementDelay <= movementDelay + 1;
 								end
-								if(topleftX > -141)begin
+								if(topleftX > -141 && collision_gym_status[2] == 0)begin
 									topleftX <= topleftX - 1;
 									topleftXChar <= topleftXChar - 1;
 								end

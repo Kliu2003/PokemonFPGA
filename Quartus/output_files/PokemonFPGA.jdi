@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="61a686b94aa358e9a6b5"/>
+    <hash md5_digest_80b="934c68de0c9f283cbab4"/>
   </project>
   <file_info>
     <file device="10M50DAF484C7G" path="PokemonFPGA.sof" usercode="0xFFFFFFFF"/>
@@ -139,7 +139,7 @@
   <sld_infos>
     <sld_info hpath="Pokemon_soc:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME Pokemon_soc HAS_SOPCINFO 1 GENERATION_ID 1670470936"/>
+        <assignment_value text="QSYS_NAME Pokemon_soc HAS_SOPCINFO 1 GENERATION_ID 1670545804"/>
       </assignment_values>
       <parameters/>
     </sld_info>

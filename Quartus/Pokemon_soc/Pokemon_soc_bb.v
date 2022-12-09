@@ -25,10 +25,10 @@ module Pokemon_soc (
 	usb_gpx_export,
 	usb_irq_export,
 	usb_rst_export,
-	i2c_conduit_data_in,
-	i2c_conduit_clk_in,
-	i2c_conduit_data_oe,
-	i2c_conduit_clk_oe);	
+	i2c_0_sda_in,
+	i2c_0_scl_in,
+	i2c_0_sda_oe,
+	i2c_0_scl_oe);	
 
 	input		accumulate_button_export;
 	input		clk_clk;
@@ -55,8 +55,8 @@ module Pokemon_soc (
 	input		usb_gpx_export;
 	input		usb_irq_export;
 	output		usb_rst_export;
-	input		i2c_conduit_data_in;
-	input		i2c_conduit_clk_in;
-	output		i2c_conduit_data_oe;
-	output		i2c_conduit_clk_oe;
+	input		i2c_0_sda_in;
+	input		i2c_0_scl_in;
+	output		i2c_0_sda_oe;
+	output		i2c_0_scl_oe;
 endmodule

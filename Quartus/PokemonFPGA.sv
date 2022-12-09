@@ -49,12 +49,18 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 //  REG/WIRE declarations
 //=======================================================
 	logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI, USB_GPX, USB_IRQ, USB_RST;
+	logic I2C_SDA_OE, I2C_SCL_OE, I2C_SDA_IN, I2C_SCL_IN;
 	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
 	logic [1:0] signs;
 	logic [1:0] hundreds;
 	logic [9:0] drawxsig, drawysig, ballxsig, ballysig, ballsizesig;
 	logic [7:0] Red, Blue, Green;
 	logic [7:0] keycode;
+	logic [2:0] audio_counter;
+	
+	always_ff @(posedge MAX10_CLK1_50) begin
+		audio_counter <= audio_counter + 1;
+	end
 	
 	logic Movement;
 	logic [1:0] Dir;
@@ -62,6 +68,12 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 //=======================================================
 //  Structural coding
 //=======================================================
+	
+	assign ARDUINO_IO[3] = audio_counter[1];
+	assign I2C_SDA_IN = ARDUINO_IO[14];
+	assign I2C_SCL_IN = ARDUINO_IO[15];
+	assign ARDUINO_IO[14] = I2C_SDA_OE ? 1'b0 : 1'bz;
+	assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bz;
 	assign ARDUINO_IO[10] = SPI0_CS_N;
 	assign ARDUINO_IO[13] = SPI0_SCLK;
 	assign ARDUINO_IO[11] = SPI0_MOSI;
@@ -114,6 +126,12 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.altpll_0_phasedone_conduit_export (),               //altpll_0_phasedone_conduit.export
 		.altpll_0_areset_conduit_export    (),               //altpll_0_areset_conduit.export
 		.key_external_connection_export    (KEY),            //key_external_connection.export
+		
+		//I2C
+		.i2c_0_sda_in(I2C_SDA_IN),
+		.i2c_0_scl_in(I2C_SCL_IN),              
+		.i2c_0_sda_oe(I2C_SDA_OE),                
+      .i2c_0_scl_oe(I2C_SCL_OE), 
 
 		//SDRAM
 		.sdram_clk_clk(DRAM_CLK),                            //clk_sdram.clk
