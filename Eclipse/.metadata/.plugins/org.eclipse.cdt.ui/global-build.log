@@ -121,3 +121,48 @@ Info: Building ../PokemonC_bsp/
 C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
 [BSP build complete]
 [PokemonC build complete]
+04:13:12 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]
+04:13:13 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
+make all 
+[BSP build complete]
+04:13:24 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]
+04:28:31 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]
+04:28:32 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
+make all 
+[BSP build complete]
+04:28:37 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]
+04:42:18 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]
+04:42:19 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
+make all 
+[BSP build complete]
+04:42:23 **** Incremental Build of configuration Nios II for project PokemonC ****
+make all 
+Info: Building ../PokemonC_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../PokemonC_bsp/
+[BSP build complete]
+[PokemonC build complete]

@@ -22,7 +22,10 @@ module color_mapper
 										DIALOGUE_dialogue_1_1, DIALOGUE_dialogue_1_2, 
 										DIALOGUE_dialogue_1_3, DIALOGUE_dialogue_2_1, 
 										DIALOGUE_dialogue_2_2, DIALOGUE_dialogue_3_1, 
-										DIALOGUE_dialogue_3_2, DIALOGUE_dialogue_3_3} Game_State;
+										DIALOGUE_dialogue_3_2, DIALOGUE_dialogue_3_3,
+										DIALOGUE_dialogue_1_transition, DIALOGUE_dialogue_3_1_transition, 
+										DIALOGUE_dialogue_3_2_transition, DIALOGUE_dialogue_3_3_transition,
+										DIALOGUE_dialogue_3_wrong_transition} Game_State;
 	
 	Anim_State Curr_State, Next_State;
 	Game_State Curr_Game_State, Next_Game_State;
@@ -490,7 +493,12 @@ module color_mapper
 
 			DIALOGUE_dialogue_1_wrong: begin
 				 if (keycode == 8'd40) /* enter key */ begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_1;
+					  if(game_completed == 0) begin
+						  Next_Game_State <= DIALOGUE_dialogue_1_3;
+					  end
+					  else begin
+						  Next_Game_State <= DIALOGUE_dialogue_2_2;
+					  end
 				 end
 				 else begin
 					  Next_Game_State <= Next_Game_State;
@@ -509,7 +517,7 @@ module color_mapper
 
 			DIALOGUE_dialogue_3_wrong: begin
 				 if (keycode == 8'd40) /* enter key */ begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_1;
+					  Next_Game_State <= DIALOGUE_dialogue_3_wrong_transition;
 				 end
 				 else begin
 					  Next_Game_State <= Next_Game_State;
@@ -518,12 +526,21 @@ module color_mapper
 
 			DIALOGUE_dialogue_1_1: begin
 				 if (keycode == 8'd40) /* enter key */ begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_2;
+					  Next_Game_State <= DIALOGUE_dialogue_1_transition;
 				 end
 				 else begin
 					  Next_Game_State <= Next_Game_State;
 					  Next_State <= leftRest1;
 				 end
+			end
+			
+			DIALOGUE_dialogue_1_transition: begin
+				if(keycode == 8'd00) begin
+					Next_Game_State <= DIALOGUE_dialogue_1_2;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
 			end
 
 			DIALOGUE_dialogue_1_2: begin
@@ -539,15 +556,15 @@ module color_mapper
 				 if (keycode == 8'd34 || keycode == 8'd93) /* 5 */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_right;
 				 end
-				 else if (keycode == 8'h30 || keycode == 8'h89 || 
-							 keycode == 8'h31 || keycode == 8'h90 || 
-							 keycode == 8'h32 || keycode == 8'h91 || 
-							 keycode == 8'h33 || keycode == 8'h92 || 
-							 keycode == 8'h35 || keycode == 8'h94 || 
-							 keycode == 8'h36 || keycode == 8'h95 || 
-							 keycode == 8'h37 || keycode == 8'h96 || 
-							 keycode == 8'h38 || keycode == 8'h97 || 
-							 keycode == 8'h39 || keycode == 8'h98) begin
+				 else if (keycode == 8'd30 || keycode == 8'd89 || 
+							 keycode == 8'd31 || keycode == 8'd90 || 
+							 keycode == 8'd32 || keycode == 8'd91 || 
+							 keycode == 8'd33 || keycode == 8'd92 || 
+							 keycode == 8'd35 || keycode == 8'd94 || 
+							 keycode == 8'd36 || keycode == 8'd95 || 
+							 keycode == 8'd37 || keycode == 8'd96 || 
+							 keycode == 8'd38 || keycode == 8'd97 || 
+							 keycode == 8'd39 || keycode == 8'd98) begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
 				 end
 				 else begin
@@ -569,15 +586,15 @@ module color_mapper
 				 if (keycode == 8'd37 || keycode == 8'd96) /* 8 */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_right;
 				 end
-				 else if (keycode == 8'h30 || keycode == 8'h89 || 
-							 keycode == 8'h31 || keycode == 8'h90 || 
-							 keycode == 8'h32 || keycode == 8'h91 || 
-							 keycode == 8'h33 || keycode == 8'h92 || 
-							 keycode == 8'h34 || keycode == 8'h93 || 
-							 keycode == 8'h35 || keycode == 8'h94 || 
-							 keycode == 8'h36 || keycode == 8'h95 || 
-							 keycode == 8'h38 || keycode == 8'h97 || 
-							 keycode == 8'h39 || keycode == 8'h98) begin
+				 else if (keycode == 8'd30 || keycode == 8'd89 || 
+							 keycode == 8'd31 || keycode == 8'd90 || 
+							 keycode == 8'd32 || keycode == 8'd91 || 
+							 keycode == 8'd33 || keycode == 8'd92 || 
+							 keycode == 8'd34 || keycode == 8'd93 || 
+							 keycode == 8'd35 || keycode == 8'd94 || 
+							 keycode == 8'd36 || keycode == 8'd95 || 
+							 keycode == 8'd38 || keycode == 8'd97 || 
+							 keycode == 8'd39 || keycode == 8'd98) begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
 				 end
 				 else begin
@@ -587,25 +604,43 @@ module color_mapper
 
 			DIALOGUE_dialogue_3_1: begin
 				 if (keycode == 8'd40) /* enter key */ begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_2;
+					  Next_Game_State <= DIALOGUE_dialogue_3_1_transition;
 				 end
 				 else begin
 					  Next_Game_State <= Next_Game_State;
 					  Next_State <= upRest1;
 				 end
 			end
+			
+			DIALOGUE_dialogue_3_1_transition: begin
+				if(keycode == 8'd00) begin
+					Next_Game_State <= DIALOGUE_dialogue_3_2;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
+			end
 
 			DIALOGUE_dialogue_3_2: begin
 				 if (keycode == 8'd40) /* enter key */ begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_3;
+					  Next_Game_State <= DIALOGUE_dialogue_3_2_transition;
 				 end
 				 else begin
 					  Next_Game_State <= Next_Game_State;
 				 end
 			end
+			
+			DIALOGUE_dialogue_3_2_transition: begin
+				if(keycode == 8'd00) begin
+					Next_Game_State <= DIALOGUE_dialogue_3_3;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
+			end
 
 			DIALOGUE_dialogue_3_3: begin
-				 if (keycode == 8'd09) /* enter key */ begin
+				 if (keycode == 8'd09) /* f */begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_right;
 				 end
 				 else if (keycode == 8'd00) begin
@@ -614,6 +649,24 @@ module color_mapper
 				 else begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
 				 end
+			end
+			
+			DIALOGUE_dialogue_3_3_transition: begin
+				if(keycode == 8'd00) begin
+					Next_Game_State <= DIALOGUE_dialogue_3_wrong;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
+			end
+			
+			DIALOGUE_dialogue_3_wrong_transition: begin
+				if(keycode == 8'd00) begin
+					Next_Game_State <= DIALOGUE_dialogue_3_3;
+				end
+				else begin
+					Next_Game_State <= Next_Game_State;
+				end
 			end
 			
 			OVERWORLD_PAUSE: begin	
@@ -1771,7 +1824,7 @@ module color_mapper
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
 				 else if (Text_Here == 1) begin
-					 {Red, Green, Blue} <= (dialogue_1_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+					 {Red, Green, Blue} <= (dialogue_3_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
 					if (Character_Here == 1 && palette_color != 0) begin 
@@ -1791,6 +1844,25 @@ module color_mapper
 				 end
 				 else if (Text_Here == 1) begin
 					  {Red, Green, Blue} <= (dialogue_1_1_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
+			
+			DIALOGUE_dialogue_1_transition: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_1_2_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
 					if (Character_Here == 1 && palette_color != 0) begin 
@@ -1897,8 +1969,46 @@ module color_mapper
 					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
+			
+			DIALOGUE_dialogue_3_1_transition: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_2_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
 
 			DIALOGUE_dialogue_3_2: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_2_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
+			
+			DIALOGUE_dialogue_3_2_transition: begin
 				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
 					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
@@ -1924,6 +2034,25 @@ module color_mapper
 				 end
 				 else if (Text_Here == 1) begin
 					  {Red, Green, Blue} <= (dialogue_3_3_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
+			
+			DIALOGUE_dialogue_3_3_transition: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
 					if (Character_Here == 1 && palette_color != 0) begin 
