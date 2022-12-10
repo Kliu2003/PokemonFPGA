@@ -1,6 +1,6 @@
-00:31:11 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
+20:38:08 **** Incremental Build of configuration Nios II for project PokemonC_bsp ****
 make all 
 [BSP build complete]
 
-00:31:12 Build Finished (took 996ms)
+20:38:09 Build Finished (took 1s.50ms)
 

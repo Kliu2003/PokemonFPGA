@@ -1340,7 +1340,7 @@ module color_mapper
 					else begin
 						palette_select <= 2;
 					end
-					{Red, Green, Blue} <= thecolor;
+					{Red, Green, Blue} <= thecolor == 24'hfefefe ? 24'h000000 : thecolor;
 				end
 			end
 			GYM_PAUSE: begin
