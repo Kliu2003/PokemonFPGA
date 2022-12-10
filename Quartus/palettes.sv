@@ -1,9 +1,10 @@
 module palettes (
-	input logic [1:0] select, // 0 is palette, 1 is map_palette
+	input logic [2:0] select,
 	input logic [3:0] palette_color,
 	input logic [7:0] map_palette_color,
 	input logic [4:0] start_palette_color,
 	input logic [5:0] gym_palette_color,
+	input logic dialogue_palette_color,
 	output logic [23:0] thecolor
 );
 	
@@ -255,6 +256,9 @@ module palettes (
 	assign Gym_Palette[62] = 24'h67676e;
 	assign Gym_Palette[63] = 24'h6e552c;
 	
+	logic [23:0] Dialogue_Palette [2];
+	assign Dialogue_Palette[0] = 24'h000000;
+	assign Dialogue_Palette[1] = 24'hffffff;
 	
 	always_comb begin
 		unique case (select)
@@ -269,6 +273,9 @@ module palettes (
 			end
 			3: begin
 				thecolor = Start_Palette[start_palette_color]; 
+			end
+			4: begin
+				thecolor = Dialogue_Palette[dialogue_palette_color];
 			end
 			default:
 				thecolor = 24'h000000;

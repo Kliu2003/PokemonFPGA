@@ -15,8 +15,13 @@ module color_mapper
 									downRest1, downRest2, downM1, downM2, 
 									rightRest1, rightRest2, rightM1, rightM2} Anim_State;
 	
-	typedef enum logic [2:0] {START = 3'b000, OVERWORLD = 3'b001, BATTLE = 3'b010, GYM = 3'b011, 
-										GYM_PAUSE = 3'b111, OVERWORLD_PAUSE = 3'b101} Game_State;
+	typedef enum logic [4:0] {START, OVERWORLD, BATTLE, GYM, GYM_PAUSE, OVERWORLD_PAUSE, 
+										DIALOGUE_dialogue_1_right, DIALOGUE_dialogue_1_wrong, 
+										DIALOGUE_dialogue_3_right, DIALOGUE_dialogue_3_wrong, 
+										DIALOGUE_dialogue_1_1, DIALOGUE_dialogue_1_2, 
+										DIALOGUE_dialogue_1_3, DIALOGUE_dialogue_2_1, 
+										DIALOGUE_dialogue_2_2, DIALOGUE_dialogue_3_1, 
+										DIALOGUE_dialogue_3_2, DIALOGUE_dialogue_3_3} Game_State;
 	
 	Anim_State Curr_State, Next_State;
 	Game_State Curr_Game_State, Next_Game_State;
@@ -27,10 +32,35 @@ module color_mapper
 	logic [18:0] start_read_addr; 
 	logic [18:0] collision_read_addr;
 	logic [15:0] collision_gym_read_addr;
+	logic [12:0] dialogue_1_right_read_addr;
+	logic [12:0] dialogue_1_wrong_read_addr;
+	logic [12:0] dialogue_3_right_read_addr;
+	logic [12:0] dialogue_3_wrong_read_addr;
+	logic [12:0] dialogue_1_1_read_addr;
+	logic [12:0] dialogue_1_2_read_addr;
+	logic [12:0] dialogue_1_3_read_addr;
+	logic [12:0] dialogue_2_1_read_addr;
+	logic [12:0] dialogue_2_2_read_addr;
+	logic [12:0] dialogue_3_1_read_addr;
+	logic [12:0] dialogue_3_2_read_addr;
+	logic [12:0] dialogue_3_3_read_addr;
+	
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
 	logic [5:0] gym_palette_color;
 	logic [4:0] start_palette_color;
+	logic dialogue_1_right_palette_color;
+	logic dialogue_1_wrong_palette_color;
+	logic dialogue_3_right_palette_color;
+	logic dialogue_3_wrong_palette_color;
+	logic dialogue_1_1_palette_color;
+	logic dialogue_1_2_palette_color;
+	logic dialogue_1_3_palette_color;
+	logic dialogue_2_1_palette_color;
+	logic dialogue_2_2_palette_color;
+	logic dialogue_3_1_palette_color;
+	logic dialogue_3_2_palette_color;
+	logic dialogue_3_3_palette_color;
 	logic [23:0] thecolor;
 	logic [1:0] palette_select;
 	logic [3:0] collision_status;
@@ -90,6 +120,114 @@ module color_mapper
 		.Clk(Clk),
 		.data_Out(collision_gym_status)
 	);
+	
+	dialogue_1_right dialogue_1_right (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_1_right_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_1_right_palette_color)
+	);
+	
+	dialogue_1_wrong dialogue_1_wrong (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_1_wrong_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_1_wrong_palette_color)
+	);
+	
+	dialogue_3_right dialogue_3_right (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_3_right_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_3_right_palette_color)
+	);
+	
+	dialogue_3_wrong dialogue_3_wrong (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_3_wrong_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_3_wrong_palette_color)
+	);
+	
+	dialogue_1_1 dialogue_1_1 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_1_1_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_1_1_palette_color)
+	);
+	
+	dialogue_1_2 dialogue_1_2 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_1_2_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_1_2_palette_color)
+	);
+	
+	dialogue_1_3 dialogue_1_3 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_1_3_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_1_3_palette_color)
+	);
+	
+	dialogue_2_1 dialogue_2_1 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_2_1_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_2_1_palette_color)
+	);
+	
+	dialogue_2_2 dialogue_2_2 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_2_2_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_2_2_palette_color)
+	);
+	
+	dialogue_3_1 dialogue_3_1 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_3_1_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_3_1_palette_color)
+	);
+	
+	dialogue_3_2 dialogue_3_2 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_3_2_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_3_2_palette_color)
+	);
+	
+	dialogue_3_3 dialogue_3_3 (
+		.data_In(0),
+		.write_address(0),
+		.read_address(dialogue_3_3_read_addr),
+		.we(0),
+		.Clk(Clk),
+		.data_Out(dialogue_3_3_palette_color)
+	);
 	 
 	palettes palettes(
 		.select(palette_select),
@@ -97,6 +235,7 @@ module color_mapper
 		.gym_palette_color(gym_palette_color),
 		.map_palette_color(map_palette_color),
 		.start_palette_color(start_palette_color),
+		.dialogue_palette_color(dialogue_palette_color),
 		.thecolor(thecolor),
 	);
 	 
@@ -113,6 +252,18 @@ module color_mapper
 	always_comb begin
 		collision_read_addr = topleftYChar / 4 * 320 + topleftXChar / 4;
 		collision_gym_read_addr = topleftYChar / 4 * 160 + topleftXChar / 4;
+		dialogue_1_right_read_addr = topleftY * 160 + topleftX;
+		dialogue_1_wrong_read_addr = topleftY * 160 + topleftX;
+		dialogue_3_right_read_addr = topleftY * 160 + topleftX;
+		dialogue_3_wrong_read_addr = topleftY * 160 + topleftX;
+		dialogue_1_1_read_addr = topleftY * 160 + topleftX;
+		dialogue_1_2_read_addr = topleftY * 160 + topleftX;
+		dialogue_1_3_read_addr = topleftY * 160 + topleftX;
+		dialogue_2_1_read_addr = topleftY * 160 + topleftX;
+		dialogue_2_2_read_addr = topleftY * 160 + topleftX;
+		dialogue_3_1_read_addr = topleftY * 160 + topleftX;
+		dialogue_3_2_read_addr = topleftY * 160 + topleftX;
+		dialogue_3_3_read_addr = topleftY * 160 + topleftX;
 	end
 	
 	always_comb begin:Character_Proc
@@ -244,7 +395,8 @@ module color_mapper
 					topleftXChar <= 11'd0 + 11'd311;
 					topleftYChar <= 11'd300 + 11'd340;
 					Next_Game_State <= GYM;
-					Next_State<= upRest1;
+					Next_State <= upRest1;
+					game_completed <= 2'b00;
 				end
 				else begin
 					transitionDelay <= transitionDelay + 1;
@@ -261,12 +413,159 @@ module color_mapper
 					Next_Game_State <= OVERWORLD_PAUSE;
 					transitionDelay <= 0;
 				end
+				else if (topleftY > 540 && topleftY < 550 && game_completed == 2'b00) begin
+					Next_Game_State <= DIALOGUE_dialogue_1_1;
+					Next_State <= leftRest1;
+				end
+				else if (topleftY > 400 && topleftY < 390 && game_completed == 2'b01) begin
+					Next_Game_State <= DIALOGUE_dialogue_2_1;
+					Next_State <= rightRest1;
+				end
+				else if (topleftY > 250 && topleftY < 240 && game_completed == 2'b10) begin
+					Next_Game_State <= DIALOGUE_dialogue_3_1;
+					Next_State <= upRest1;
+				end
 				else if(game_completed == 2'b11) begin
 					Next_Game_State <= START;
 				end
 				else begin
 					Next_Game_State <= Next_Game_State;
 				end
+			end
+			
+			DIALOGUE_dialogue_1_right: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  game_completed <= game_completed + 1;
+					  Next_Game_State <= GYM;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_right;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_wrong: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_1;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_right: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  game_completed <= 2'b11;
+					  Next_Game_State <= GYM;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_right;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_wrong: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_1;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_1: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_2;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_1;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_2: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_3;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_2;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_3: begin
+				 if (keycode == 8'h34 || keycode == 8'h93) /* 5 */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_right;
+				 end
+				 else if (keycode == 8'h30 || keycode == 8'h89 || 
+							 keycode == 8'h31 || keycode == 8'h90 || 
+							 keycode == 8'h32 || keycode == 8'h91 || 
+							 keycode == 8'h33 || keycode == 8'h92 || 
+							 keycode == 8'h35 || keycode == 8'h94 || 
+							 keycode == 8'h36 || keycode == 8'h95 || 
+							 keycode == 8'h37 || keycode == 8'h96 || 
+							 keycode == 8'h38 || keycode == 8'h97 || 
+							 keycode == 8'h39 || keycode == 8'h98) begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_3;
+				 end
+			end
+
+			DIALOGUE_dialogue_2_1: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_2_2;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_2_1;
+				 end
+			end
+
+			DIALOGUE_dialogue_2_2: begin
+				 if (keycode == 8'h37 || keycode == 8'h96) /* 8 */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_right;
+				 end
+				 else if (keycode == 8'h30 || keycode == 8'h89 || 
+							 keycode == 8'h31 || keycode == 8'h90 || 
+							 keycode == 8'h32 || keycode == 8'h91 || 
+							 keycode == 8'h33 || keycode == 8'h92 || 
+							 keycode == 8'h34 || keycode == 8'h93 || 
+							 keycode == 8'h35 || keycode == 8'h94 || 
+							 keycode == 8'h36 || keycode == 8'h95 || 
+							 keycode == 8'h38 || keycode == 8'h97 || 
+							 keycode == 8'h39 || keycode == 8'h98) begin
+					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_2_2;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_1: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_2;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_1;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_2: begin
+				 if (keycode == 8'h40) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_3;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_2;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_3: begin
+				 if (keycode == 8'h09) /* enter key */ begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_right;
+				 end
+				 else if (keycode == 8'h00) begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_3;
+				 end
+				 else begin
+					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
+				 end
 			end
 			
 			OVERWORLD_PAUSE: begin	
@@ -1359,6 +1658,174 @@ module color_mapper
 				else begin
 					{Red, Green, Blue} <= {8'hff - DrawY[10:3], 8'hff - DrawY[10:3], 8'hff - DrawY[10:3]};
 				end
+			end
+			
+			DIALOGUE_dialogue_1_right: begin
+				if(!blank) begin
+					{Red, Green, Blue} <= 24'h000000;
+				end
+				else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					palette_select <= 4;
+					{Red, Green, Blue} <= thecolor;
+				end
+				else begin
+					palette_select <= 2;
+					{Red, Green, Blue} <= thecolor;
+				end
+			end
+			
+			DIALOGUE_dialogue_1_wrong: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_right: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_wrong: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_1: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_2: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_3: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_2_1: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_2_2: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_1: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_2: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_3_3: begin
+				 if(!blank) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
+					  palette_select <= 4;
+					  {Red, Green, Blue} <= thecolor;
+				 end
+				 else begin
+					  palette_select <= 2;
+					  {Red, Green, Blue} <= thecolor;
+				 end
 			end
 			
 			default: begin

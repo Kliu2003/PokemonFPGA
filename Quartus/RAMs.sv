@@ -142,6 +142,271 @@ module collisionGymRAM
 	
 endmodule 
 
+module dialogue_1_right
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc_right.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_1_wrong
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc_wrong.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_3_right
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc3_right.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_3_wrong
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc3_wrong.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_1_1
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc1_dialogue1.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_1_2
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc1_dialogue2.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_1_3
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc1_dialogue3.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_2_1
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc2_dialogue1.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_2_2
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc2_dialogue2.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_3_1
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc3_dialogue1.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_3_2
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc3_dialogue2.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+module dialogue_3_3
+(		
+		input data_In,
+		input [12:0] write_address, read_address,
+		input we, Clk,
+		output logic data_Out
+);
+
+	logic mem [0:5440];
+
+	initial
+	begin
+		 $readmemb("Sprites/npc3_dialogue3.txt", mem);
+	end
+	always_ff @ (posedge Clk) begin
+		if (we)
+			mem[write_address] <= data_In;
+		data_Out<= mem[read_address];
+	end
+	
+endmodule 
+
+
 //Text file generated using Zayd's waveform generator
 
 module warp_rom (
