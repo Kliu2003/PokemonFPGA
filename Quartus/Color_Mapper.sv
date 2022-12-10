@@ -9,6 +9,7 @@ module color_mapper
 );
    
 	logic Character_Here;
+	logic Text_Here;
 	
 	typedef enum logic [3:0] {upRest1, upRest2, upM1, upM2, 
 									leftRest1, leftRest2, leftM1, leftM2, 
@@ -26,29 +27,19 @@ module color_mapper
 	Anim_State Curr_State, Next_State;
 	Game_State Curr_Game_State, Next_Game_State;
 	
+	
 	logic [12:0] read_addr;
 	logic [18:0] map_read_addr;
 	logic [15:0] gym_read_addr;
 	logic [18:0] start_read_addr; 
 	logic [18:0] collision_read_addr;
 	logic [15:0] collision_gym_read_addr;
-	logic [12:0] dialogue_1_right_read_addr;
-	logic [12:0] dialogue_1_wrong_read_addr;
-	logic [12:0] dialogue_3_right_read_addr;
-	logic [12:0] dialogue_3_wrong_read_addr;
-	logic [12:0] dialogue_1_1_read_addr;
-	logic [12:0] dialogue_1_2_read_addr;
-	logic [12:0] dialogue_1_3_read_addr;
-	logic [12:0] dialogue_2_1_read_addr;
-	logic [12:0] dialogue_2_2_read_addr;
-	logic [12:0] dialogue_3_1_read_addr;
-	logic [12:0] dialogue_3_2_read_addr;
-	logic [12:0] dialogue_3_3_read_addr;
-	
+	logic [12:0] dialogue_read_addr;
 	logic [3:0] palette_color;
 	logic [7:0] map_palette_color;
 	logic [5:0] gym_palette_color;
 	logic [4:0] start_palette_color;
+	logic dialogue_palette_color;
 	logic dialogue_1_right_palette_color;
 	logic dialogue_1_wrong_palette_color;
 	logic dialogue_3_right_palette_color;
@@ -124,7 +115,7 @@ module color_mapper
 	dialogue_1_right dialogue_1_right (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_1_right_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_1_right_palette_color)
@@ -133,7 +124,7 @@ module color_mapper
 	dialogue_1_wrong dialogue_1_wrong (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_1_wrong_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_1_wrong_palette_color)
@@ -142,7 +133,7 @@ module color_mapper
 	dialogue_3_right dialogue_3_right (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_3_right_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_3_right_palette_color)
@@ -151,7 +142,7 @@ module color_mapper
 	dialogue_3_wrong dialogue_3_wrong (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_3_wrong_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_3_wrong_palette_color)
@@ -160,7 +151,7 @@ module color_mapper
 	dialogue_1_1 dialogue_1_1 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_1_1_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_1_1_palette_color)
@@ -169,7 +160,7 @@ module color_mapper
 	dialogue_1_2 dialogue_1_2 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_1_2_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_1_2_palette_color)
@@ -178,7 +169,7 @@ module color_mapper
 	dialogue_1_3 dialogue_1_3 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_1_3_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_1_3_palette_color)
@@ -187,7 +178,7 @@ module color_mapper
 	dialogue_2_1 dialogue_2_1 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_2_1_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_2_1_palette_color)
@@ -196,7 +187,7 @@ module color_mapper
 	dialogue_2_2 dialogue_2_2 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_2_2_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_2_2_palette_color)
@@ -205,7 +196,7 @@ module color_mapper
 	dialogue_3_1 dialogue_3_1 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_3_1_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_3_1_palette_color)
@@ -214,7 +205,7 @@ module color_mapper
 	dialogue_3_2 dialogue_3_2 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_3_2_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_3_2_palette_color)
@@ -223,7 +214,7 @@ module color_mapper
 	dialogue_3_3 dialogue_3_3 (
 		.data_In(0),
 		.write_address(0),
-		.read_address(dialogue_3_3_read_addr),
+		.read_address(dialogue_read_addr),
 		.we(0),
 		.Clk(Clk),
 		.data_Out(dialogue_3_3_palette_color)
@@ -235,14 +226,14 @@ module color_mapper
 		.gym_palette_color(gym_palette_color),
 		.map_palette_color(map_palette_color),
 		.start_palette_color(start_palette_color),
-		.dialogue_palette_color(dialogue_palette_color),
-		.thecolor(thecolor),
+		.thecolor(thecolor)
 	);
 	 
 	logic signed [12:0] topleftX, topleftY;
 	logic [2:0] movementDelay;
 	logic signed [13:0] topleftXChar, topleftYChar;
 	logic [5:0] transitionDelay;
+	
 	
 	always_comb begin:start_menu_addr
 		start_read_addr = (DrawY-80) / 3 * 200 + (DrawX) * 10 / 32;
@@ -252,19 +243,73 @@ module color_mapper
 	always_comb begin
 		collision_read_addr = topleftYChar / 4 * 320 + topleftXChar / 4;
 		collision_gym_read_addr = topleftYChar / 4 * 160 + topleftXChar / 4;
-		dialogue_1_right_read_addr = topleftY * 160 + topleftX;
-		dialogue_1_wrong_read_addr = topleftY * 160 + topleftX;
-		dialogue_3_right_read_addr = topleftY * 160 + topleftX;
-		dialogue_3_wrong_read_addr = topleftY * 160 + topleftX;
-		dialogue_1_1_read_addr = topleftY * 160 + topleftX;
-		dialogue_1_2_read_addr = topleftY * 160 + topleftX;
-		dialogue_1_3_read_addr = topleftY * 160 + topleftX;
-		dialogue_2_1_read_addr = topleftY * 160 + topleftX;
-		dialogue_2_2_read_addr = topleftY * 160 + topleftX;
-		dialogue_3_1_read_addr = topleftY * 160 + topleftX;
-		dialogue_3_2_read_addr = topleftY * 160 + topleftX;
-		dialogue_3_3_read_addr = topleftY * 160 + topleftX;
 	end
+	
+	always_comb begin:Text_Proc
+		if(DrawX >= 10'd240 && DrawX <= 10'd399 && DrawY >= 10'd437 && DrawY <= 10'd470) begin
+			Text_Here = 1'b1;
+			dialogue_read_addr = (DrawY-10'd437) * 160 + (DrawX-10'd240);
+		end
+		else begin
+			Text_Here = 1'b0;
+			dialogue_read_addr = 0;
+		end
+	end
+	
+//	always_comb begin: Set_Text
+//		unique case(Curr_Game_State)
+//			DIALOGUE_dialogue_1_right: begin
+//				 dialogue_palette_color = dialogue_1_right_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_1_wrong: begin
+//				 dialogue_palette_color = dialogue_1_wrong_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_3_right: begin
+//				 dialogue_palette_color = dialogue_3_right_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_3_wrong: begin
+//				 dialogue_palette_color = dialogue_3_wrong_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_1_1: begin
+//				 dialogue_palette_color = dialogue_1_1_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_1_2: begin
+//				 dialogue_palette_color = dialogue_1_2_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_1_3: begin
+//				 dialogue_palette_color = dialogue_1_3_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_2_1: begin
+//				 dialogue_palette_color = dialogue_2_1_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_2_2: begin
+//				 dialogue_palette_color = dialogue_2_2_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_3_1: begin
+//				 dialogue_palette_color = dialogue_3_1_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_3_2: begin
+//				 dialogue_palette_color = dialogue_3_2_palette_color;
+//			end
+//
+//			DIALOGUE_dialogue_3_3: begin
+//				 dialogue_palette_color = dialogue_3_3_palette_color;
+//			end
+//			default:
+//				 dialogue_palette_color = 1'b0;
+//		endcase
+//	end
+
 	
 	always_comb begin:Character_Proc
 		if(DrawX >= 10'd311 && DrawX <= 10'd329 && DrawY >= 10'd340 && DrawY <= 10'd368) begin 
@@ -374,7 +419,7 @@ module color_mapper
 					Next_Game_State <= Next_Game_State;
 				end
 			OVERWORLD: begin
-				if(topleftXChar < 440 && topleftXChar > 420 && topleftYChar == 395) begin
+				if(topleftXChar < 440 && topleftXChar > 420 && topleftYChar == 385) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -404,7 +449,7 @@ module color_mapper
 			end
 					
 			GYM: begin
-				if(topleftYChar > 660 && topleftYChar < 670 && topleftXChar > 301 && topleftXChar < 321) begin
+				if(topleftYChar > 690 && topleftYChar < 700 && topleftXChar > 301 && topleftXChar < 321) begin
 					topleftX <= 11'd119;
 					topleftY <= 11'd100;
 					topleftXChar <= 11'd119 + 11'd311;
@@ -413,15 +458,15 @@ module color_mapper
 					Next_Game_State <= OVERWORLD_PAUSE;
 					transitionDelay <= 0;
 				end
-				else if (topleftY > 540 && topleftY < 550 && game_completed == 2'b00) begin
+				else if (topleftYChar > 580 && topleftYChar < 590 && topleftXChar > 301 && topleftXChar < 321 && game_completed == 2'b00) begin
 					Next_Game_State <= DIALOGUE_dialogue_1_1;
 					Next_State <= leftRest1;
 				end
-				else if (topleftY > 400 && topleftY < 390 && game_completed == 2'b01) begin
+				else if (topleftYChar > 480 && topleftYChar < 490 && topleftXChar > 301 && topleftXChar < 321 && game_completed == 2'b01) begin
 					Next_Game_State <= DIALOGUE_dialogue_2_1;
 					Next_State <= rightRest1;
 				end
-				else if (topleftY > 250 && topleftY < 240 && game_completed == 2'b10) begin
+				else if (topleftYChar > 380 && topleftYChar < 390 && topleftXChar > 301 && topleftXChar < 321 && game_completed == 2'b10) begin
 					Next_Game_State <= DIALOGUE_dialogue_3_1;
 					Next_State <= upRest1;
 				end
@@ -434,63 +479,64 @@ module color_mapper
 			end
 			
 			DIALOGUE_dialogue_1_right: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  game_completed <= game_completed + 1;
 					  Next_Game_State <= GYM;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_right;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_wrong: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_1;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_right: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  game_completed <= 2'b11;
 					  Next_Game_State <= GYM;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_right;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_wrong: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_1;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_1: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_2;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_1;
+					  Next_Game_State <= Next_Game_State;
+					  Next_State <= leftRest1;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_2: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_3;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_2;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_3: begin
-				 if (keycode == 8'h34 || keycode == 8'h93) /* 5 */ begin
+				 if (keycode == 8'd34 || keycode == 8'd93) /* 5 */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_right;
 				 end
 				 else if (keycode == 8'h30 || keycode == 8'h89 || 
@@ -505,21 +551,22 @@ module color_mapper
 					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_1_3;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_2_1: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_2_2;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_2_1;
+					  Next_Game_State <= Next_Game_State;
+					  Next_State <= rightRest1;
 				 end
 			end
 
 			DIALOGUE_dialogue_2_2: begin
-				 if (keycode == 8'h37 || keycode == 8'h96) /* 8 */ begin
+				 if (keycode == 8'd37 || keycode == 8'd96) /* 8 */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_1_right;
 				 end
 				 else if (keycode == 8'h30 || keycode == 8'h89 || 
@@ -534,34 +581,35 @@ module color_mapper
 					  Next_Game_State <= DIALOGUE_dialogue_1_wrong;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_2_2;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_1: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_2;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_1;
+					  Next_Game_State <= Next_Game_State;
+					  Next_State <= upRest1;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_2: begin
-				 if (keycode == 8'h40) /* enter key */ begin
+				 if (keycode == 8'd40) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_3;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_2;
+					  Next_Game_State <= Next_Game_State;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_3: begin
-				 if (keycode == 8'h09) /* enter key */ begin
+				 if (keycode == 8'd09) /* enter key */ begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_right;
 				 end
-				 else if (keycode == 8'h00) begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_3;
+				 else if (keycode == 8'd00) begin
+					  Next_Game_State <= Next_Game_State;
 				 end
 				 else begin
 					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
@@ -1661,170 +1709,230 @@ module color_mapper
 			end
 			
 			DIALOGUE_dialogue_1_right: begin
-				if(!blank) begin
-					{Red, Green, Blue} <= 24'h000000;
-				end
-				else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					palette_select <= 4;
-					{Red, Green, Blue} <= thecolor;
-				end
-				else begin
-					palette_select <= 2;
-					{Red, Green, Blue} <= thecolor;
-				end
-			end
-			
-			DIALOGUE_dialogue_1_wrong: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_1_right_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
+
+			DIALOGUE_dialogue_1_wrong: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_1_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_right: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_right_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_wrong: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					 {Red, Green, Blue} <= (dialogue_1_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_1: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_1_1_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_2: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_1_2_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_1_3: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					 {Red, Green, Blue} <= (dialogue_1_3_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_2_1: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_2_1_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_2_2: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_2_2_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_1: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_1_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_2: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_3_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 
 			DIALOGUE_dialogue_3_3: begin
-				 if(!blank) begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
 					  {Red, Green, Blue} <= 24'h000000;
 				 end
-				 else if (topleftY >= 0 && topleftY < 34 && topleftX >= 0 && topleftX < 160) begin
-					  palette_select <= 4;
-					  {Red, Green, Blue} <= thecolor;
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_3_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
 					  palette_select <= 2;
-					  {Red, Green, Blue} <= thecolor;
+					end
+					 {Red, Green, Blue} <= thecolor;
 				 end
 			end
 			
