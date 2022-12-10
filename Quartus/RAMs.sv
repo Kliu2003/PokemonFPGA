@@ -101,7 +101,7 @@ endmodule
 module collisionRAM
 (
 		input data_In,
-		input [15:0] write_address, read_address,
+		input [18:0] write_address, read_address,
 		input we, Clk,
 		output logic [3:0] data_Out
 );
@@ -110,7 +110,7 @@ module collisionRAM
 
 	initial
 	begin
-		 $readmemb("Sprites/mem__map_violet-city-medres-collision.txt", mem);
+		 $readmemb("Sprites/mem__map_violet-city-medres-collision_2_2.txt", mem);
 	end
 	always_ff @ (posedge Clk) begin
 		if (we)
@@ -123,7 +123,7 @@ endmodule
 module collisionGymRAM
 (
 		input data_In,
-		input [18:0] write_address, read_address,
+		input [15:0] write_address, read_address,
 		input we, Clk,
 		output logic [3:0] data_Out
 );

@@ -223,7 +223,7 @@ module color_mapper
 					Next_Game_State <= Next_Game_State;
 				end
 			OVERWORLD: begin
-				if(topleftXChar < 440 && topleftXChar > 411 && topleftYChar == 400) begin
+				if(topleftXChar < 440 && topleftXChar > 420 && topleftYChar == 395) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -252,10 +252,10 @@ module color_mapper
 			end
 					
 			GYM: begin
-				if(topleftYChar > 670 && topleftYChar < 680 && topleftXChar > 306 && topleftXChar < 316) begin
-					topleftX <= 11'd110;
+				if(topleftYChar > 660 && topleftYChar < 670 && topleftXChar > 301 && topleftXChar < 321) begin
+					topleftX <= 11'd119;
 					topleftY <= 11'd100;
-					topleftXChar <= 11'd110 + 11'd311;
+					topleftXChar <= 11'd119 + 11'd311;
 					topleftYChar <= 11'd100 + 11'd340;
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD_PAUSE;
@@ -271,9 +271,9 @@ module color_mapper
 			
 			OVERWORLD_PAUSE: begin	
 				if(transitionDelay == 6'b111111) begin
-					topleftX <= 11'd110;
+					topleftX <= 11'd119;
 					topleftY <= 11'd100;
-					topleftXChar <= 11'd110 + 11'd311;
+					topleftXChar <= 11'd119 + 11'd311;
 					topleftYChar <= 11'd100 + 11'd340;
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD;
