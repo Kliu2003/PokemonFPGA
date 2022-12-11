@@ -110,7 +110,7 @@ module collisionRAM
 
 	initial
 	begin
-		 $readmemb("Sprites/mem__map_violet-city-medres-collision_2_2.txt", mem);
+		 $readmemb("Sprites/mem__map_violet-city-medres-collision_2_3.txt", mem);
 	end
 	always_ff @ (posedge Clk) begin
 		if (we)
