@@ -179,6 +179,8 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 	 
 	 color_mapper cm(
 		.Clk(MAX10_CLK1_50),
+		.SClk(ARDUINO_IO[5]),
+		.LRClk(ARDUINO_IO[4]),
 		.Reset(Reset_h),
 		.VS(VGA_VS),
 		.blank(blank),
@@ -200,6 +202,8 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.Character_Moving(Movement),
 		.Direction(Dir)
 	 );
+	 
+
 	 
 	 // this is just example instantiation
 	 // may need to change SIZE based on implementation

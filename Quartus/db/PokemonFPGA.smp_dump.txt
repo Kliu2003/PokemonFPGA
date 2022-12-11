@@ -26,53 +26,55 @@ Next_State.rightM1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 Next_State.rightM2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |PokemonFPGA|color_mapper:cm|Next_Game_State
-Name Next_Game_State.DIALOGUE_dialogue_3_3_transition Next_Game_State.DIALOGUE_dialogue_3_2_transition Next_Game_State.DIALOGUE_dialogue_3_1_transition Next_Game_State.DIALOGUE_dialogue_1_transition Next_Game_State.DIALOGUE_dialogue_3_3 Next_Game_State.DIALOGUE_dialogue_3_2 Next_Game_State.DIALOGUE_dialogue_3_1 Next_Game_State.DIALOGUE_dialogue_2_2 Next_Game_State.DIALOGUE_dialogue_2_1 Next_Game_State.DIALOGUE_dialogue_1_3 Next_Game_State.DIALOGUE_dialogue_1_2 Next_Game_State.DIALOGUE_dialogue_1_1 Next_Game_State.DIALOGUE_dialogue_3_wrong Next_Game_State.DIALOGUE_dialogue_3_right Next_Game_State.DIALOGUE_dialogue_1_wrong Next_Game_State.DIALOGUE_dialogue_1_right Next_Game_State.OVERWORLD_PAUSE Next_Game_State.GYM_PAUSE Next_Game_State.GYM Next_Game_State.OVERWORLD Next_Game_State.START 
-Next_Game_State.START 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-Next_Game_State.OVERWORLD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-Next_Game_State.GYM 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-Next_Game_State.GYM_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-Next_Game_State.OVERWORLD_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_right 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_wrong 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_2_1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_2_2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_1_transition 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_1_transition 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_2_transition 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Next_Game_State.DIALOGUE_dialogue_3_3_transition 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Name Next_Game_State.DIALOGUE_dialogue_3_wrong_transition Next_Game_State.DIALOGUE_dialogue_3_3_transition Next_Game_State.DIALOGUE_dialogue_3_2_transition Next_Game_State.DIALOGUE_dialogue_3_1_transition Next_Game_State.DIALOGUE_dialogue_1_transition Next_Game_State.DIALOGUE_dialogue_3_3 Next_Game_State.DIALOGUE_dialogue_3_2 Next_Game_State.DIALOGUE_dialogue_3_1 Next_Game_State.DIALOGUE_dialogue_2_2 Next_Game_State.DIALOGUE_dialogue_2_1 Next_Game_State.DIALOGUE_dialogue_1_3 Next_Game_State.DIALOGUE_dialogue_1_2 Next_Game_State.DIALOGUE_dialogue_1_1 Next_Game_State.DIALOGUE_dialogue_3_wrong Next_Game_State.DIALOGUE_dialogue_3_right Next_Game_State.DIALOGUE_dialogue_1_wrong Next_Game_State.DIALOGUE_dialogue_1_right Next_Game_State.OVERWORLD_PAUSE Next_Game_State.GYM_PAUSE Next_Game_State.GYM Next_Game_State.OVERWORLD Next_Game_State.START 
+Next_Game_State.START 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Next_Game_State.OVERWORLD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+Next_Game_State.GYM 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+Next_Game_State.GYM_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+Next_Game_State.OVERWORLD_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_3 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_2_1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_2_2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_3 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_1_transition 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_1_transition 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_2_transition 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_3_transition 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Next_Game_State.DIALOGUE_dialogue_3_wrong_transition 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |PokemonFPGA|color_mapper:cm|Curr_Game_State
-Name Curr_Game_State.DIALOGUE_dialogue_3_3_transition Curr_Game_State.DIALOGUE_dialogue_3_2_transition Curr_Game_State.DIALOGUE_dialogue_3_1_transition Curr_Game_State.DIALOGUE_dialogue_1_transition Curr_Game_State.DIALOGUE_dialogue_3_3 Curr_Game_State.DIALOGUE_dialogue_3_2 Curr_Game_State.DIALOGUE_dialogue_3_1 Curr_Game_State.DIALOGUE_dialogue_2_2 Curr_Game_State.DIALOGUE_dialogue_2_1 Curr_Game_State.DIALOGUE_dialogue_1_3 Curr_Game_State.DIALOGUE_dialogue_1_2 Curr_Game_State.DIALOGUE_dialogue_1_1 Curr_Game_State.DIALOGUE_dialogue_3_wrong Curr_Game_State.DIALOGUE_dialogue_3_right Curr_Game_State.DIALOGUE_dialogue_1_wrong Curr_Game_State.DIALOGUE_dialogue_1_right Curr_Game_State.OVERWORLD_PAUSE Curr_Game_State.GYM_PAUSE Curr_Game_State.GYM Curr_Game_State.BATTLE Curr_Game_State.OVERWORLD Curr_Game_State.START 
-Curr_Game_State.START 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-Curr_Game_State.OVERWORLD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-Curr_Game_State.BATTLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-Curr_Game_State.GYM 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-Curr_Game_State.GYM_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-Curr_Game_State.OVERWORLD_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_right 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_wrong 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_2_1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_2_2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_1_transition 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_1_transition 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_2_transition 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-Curr_Game_State.DIALOGUE_dialogue_3_3_transition 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Name Curr_Game_State.DIALOGUE_dialogue_3_wrong_transition Curr_Game_State.DIALOGUE_dialogue_3_3_transition Curr_Game_State.DIALOGUE_dialogue_3_2_transition Curr_Game_State.DIALOGUE_dialogue_3_1_transition Curr_Game_State.DIALOGUE_dialogue_1_transition Curr_Game_State.DIALOGUE_dialogue_3_3 Curr_Game_State.DIALOGUE_dialogue_3_2 Curr_Game_State.DIALOGUE_dialogue_3_1 Curr_Game_State.DIALOGUE_dialogue_2_2 Curr_Game_State.DIALOGUE_dialogue_2_1 Curr_Game_State.DIALOGUE_dialogue_1_3 Curr_Game_State.DIALOGUE_dialogue_1_2 Curr_Game_State.DIALOGUE_dialogue_1_1 Curr_Game_State.DIALOGUE_dialogue_3_wrong Curr_Game_State.DIALOGUE_dialogue_3_right Curr_Game_State.DIALOGUE_dialogue_1_wrong Curr_Game_State.DIALOGUE_dialogue_1_right Curr_Game_State.OVERWORLD_PAUSE Curr_Game_State.GYM_PAUSE Curr_Game_State.GYM Curr_Game_State.BATTLE Curr_Game_State.OVERWORLD Curr_Game_State.START 
+Curr_Game_State.START 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+Curr_Game_State.OVERWORLD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+Curr_Game_State.BATTLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+Curr_Game_State.GYM 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+Curr_Game_State.GYM_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+Curr_Game_State.OVERWORLD_PAUSE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_right 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_wrong 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_3 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_2_1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_2_2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_3 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_1_transition 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_1_transition 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_2_transition 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_3_transition 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Curr_Game_State.DIALOGUE_dialogue_3_wrong_transition 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
 State Machine - |PokemonFPGA|color_mapper:cm|Curr_State
 Name Curr_State.rightM2 Curr_State.rightM1 Curr_State.rightRest2 Curr_State.rightRest1 Curr_State.downM2 Curr_State.downM1 Curr_State.downRest2 Curr_State.downRest1 Curr_State.leftM2 Curr_State.leftM1 Curr_State.leftRest2 Curr_State.leftRest1 Curr_State.upM2 Curr_State.upM1 Curr_State.upRest2 Curr_State.upRest1 

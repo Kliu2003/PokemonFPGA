@@ -1,11 +1,12 @@
 module color_mapper 
 ( 
-		input Clk, Reset, VS, blank, pixel_clk,
+		input Clk, Reset, VS, blank, pixel_clk, SClk, LRClk,
 		input [7:0] keycode,
 		input Character_Moving,
 		input [1:0] Direction,
 		input [10:0] DrawX, DrawY,
-		output logic [7:0]  Red, Green, Blue 
+		output logic [7:0]  Red, Green, Blue,
+		output logic [31:0] audio_out
 );
    
 	logic Character_Here;
@@ -60,6 +61,10 @@ module color_mapper
 	logic [3:0] collision_status;
 	logic [3:0] collision_gym_status;
 	logic [1:0] game_completed;
+	logic enable_audio;
+	logic [13:0] audio_addr;
+	logic [7:0] sample;
+	logic [31:0] processed_sample;
 	
 	characterRAM CharacterRAM(
 		.data_In(0),
@@ -231,6 +236,21 @@ module color_mapper
 		.start_palette_color(start_palette_color),
 		.thecolor(thecolor)
 	);
+	
+	warp_rom warp_rom(
+		.clk(MAX10_CLK1_50),
+		.addr(audio_addr),
+		.q(sample)
+	 );
+	 
+	 i2s_sr warp_play(
+		.SClk(SClk),
+		.LRClk(LRClk),
+		.sample(sample),
+		.q(processed_sample)
+	 );
+	
+	assign audio_out = processed_sample;
 	 
 	logic signed [12:0] topleftX, topleftY;
 	logic [2:0] movementDelay;
@@ -406,6 +426,15 @@ module color_mapper
 		Curr_Game_State <= Next_Game_State;
 	end
 	
+	always_ff @(posedge LRClk)  begin
+		if(enable_audio == 1) begin
+			audio_addr <= audio_addr + 1;
+		end
+		else begin
+			audio_addr <= 0;
+		end
+	end
+	
 	always_ff @(posedge VS) begin:Move_FSM
 		unique case(Curr_Game_State)
 			START:
@@ -422,7 +451,7 @@ module color_mapper
 					Next_Game_State <= Next_Game_State;
 				end
 			OVERWORLD: begin
-				if(topleftXChar < 440 && topleftXChar > 420 && topleftYChar == 385) begin
+				if(topleftXChar < 440 && topleftXChar > 410 && topleftYChar < 375 && topleftYChar > 370) begin
 					topleftX <= 11'd0;
 					topleftY <= 11'd300;
 					topleftXChar <= 11'd0 + 11'd311;
@@ -430,6 +459,7 @@ module color_mapper
 					Next_State<= upRest1;
 					Next_Game_State <= GYM_PAUSE;
 					transitionDelay <= 0;
+					enable_audio <= 1;
 				end
 				else begin
 					Next_Game_State <= Next_Game_State;
@@ -445,6 +475,7 @@ module color_mapper
 					Next_Game_State <= GYM;
 					Next_State <= upRest1;
 					game_completed <= 2'b00;
+					enable_audio <= 0;
 				end
 				else begin
 					transitionDelay <= transitionDelay + 1;
@@ -453,13 +484,14 @@ module color_mapper
 					
 			GYM: begin
 				if(topleftYChar > 690 && topleftYChar < 700 && topleftXChar > 301 && topleftXChar < 321) begin
-					topleftX <= 11'd119;
-					topleftY <= 11'd100;
-					topleftXChar <= 11'd119 + 11'd311;
-					topleftYChar <= 11'd100 + 11'd340;
+					topleftX <= 11'd110;
+					topleftY <= 11'd70;
+					topleftXChar <= 11'd110 + 11'd311;
+					topleftYChar <= 11'd70 + 11'd340;
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD_PAUSE;
 					transitionDelay <= 0;
+					enable_audio <= 1;
 				end
 				else if (topleftYChar > 580 && topleftYChar < 590 && topleftXChar > 301 && topleftXChar < 321 && game_completed == 2'b00) begin
 					Next_Game_State <= DIALOGUE_dialogue_1_1;
@@ -647,7 +679,7 @@ module color_mapper
 					  Next_Game_State <= Next_Game_State;
 				 end
 				 else begin
-					  Next_Game_State <= DIALOGUE_dialogue_3_wrong;
+					  Next_Game_State <= DIALOGUE_dialogue_3_3_transition;
 				 end
 			end
 			
@@ -671,12 +703,13 @@ module color_mapper
 			
 			OVERWORLD_PAUSE: begin	
 				if(transitionDelay == 6'b111111) begin
-					topleftX <= 11'd119;
-					topleftY <= 11'd100;
-					topleftXChar <= 11'd119 + 11'd311;
-					topleftYChar <= 11'd100 + 11'd340;
+					topleftX <= 11'd110;
+					topleftY <= 11'd70;
+					topleftXChar <= 11'd110 + 11'd311;
+					topleftYChar <= 11'd70 + 11'd340;
 					Next_State <= downRest1;
 					Next_Game_State <= OVERWORLD;
+					enable_audio <= 0;
 				end
 				else begin
 					transitionDelay <= transitionDelay + 1;
@@ -688,6 +721,7 @@ module color_mapper
 			end
 			
 			default: begin
+				audio_addr <= 14'b0;
 				Next_Game_State <= START;
 				game_completed <= 2'b00;
 			end
@@ -1748,7 +1782,15 @@ module color_mapper
 					{Red, Green, Blue} <= 24'h000000;
 				end
 				else begin
-					{Red, Green, Blue} <= {8'hff - DrawY[10:3], 8'hff - DrawY[10:3], 8'hff - DrawY[10:3]};
+					if(DrawX >= 260 && DrawX <= 380 && DrawY >= 200 && DrawY <= 280) begin
+						{Red, Green, Blue} <= 24'hffffff;
+					end
+					else if(DrawX >= 140 && DrawX <= 500 && DrawY >= 100 && DrawY <= 380) begin
+						{Red, Green, Blue} <= 24'h888888;
+					end
+					else begin
+						{Red, Green, Blue} <= 24'h000000;
+					end
 				end
 			end
 			
@@ -1757,7 +1799,15 @@ module color_mapper
 					{Red, Green, Blue} <= 24'h000000;
 				end
 				else begin
-					{Red, Green, Blue} <= {8'hff - DrawY[10:3], 8'hff - DrawY[10:3], 8'hff - DrawY[10:3]};
+					if(DrawX >= 260 && DrawX <= 380 && DrawY >= 200 && DrawY <= 280) begin
+						{Red, Green, Blue} <= 24'h000000;
+					end
+					else if(DrawX >= 140 && DrawX <= 500 && DrawY >= 100 && DrawY <= 380) begin
+						{Red, Green, Blue} <= 24'h888888;
+					end
+					else begin
+						{Red, Green, Blue} <= 24'hffffff;
+					end
 				end
 			end
 			
@@ -2053,6 +2103,25 @@ module color_mapper
 				 end
 				 else if (Text_Here == 1) begin
 					  {Red, Green, Blue} <= (dialogue_3_wrong_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
+				 end
+				 else begin
+					if (Character_Here == 1 && palette_color != 0) begin 
+						palette_select <= 0;
+					end
+					else begin
+					  palette_select <= 2;
+					end
+					 {Red, Green, Blue} <= thecolor;
+				 end
+			end
+			
+			DIALOGUE_dialogue_3_wrong_transition: begin
+				 if(!blank || ($signed(DrawY) + topleftY) / 4 >= 224 || ($signed(DrawX) + topleftX) / 4 >= 160 || 
+					($signed(DrawX) + topleftX) < 0 || ($signed(DrawY) + topleftY) < 0 || thecolor == 24'hfefefe) begin
+					  {Red, Green, Blue} <= 24'h000000;
+				 end
+				 else if (Text_Here == 1) begin
+					  {Red, Green, Blue} <= (dialogue_3_3_palette_color == 1'b0) ? 24'h000000 : 24'hfffffff;
 				 end
 				 else begin
 					if (Character_Here == 1 && palette_color != 0) begin 
